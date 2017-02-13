@@ -1,0 +1,3 @@
+apa_platform_index:
+    path:     /
+    defaults: { _controller: APAPlatformBundle:Default:index }
