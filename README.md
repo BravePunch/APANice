@@ -1,5 +1,4 @@
-Ma brancheAPANice
-=======
+Projet APANice
 
 Un projet Symfony 3 crée en janvier 2017.
 
