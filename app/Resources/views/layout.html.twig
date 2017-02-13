@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{% block title %}APANice{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        {% endblock %}
+        {% block javascript %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        {% endblock %}
+    </head>
+
+<body>
+
+    <div class="container-fluid" style="background-color:grey;height=30px">
+        </br></br>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-2" style="background-color:darkgray;height:600px">
+
+                {% block sidebar %}
+                {% endblock %}
+
+            </div>
+
+            <div id="content" class="col-md-10">
+
+                {% block body %}
+                {% endblock %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
