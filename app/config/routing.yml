@@ -1,4 +1,0 @@
-platform_admin:
-    resource: "@PlatformAdminBundle/Resources/config/routing.yml"
-    prefix:   /
-
