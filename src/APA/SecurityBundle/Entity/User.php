@@ -202,8 +202,7 @@ class User implements UserInterface
         return $this->dateInscription;
     }
 
-    public function eraseCredentials() {
+    public function eraseCredentials() {}
 
-    }
 }
 

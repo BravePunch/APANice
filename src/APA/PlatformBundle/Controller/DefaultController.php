@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('APAPlatformBundle:Default:index.html.twig');
     }
+
+    public function adminIndexAction()
+    {
+        return $this->render('APAPlatformBundle:Default:adminIndex.html.twig');
+    }
 }
