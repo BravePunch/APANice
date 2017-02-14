@@ -6,12 +6,9 @@
 
         <title>{% block title %}APANice{% endblock %}</title>
 
-        {% block stylesheets %}
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        {% endblock %}
-        {% block javascript %}
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        {% block bootstrap %}
+            <link rel="stylesheet" href="{{asset("bootstrap/css/bootstrap.min.css")}}">
+            <script src="{{asset("bootstrap/js/bootstrap.min.css")}}"></script>
         {% endblock %}
     </head>
 
@@ -19,22 +16,29 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12" style="background-color:grey;height:10vh"></div>
+            <div class="col-md-12" style="background-color:beige;height:7vh"></div>
         </div>
     </div>
 
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-md-2" style="background-color:darkgray;height:90vh">
+            <div class="col-md-2" style="background-color:snow">
 
-                <nav class="nav">
+                <br />
+                <ul class="nav nav-pills nav-fill flex-column">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{path("apa_platform_index")}}">Acceuil</a>
+                    </li>
 
                     {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{path('apa_platform_adminIndex')}}">Admin</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('apa_platform_adminIndex')}}">Admin</a>
+                        </li>
                     {% endif %}
 
-                </nav>
+                </ul>
 
             </div>
 
