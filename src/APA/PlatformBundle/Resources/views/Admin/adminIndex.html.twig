@@ -9,5 +9,13 @@
     <br/>
 
     <a href="{{path("apa_platform_addUser")}}">Inscription utilisateur</a>
+    
+    
+    <h3> Liste Utilisateurs : </h3>
+        {% for list in listUser %}
+            {{ list.prenom }} <a href="{{ path('apa_platform_deleteUser' , {'id': list.id}) }}"> <button class="btn btn-danger btn-sm"> Supprimer </button> </a>
+                              <a href="{{ path('apa_platform_updateUser' , {'id': list.id}) }}"> <button class="btn btn-info btn-sm"> Modifier </button> </a>
+    <hr>   
+        {% endfor %}
 
 {% endblock %}

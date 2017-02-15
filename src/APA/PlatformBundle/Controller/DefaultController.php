@@ -23,11 +23,16 @@ class DefaultController extends Controller
 
     public function adminIndexAction()
     {
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $listUser =  $em->getRepository('APASecurityBundle:User')->findBy(array(), array('nom' => 'desc'), 10, null);
+        
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
             throw new AccessDeniedException('Accès refusé.');
         }
-
-        return $this->render('APAPlatformBundle:Admin:adminIndex.html.twig');
+          
+        return $this->render('APAPlatformBundle:Admin:adminIndex.html.twig' , array('listUser' => $listUser));
     }
 
     public function addUserAction(Request $request)
