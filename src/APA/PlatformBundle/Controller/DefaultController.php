@@ -65,8 +65,11 @@ class DefaultController extends Controller
                 $user->setSalt('');
                 $user->setRoles(array('ROLE_USER'));
 
+                $userCheck = $em->getRepository('APASecuritybundle:User')->findBy(array())
+
                 $em->persist($user);
                 $em->flush();
+
 
                 return $this->redirectToRoute('apa_platform_adminIndex');
 
