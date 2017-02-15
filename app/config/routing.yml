@@ -1,4 +1,18 @@
-platform_admin:
-    resource: "@PlatformAdminBundle/Resources/config/routing.yml"
+apa_platform:
+    resource: "@APAPlatformBundle/Resources/config/routing.yml"
     prefix:   /
 
+apa_security:
+    resource: "@APASecurityBundle/Resources/config/routing.yml"
+    prefix:   /
+
+login:
+    path: /login
+    defaults:
+        _controller: APASecurityBundle:Security:login
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout

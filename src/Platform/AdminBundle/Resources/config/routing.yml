@@ -1,3 +1,0 @@
-platform_admin_homepage:
-    path:     /
-    defaults: { _controller: PlatformAdminBundle:Default:index }

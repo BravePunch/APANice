@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{% block title %}APANice{% endblock %}</title>
+
+        {% block bootstrap %}
+            <link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/bootstrap.min.css")}}">
+            <script type="text/javascript" src="{{asset("bootstrap/js/bootstrap.min.js")}}"></script>
+            <script type="text/javascript" src="{{asset("jquery.js")}}"></script>
+        {% endblock %}
+    </head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row"  style="background-color:beige;">
+            <div class="col-md-3 offset-9" style="text-align: center">
+
+                <span class="badge badge-info" style="margin-bottom: 5px">
+                    Bonjour, {{ app.user.username }}
+                </span>
+
+                <a href="{{path('logout')}}" class="btn btn-danger">Déconnection</a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-2" style="background-color:snow">
+
+                <br />
+                <ul class="nav nav-pills nav-fill flex-column">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{path("apa_platform_index")}}">Acceuil</a>
+                    </li>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('apa_platform_adminIndex')}}">Admin</a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+
+            </div>
+
+            <div id="content" class="col-md-10">
+
+                {% block body %}
+                {% endblock %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
