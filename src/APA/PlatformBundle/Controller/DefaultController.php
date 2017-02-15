@@ -81,11 +81,12 @@ class DefaultController extends Controller
                 $user->setSalt('');
                 $user->setRoles(array('ROLE_USER'));
 
-                $userCheck = $em->getRepository('APASecuritybundle:User')->findBy(array())
+                $userCheck = $em->getRepository('APASecurityBundle:User')
+                        ->findBy(array('username'=>$user->getUsername()));
 
-                $em->persist($user);
-                $em->flush();
-
+                if ($userCheck){
+                    throw new AccessDeniedException('Username déjà utilisé.');
+                }
 
                 $user->setSalt('salt');
                 $user->setRoles(array('ROLE_USER'));
