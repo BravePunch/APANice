@@ -4,6 +4,7 @@ namespace APA\SecurityBundle\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -30,6 +31,12 @@ class User implements UserInterface
     private $username;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
@@ -42,6 +49,7 @@ class User implements UserInterface
      * @ORM\Column(name="salt", type="string", length=255)
      */
     private $salt;
+    // SALT INUTILE AVEC METHODE D'ENCRYPTAGE ACTUELLE (BCRYPT)
 
     /**
      * @ORM\Column(name="roles", type="array")
@@ -103,6 +111,16 @@ class User implements UserInterface
     public function getUsername()
     {
         return $this->username;
+    }
+
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
     }
 
     /**

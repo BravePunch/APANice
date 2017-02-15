@@ -7,3 +7,8 @@ apa_platform_adminIndex:
     path: /admin
     defaults:
         _controller: APAPlatformBundle:Default:adminIndex
+
+apa_platform_addUser:
+    path: /admin/addUser
+    defaults:
+        _controller: APAPlatformBundle:Default:addUser
