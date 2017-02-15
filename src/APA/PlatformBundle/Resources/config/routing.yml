@@ -12,6 +12,7 @@ apa_platform_addUser:
     path: /admin/addUser
     defaults:
         _controller: APAPlatformBundle:Default:addUser
+<<<<<<< HEAD
 
 apa_platform_deleteUser:
     path: /admin/delete/{id}
@@ -19,3 +20,7 @@ apa_platform_deleteUser:
         _controller: APAPlatformBundle:Default:deleteUser
     requirements:
         id: \d+
+=======
+
+
+>>>>>>> APANice/Jerome

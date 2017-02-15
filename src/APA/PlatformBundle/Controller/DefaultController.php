@@ -5,7 +5,10 @@ namespace APA\PlatformBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+<<<<<<< HEAD
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
+=======
+>>>>>>> APANice/Jerome
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use APA\SecurityBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -24,11 +27,24 @@ class DefaultController extends Controller
 
     public function adminIndexAction()
     {
+<<<<<<< HEAD
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
             throw new AccessDeniedException('Accès refusé.');
         }
 
         return $this->render('APAPlatformBundle:Admin:adminIndex.html.twig');
+=======
+
+        $em = $this->getDoctrine()->getManager();
+
+        $listUser =  $em->getRepository('APASecurityBundle:User')->findBy(array(), array('nom' => 'desc'), 10, null);
+
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+            throw new AccessDeniedException('Accès refusé.');
+        }
+
+        return $this->render('APAPlatformBundle:Admin:adminIndex.html.twig' , array('listUser' => $listUser));
+>>>>>>> APANice/Jerome
     }
 
     public function addUserAction(Request $request)
@@ -62,6 +78,7 @@ class DefaultController extends Controller
                 $password = $this->get('security.password_encoder')
                         ->encodePassword($user, $user->getPlainPassword());
                 $user->setPassword($password);
+<<<<<<< HEAD
                 $user->setSalt('');
                 $user->setRoles(array('ROLE_USER'));
 
@@ -71,6 +88,14 @@ class DefaultController extends Controller
                 $em->flush();
 
 
+=======
+                $user->setSalt('salt');
+                $user->setRoles(array('ROLE_USER'));
+
+                $em->persist($user);
+                $em->flush();
+
+>>>>>>> APANice/Jerome
                 return $this->redirectToRoute('apa_platform_adminIndex');
 
             }
@@ -81,6 +106,7 @@ class DefaultController extends Controller
             'form' => $form->createView()
         ));
     }
+<<<<<<< HEAD
 
     public function deleteUserAction($id)
     {
@@ -106,4 +132,6 @@ class DefaultController extends Controller
 
     }
 
+=======
+>>>>>>> APANice/Jerome
 }
