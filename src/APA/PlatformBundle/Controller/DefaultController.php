@@ -5,6 +5,7 @@ namespace APA\PlatformBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use APA\SecurityBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -66,7 +67,7 @@ class DefaultController extends Controller
                 $em->persist($user);
                 $em->flush();
 
-                $this->redirect('apa_platform_adminIndex');
+                return $this->redirectToRoute('apa_platform_adminIndex');
 
             }
 
