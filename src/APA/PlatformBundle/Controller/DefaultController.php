@@ -5,6 +5,7 @@ namespace APA\PlatformBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use APA\SecurityBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -61,7 +62,7 @@ class DefaultController extends Controller
                 $password = $this->get('security.password_encoder')
                         ->encodePassword($user, $user->getPlainPassword());
                 $user->setPassword($password);
-                $user->setSalt('salt');
+                $user->setSalt('');
                 $user->setRoles(array('ROLE_USER'));
 
                 $em->persist($user);
@@ -77,4 +78,29 @@ class DefaultController extends Controller
             'form' => $form->createView()
         ));
     }
+
+    public function deleteUserAction($id)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+            throw new AccessDeniedException('Accès refusé.');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('APASecurityBundle:User');
+
+        $user = $repository->find($id);
+
+        if ($user == null){
+            throw new AccessDeniedException("L'utilisateur " . $id . " n'existe pas.");
+        } else if($user->getRoles() == array("ROLE_ADMIN")){
+            throw new AccessDeniedException("Opération impossible.");
+        } else {
+            $em->remove($user);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('apa_platform_adminIndex');
+
+    }
+
 }

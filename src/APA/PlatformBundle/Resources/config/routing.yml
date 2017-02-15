@@ -12,3 +12,10 @@ apa_platform_addUser:
     path: /admin/addUser
     defaults:
         _controller: APAPlatformBundle:Default:addUser
+
+apa_platform_deleteUser:
+    path: /admin/delete/{id}
+    defaults:
+        _controller: APAPlatformBundle:Default:deleteUser
+    requirements:
+        id: \d+
