@@ -18,10 +18,9 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
        {
             $qb = $this->createQueryBuilder('c')->where('c.nom = :search')->andWhere('c.prenom = :search1')->setParameters(array('search' => $search[0] , 'search1' => $search[1]));
        }
-      
        else 
-       {    
-            $qb = $this->createQueryBuilder('c')->where('c.nom = :search')->orWhere('c.prenom = :search')->setParameter('search', $search);
+       {      
+           $qb = $this->createQueryBuilder('c')->where('c.nom = :search')->orWhere('c.prenom = :search')->setParameter('search',  $search);
        }
        
        return $qb->getQuery()->getResult();
