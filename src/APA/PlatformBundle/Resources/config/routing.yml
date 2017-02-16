@@ -19,3 +19,10 @@ apa_platform_deleteUser:
         _controller: APAPlatformBundle:Default:deleteUser
     requirements:
         id: \d+
+
+apa_platform_editUser:
+    path: /admin/edit/{id}
+    defaults:
+        _controller: APAPlatformBundle:Default:editUser
+    requirements:
+        id: \d+
