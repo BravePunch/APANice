@@ -24,25 +24,37 @@ class DefaultController extends Controller
         return $this->render('APAPlatformBundle:Default:index.html.twig');
     }
 
-    public function adminIndexAction()
+    public function adminIndexAction(Request $request)
     {
 
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
             throw new AccessDeniedException('Accès refusé.');
         }
 
-        return $this->render('APAPlatformBundle:Admin:adminIndex.html.twig');
-
-
         $em = $this->getDoctrine()->getManager();
-
-        $listUser =  $em->getRepository('APASecurityBundle:User')->findBy(array(), array('nom' => 'desc'), 10, null);
-
+         
+        
+        if ($request->isMethod('POST')) 
+        {
+            $search = $request->request->get('search'); //Filtre les noms de l'entitée USER avec le POST 'search'
+        
+            $search1 = explode(' '  , $search);
+            
+            $listUser = $em->getRepository('APASecurityBundle:User')->findUser($search1);
+        }
+        else 
+        {
+            $listUser =  $em->getRepository('APASecurityBundle:User')->findBy(array(), array('nom' => 'desc'), 10);
+        }
+        
+  
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
             throw new AccessDeniedException('Accès refusé.');
         }
-
-        return $this->render('APAPlatformBundle:Admin:adminIndex.html.twig' , array('listUser' => $listUser));
+        
+        
+        $isAdmin = array('ROLE_ADMIN'); //Permet de vérifier le role des USER pour ne pas affiché l'admin dans adminIndex.html.twig , je n'est trouvé que cette méthode ...  
+        return $this->render('APAPlatformBundle:Admin:adminIndex.html.twig' , array('listUser' => $listUser , 'isAdmin' => $isAdmin));
 
     }
 

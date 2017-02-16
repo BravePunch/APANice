@@ -2,6 +2,8 @@
 
 namespace APA\SecurityBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+
 /**
  * UserRepository
  *
@@ -10,4 +12,19 @@ namespace APA\SecurityBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findUser($search)
+    {
+       if (count($search) > 1)
+       {
+            $qb = $this->createQueryBuilder('c')->where('c.nom = :search')->andWhere('c.prenom = :search1')->setParameters(array('search' => $search[0] , 'search1' => $search[1]));
+       }
+      
+       else 
+       {    
+            $qb = $this->createQueryBuilder('c')->where('c.nom = :search')->orWhere('c.prenom = :search')->setParameter('search', $search);
+       }
+       
+       return $qb->getQuery()->getResult();
+
+    }
 }
