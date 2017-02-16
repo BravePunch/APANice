@@ -103,6 +103,8 @@ class DefaultController extends Controller
                 $em->persist($user);
                 $em->flush();
 
+                $request->getSession()->getFlashBag()->add('notif', "Utilisateur enregistré.");
+
                 return $this->redirectToRoute('apa_platform_adminIndex');
 
             }
@@ -114,7 +116,7 @@ class DefaultController extends Controller
         ));
     }
 
-    public function deleteUserAction($id)
+    public function deleteUserAction(Request $request, $id)
     {
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
             throw new AccessDeniedException('Accès refusé.');
@@ -133,6 +135,8 @@ class DefaultController extends Controller
             $em->remove($user);
             $em->flush();
         }
+
+        $request->getSession()->getFlashBag()->add('notif', "Utilisateur supprimé.");
 
         return $this->redirectToRoute('apa_platform_adminIndex');
 
@@ -185,6 +189,8 @@ class DefaultController extends Controller
                 }
 
                 $em->flush();
+
+                $request->getSession()->getFlashBag()->add('notif', "Informations modifiées.");
 
                 return $this->redirectToRoute('apa_platform_adminIndex');
 

@@ -4,6 +4,19 @@
 
 {% block body %}
 
+
+      {% for message in app.session.flashbag.get('notif') %}
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4"></div>
+                <div class="col-md-4 text-center alert-info">
+                  <p>{{ message }}</p>
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+
+
     <h1>Admin Index</h1>
 
     <br/>
@@ -24,7 +37,7 @@
         {% for list in listUser %}
             {% if list.roles != isAdmin %}
                 {{ list.prenom }} <a href="{{ path('apa_platform_deleteUser' , {'id': list.id}) }}"> <button class="btn btn-danger btn-sm"> Supprimer </button> </a>
-                                  <a href=""> <button class="btn btn-info btn-sm"> Modifier </button> </a> 
+                                  <a href="{{ path('apa_platform_editUser' , {'id': list.id}) }}"> <button class="btn btn-info btn-sm"> Modifier </button> </a>
     <hr>
             {% endif %}
         {% endfor %}
