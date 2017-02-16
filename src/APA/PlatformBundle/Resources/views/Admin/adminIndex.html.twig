@@ -17,12 +17,15 @@
       {% endfor %}
 
 
-    <h1>Admin Index</h1>
+    <h1 class="text-center">Admin Index</h1>
 
     <br/>
 
-    <a href="{{path("apa_platform_addUser")}}">Inscription utilisateur</a>
+    <div class="btn btn-info">
+        <a href="{{path("apa_platform_addUser")}}">Inscription utilisateur</a>
+    </div>
 
+    <div class="container-fluid" style="border-bottom: 1px solid lightsteelblue;height: 5px"></div>
 
 
     <h3> Liste Utilisateurs : <div class="row">
