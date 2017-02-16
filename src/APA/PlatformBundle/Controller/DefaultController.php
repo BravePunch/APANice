@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class DefaultController extends Controller
 {
@@ -76,6 +77,15 @@ class DefaultController extends Controller
                         'second_options' => array('label' => 'Confirmer mot de passe'),))
                 ->add('nom',           TextType::class)
                 ->add('prenom',        TextType::class)
+                ->add('roles', ChoiceType::class, array( 
+                      'choices' => array( 
+                      'User' => 'ROLE_USER', 
+                      'Admin' => 'ROLE_ADMIN' 
+                                        ), 
+                      'required'    => false, 
+                      'placeholder' => 'Choose your gender', 
+                      'empty_data'  => null 
+                                                        ))
                 ->add('save',          SubmitType::class)
                 ->getForm()
                 ;
