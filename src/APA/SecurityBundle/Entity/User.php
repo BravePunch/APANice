@@ -37,6 +37,11 @@ class User implements UserInterface
     private $plainPassword;
 
     /**
+     * @Assert\NotBlank()
+     */
+    private $isAdmin;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
@@ -121,6 +126,16 @@ class User implements UserInterface
     public function getPlainPassword()
     {
         return $this->plainPassword;
+    }
+
+    public function setIsAdmin($isAdmin)
+    {
+        $this->isAdmin = $isAdmin;
+    }
+
+    public function getIsAdmin()
+    {
+        return $this->isAdmin;
     }
 
     /**

@@ -72,20 +72,12 @@ class DefaultController extends Controller
         $form = $this->get('form.factory')->createBuilder(Formtype::class, $user)
                 ->add('username',      TextType::class)
                 ->add('plainPassword', RepeatedType::class, array(
-                        'type'           => PasswordType::class,
-                        'first_options'  => array('label' => 'Mot de passe'),
-                        'second_options' => array('label' => 'Confirmer mot de passe'),))
+                        'type'           =>  PasswordType::class,
+                        'first_options'  =>  array('label' => 'Mot de passe'),
+                        'second_options' =>  array('label' => 'Confirmer mot de passe'),))
                 ->add('nom',           TextType::class)
                 ->add('prenom',        TextType::class)
-                ->add('roles', ChoiceType::class, array( 
-                      'choices' => array( 
-                      'User' => 'ROLE_USER', 
-                      'Admin' => 'ROLE_ADMIN' 
-                                        ), 
-                      'required'    => false, 
-                      'placeholder' => 'Choose your gender', 
-                      'empty_data'  => null 
-                                                        ))
+                ->add('isAdmin',       CheckboxType::class, array('required' => false))
                 ->add('save',          SubmitType::class)
                 ->getForm()
                 ;
@@ -96,10 +88,6 @@ class DefaultController extends Controller
 
             if ($form->isValid()){
 
-                $password = $this->get('security.password_encoder')
-                        ->encodePassword($user, $user->getPlainPassword());
-                $user->setPassword($password);
-
                 $userCheck = $em->getRepository('APASecurityBundle:User')
                         ->findBy(array('username'=>$user->getUsername()));
 
@@ -107,8 +95,17 @@ class DefaultController extends Controller
                     throw new AccessDeniedException('Username déjà utilisé.');
                 }
 
+                $password = $this->get('security.password_encoder')
+                        ->encodePassword($user, $user->getPlainPassword());
+                $user->setPassword($password);
+
+                if ($user->getIsAdmin() === true){
+                    $user->setRoles(array("ROLE_ADMIN"));
+                } else{
+                    $user->setRoles(array("ROLE_USER"));
+                }
+
                 $user->setSalt('salt');
-                $user->setRoles(array('ROLE_USER'));
 
                 $em->persist($user);
                 $em->flush();
