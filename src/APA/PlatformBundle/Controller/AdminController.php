@@ -71,10 +71,10 @@ class AdminController extends Controller
 
         $form = $this->get('form.factory')->createBuilder(Formtype::class, $user)
                 ->add('username',      TextType::class)
-                ->add('plainPassword', RepeatedType::class, array(
-                        'type'           =>  PasswordType::class,
-                        'first_options'  =>  array('label' => 'Mot de passe'),
-                        'second_options' =>  array('label' => 'Confirmer mot de passe'),))
+//                ->add('plainPassword', RepeatedType::class, array(
+//                        'type'           =>  PasswordType::class,
+//                        'first_options'  =>  array('label' => 'Mot de passe'),
+//                        'second_options' =>  array('label' => 'Confirmer mot de passe'),))
                 ->add('nom',           TextType::class)
                 ->add('prenom',        TextType::class)
                 ->add('isAdmin',       CheckboxType::class, array('required' => false))
@@ -89,14 +89,14 @@ class AdminController extends Controller
             if ($form->isValid()){
 
                 $userCheck = $em->getRepository('APASecurityBundle:User')
-                        ->findBy(array('username'=>$user->getUsername()));
+                    ->findBy(array('username'=>$user->getUsername()));
 
                 if ($userCheck){
                     throw new AccessDeniedException('Username déjà utilisé.');
                 }
 
                 $password = $this->get('security.password_encoder')
-                        ->encodePassword($user, $user->getPlainPassword());
+                        ->encodePassword($user, $user->getUserName());
                 $user->setPassword($password);
 
                 if ($user->getIsAdmin() === true){
@@ -167,7 +167,7 @@ class AdminController extends Controller
         }
 
         $form = $this->get('form.factory')->createBuilder(Formtype::class, $user)
-                ->add('username',      TextType::class)
+//                ->add('username',      TextType::class)
                 ->add('plainPassword', RepeatedType::class, array(
                         'type'           => PasswordType::class,
                         'first_options'  => array('label' => 'Mot de passe'),
@@ -187,13 +187,6 @@ class AdminController extends Controller
                 $password = $this->get('security.password_encoder')
                         ->encodePassword($user, $user->getPlainPassword());
                 $user->setPassword($password);
-
-                $userCheck = $em->getRepository('APASecurityBundle:User')
-                        ->findBy(array('username'=>$user->getUsername()));
-
-                if ($userCheck){
-                    throw new AccessDeniedException('Username déjà utilisé.');
-                }
 
                 $em->flush();
 
