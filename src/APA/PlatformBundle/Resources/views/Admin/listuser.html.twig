@@ -59,19 +59,22 @@
         $("#search").keyup(function(){
         $(".loading").show();
         var motcle = $("#search").val();
-        var DATA = 'motcle=' + motcle;
+        if (motcle.length>=3){
+        var DATA = 'motcle=' + motcle; //On assigne l'envoi de la valeur au mot clé 'motcle'
         $.ajax({
-        type: "POST",
-        url: "{{ path('apa_platform_adminIndex')}}",
-        data: DATA,
-        cache: false,
-        success: function(data){
+        type: "POST", //On envoie la requete en POST
+        url: "{{ path('apa_platform_adminIndex')}}",  //La requete est envoyer vers la route "apa_platform_adminIndex"
+        data: DATA, //On inclus notre variable DATA
+        cache: false, // ?
+        success: function(data){  //On fait ensuite retourner la valeur dans la div "#resultats_recherche"
            $('#resultats_recherche').html(data);
            $(".loading").hide();
         }
-    });
-    return false;
-});
+        });
+
+        return false;
+        }
+        });
 </script>
 
 

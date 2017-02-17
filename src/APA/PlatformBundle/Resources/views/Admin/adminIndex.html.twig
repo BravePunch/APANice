@@ -105,6 +105,8 @@
         $("#search").keyup(function(){ //a chaque lettre entrée dans l'input ont déclenche la fonction
         $(".loading").show(); //On fait affiché
         var motcle = $("#search").val(); //On récupere la valeur des mots ajoutées
+
+        if (motcle.length>=3){
         var DATA = 'motcle=' + motcle; //On assigne l'envoi de la valeur au mot clé 'motcle'
         $.ajax({
         type: "POST", //On envoie la requete en POST
@@ -115,8 +117,10 @@
            $('#resultats_recherche').html(data);
            $(".loading").hide();
         }
-    });
-    return false;
-});
+        });
+
+        return false;
+        }
+        });
 </script>
 {% endblock %}
