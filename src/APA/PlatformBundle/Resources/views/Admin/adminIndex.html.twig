@@ -28,14 +28,12 @@
     <div class="container-fluid" style="border-bottom: 1px solid lightsteelblue;height: 5px"></div>
 
 
-    <h3> Liste Utilisateurs : <div class="row">
-        <div class="col-2">
-            <form  class="form-control" method="post" action="{{ path('apa_platform_adminIndex') }}">
-                <input type="text" class="form-control" name="search" placeholder="Nom">
-                <button type="submit" class="btn btn-sm btn-success"> Recherchez </button>
-            </form>
-        </div>
-    </div>
+    
+    <h3> Liste Utilisateurs : 
+        
+            
+        
+    
 
     </h3>
 
@@ -44,7 +42,20 @@
             <tr>
                 <th>Nom</th>
                 <th>Prénom</th>
-                <th></th>
+                <th>
+                <form method="post" action="{{ path('apa_platform_adminIndex') }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                        <input type="text" class="form-control text-center" id="search" name="search" placeholder="Cherchez par nom , prenom ...">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-sm btn-secondary"> Recherchez </button>
+                    </span>
+                            </div>
+                        </div>
+                </div>
+                </form>
+                </th>
             </tr>
         </thead>
 
@@ -66,5 +77,4 @@
 
         </tbody>
     </table>
-
 {% endblock %}
