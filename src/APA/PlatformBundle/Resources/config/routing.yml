@@ -1,28 +1,28 @@
 apa_platform_index:
     path:     /
     defaults:
-        _controller: APAPlatformBundle:Default:index
+        _controller: APAPlatformBundle:Admin:index
 
 apa_platform_adminIndex:
     path: /admin
     defaults:
-        _controller: APAPlatformBundle:Default:adminIndex
+        _controller: APAPlatformBundle:Admin:adminIndex
 
 apa_platform_addUser:
     path: /admin/addUser
     defaults:
-        _controller: APAPlatformBundle:Default:addUser
+        _controller: APAPlatformBundle:Admin:addUser
 
 apa_platform_deleteUser:
     path: /admin/delete/{id}
     defaults:
-        _controller: APAPlatformBundle:Default:deleteUser
+        _controller: APAPlatformBundle:Admin:deleteUser
     requirements:
         id: \d+
 
 apa_platform_editUser:
     path: /admin/edit/{id}
     defaults:
-        _controller: APAPlatformBundle:Default:editUser
+        _controller: APAPlatformBundle:Admin:editUser
     requirements:
         id: \d+

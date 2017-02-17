@@ -18,7 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class DefaultController extends Controller
+class AdminController extends Controller
 {
     public function indexAction()
     {
@@ -33,28 +33,28 @@ class DefaultController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-         
-        
-        if ($request->isMethod('POST')) 
+
+
+        if ($request->isMethod('POST'))
         {
             $search = $request->request->get('search'); //Filtre les noms de l'entitée USER avec le POST 'search'
-        
+
             $search1 = explode(' '  , $search);
-            
+
             $listUser = $em->getRepository('APASecurityBundle:User')->findUser($search1);
         }
-        else 
+        else
         {
             $listUser =  $em->getRepository('APASecurityBundle:User')->findBy(array(), array('nom' => 'desc'), 10);
         }
-        
-  
+
+
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
             throw new AccessDeniedException('Accès refusé.');
         }
-        
-        
-        $isAdmin = array('ROLE_ADMIN'); //Permet de vérifier le role des USER pour ne pas affiché l'admin dans adminIndex.html.twig , je n'est trouvé que cette méthode ...  
+
+
+        $isAdmin = array('ROLE_ADMIN'); //Permet de vérifier le role des USER pour ne pas affiché l'admin dans adminIndex.html.twig , je n'est trouvé que cette méthode ...
         return $this->render('APAPlatformBundle:Admin:adminIndex.html.twig' , array('listUser' => $listUser , 'isAdmin' => $isAdmin));
 
     }
