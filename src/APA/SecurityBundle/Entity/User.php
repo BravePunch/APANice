@@ -32,13 +32,12 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\Length(max=4096)
+     * @var string
      */
     private $plainPassword;
 
     /**
-     * @Assert\NotBlank()
+     * @var boolean
      */
     private $isAdmin;
 

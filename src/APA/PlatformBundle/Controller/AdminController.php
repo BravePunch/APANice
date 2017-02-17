@@ -18,82 +18,84 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class DefaultController extends Controller
+class AdminController extends Controller
 {
     public function indexAction()
     {
         return $this->render('APAPlatformBundle:Default:index.html.twig');
     }
-    
+
     public function dynamicSearchAction(Request $request)
     {
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
             throw new AccessDeniedException('Accès refusé.');
         }
-       
+
             $em = $this->getDoctrine()->getManager();  //On récuprer l'entity manager
             $motcle = '';                              //la Variable $motcle est initialisé de type string vide
             $motcle = $request->attributes->get('search');  //la Variable $motcle contient maintenant l'attribut 'search' , l'argument de la route menant a cette fonction
-            
+
             if ($motcle != '') //Si la variable $motcle n'est plus un string vide
             {
                 $qb = $em->createQueryBuilder()->select('u')->from('APASecurityBundle:User' , 'u')->where('u.nom LIKE :motcle OR u.prenom LIKE :motcle')
                                                             ->orderBy('u.nom' , 'ASC')->setParameter('motcle' , '%'.$motcle.'%'); //On éféctue la recherche dans la base de donnée avec le $motcle
                 $listUser = $qb->getQuery()->getResult(); //on fait afficher le résultat
-               
+
             }
-            else 
+            else
             {
                 $listUser = $em->getRepository('APASecurityBundle:User')->findAll(); //Si le $motcle est toujours = a un string vide , on fait tout affiché
             }
-            
-        
+
+
         $isAdmin = array('ROLE_ADMIN');//Permet de vérifier le role des USER pour ne pas affiché l'admin dans adminIndex.html.twig , je n'est trouvé que cette méthode ...
         return $this->render('APAPlatformBundle:Admin:listuser.html.twig' , array('listUsers' => $listUser , 'isAdmin' => $isAdmin)); //On fait afficher le template listuser.html.twig
-    
+
     }
 
     public function adminIndexAction(Request $request)
     {
-        
+
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
             throw new AccessDeniedException('Accès refusé.');
         }
 
         $em = $this->getDoctrine()->getManager();
-        
-         
-        if ($request->isMethod('POST')) 
+
+
+
+        if ($request->isMethod('POST'))
         {
-            
+
             $search = $request->request->get('search'); //Filtre les noms de l'entitée USER avec le POST 'search'
-        
+
             $search1 = explode(' '  , $search);
-            
+
             $listUser = $em->getRepository('APASecurityBundle:User')->findUser($search1);
-               
+
         }
-        else 
+        else
         {
             $listUser =  $em->getRepository('APASecurityBundle:User')->findBy(array(), array('nom' => 'desc'), 10);
         }
-        
-        
-        
-        
-        $isAdmin = array('ROLE_ADMIN'); //Permet de vérifier le role des USER pour ne pas affiché l'admin dans adminIndex.html.twig , je n'est trouvé que cette méthode ... 
-        
-        if ($request->isXmlHttpRequest())  //Si la requete est de type AJAX 
-        { 
+
+
+
+
+
+        $isAdmin = array('ROLE_ADMIN'); //Permet de vérifier le role des USER pour ne pas affiché l'admin dans adminIndex.html.twig , je n'est trouvé que cette méthode ...
+
+        if ($request->isXmlHttpRequest())  //Si la requete est de type AJAX
+        {
             unset($listUser);   //On supprime la liste actuelle pour le besoin des conditions dans la vue
-            
+
             $motcle = $request->request->get('motcle');  //On récupere le motclé envoyer par AJAX
-            
+
             return $this->redirectToRoute('apa_platform_listUser' , array('search' => $motcle));  //On redirige vers la route  "apa_platform_listUser"
         }
-       
+
         return $this->render('APAPlatformBundle:Admin:adminIndex.html.twig' , array('listUser' => $listUser , 'isAdmin' => $isAdmin));
-        
+
     }
 
     public function addUserAction(Request $request)
@@ -108,10 +110,10 @@ class DefaultController extends Controller
 
         $form = $this->get('form.factory')->createBuilder(Formtype::class, $user)
                 ->add('username',      TextType::class)
-                ->add('plainPassword', RepeatedType::class, array(
-                        'type'           =>  PasswordType::class,
-                        'first_options'  =>  array('label' => 'Mot de passe'),
-                        'second_options' =>  array('label' => 'Confirmer mot de passe'),))
+//                ->add('plainPassword', RepeatedType::class, array(
+//                        'type'           =>  PasswordType::class,
+//                        'first_options'  =>  array('label' => 'Mot de passe'),
+//                        'second_options' =>  array('label' => 'Confirmer mot de passe'),))
                 ->add('nom',           TextType::class)
                 ->add('prenom',        TextType::class)
                 ->add('isAdmin',       CheckboxType::class, array('required' => false))
@@ -126,14 +128,14 @@ class DefaultController extends Controller
             if ($form->isValid()){
 
                 $userCheck = $em->getRepository('APASecurityBundle:User')
-                        ->findBy(array('username'=>$user->getUsername()));
+                    ->findBy(array('username'=>$user->getUsername()));
 
                 if ($userCheck){
                     throw new AccessDeniedException('Username déjà utilisé.');
                 }
 
                 $password = $this->get('security.password_encoder')
-                        ->encodePassword($user, $user->getPlainPassword());
+                        ->encodePassword($user, $user->getUserName());
                 $user->setPassword($password);
 
                 if ($user->getIsAdmin() === true){
@@ -204,7 +206,7 @@ class DefaultController extends Controller
         }
 
         $form = $this->get('form.factory')->createBuilder(Formtype::class, $user)
-                ->add('username',      TextType::class)
+//                ->add('username',      TextType::class)
                 ->add('plainPassword', RepeatedType::class, array(
                         'type'           => PasswordType::class,
                         'first_options'  => array('label' => 'Mot de passe'),
@@ -224,13 +226,6 @@ class DefaultController extends Controller
                 $password = $this->get('security.password_encoder')
                         ->encodePassword($user, $user->getPlainPassword());
                 $user->setPassword($password);
-
-                $userCheck = $em->getRepository('APASecurityBundle:User')
-                        ->findBy(array('username'=>$user->getUsername()));
-
-                if ($userCheck){
-                    throw new AccessDeniedException('Username déjà utilisé.');
-                }
 
                 $em->flush();
 
