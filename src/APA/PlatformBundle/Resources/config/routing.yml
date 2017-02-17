@@ -26,3 +26,8 @@ apa_platform_editUser:
         _controller: APAPlatformBundle:Admin:editUser
     requirements:
         id: \d+
+
+apa_platform_listUser:
+    path: /admin/listUser/{search}
+    defaults:
+        _controller: APAPlatformBundle:Admin:dynamicSearch

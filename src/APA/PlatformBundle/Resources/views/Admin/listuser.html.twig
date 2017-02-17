@@ -1,0 +1,77 @@
+
+
+
+
+
+<div id="resultats_recherche">
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>
+                <form id="form_recherche" method="post" action="{{ path('apa_platform_adminIndex') }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                        <input type="text" class="form-control text-center" id="search" name="search" placeholder="Cherchez par nom , prenom ...">
+                    <span class="input-group-btn">
+                        <input type="submit" class="btn btn-sm btn-secondary" value="Recherchez">
+                    </span>
+                            </div>
+                        </div>
+                </div>
+                </form>
+                </th>
+            </tr>
+        </thead>
+
+
+<tbody>
+
+
+
+{% for list in listUsers %}
+                {% if list.roles != isAdmin %}
+
+                    <tr>
+                        <td>{{ list.nom }} </td>
+
+                        <td>{{ list.prenom }}</td>
+
+                        <td class="text-right">
+                            <a href="{{ path('apa_platform_deleteUser' , {'id': list.id}) }}"> <button class="btn btn-danger btn-sm"> Supprimer </button> </a>
+                            <a href="{{ path('apa_platform_editUser' , {'id': list.id}) }}"> <button class="btn btn-info btn-sm"> Modifier </button> </a>
+                        </td>
+                    </tr>
+
+                {% endif %}
+{% endfor %}
+
+</tbody>
+    </table>
+            </div>
+
+
+
+ <script>
+        $(".loading").hide();
+        $("#search").keyup(function(){
+        $(".loading").show();
+        var motcle = $("#search").val();
+        var DATA = 'motcle=' + motcle;
+        $.ajax({
+        type: "POST",
+        url: "{{ path('apa_platform_adminIndex')}}",
+        data: DATA,
+        cache: false,
+        success: function(data){
+           $('#resultats_recherche').html(data);
+           $(".loading").hide();
+        }
+    });
+    return false;
+});
+</script>
+
+
