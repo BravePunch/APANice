@@ -8,13 +8,14 @@
 
         {% block bootstrap %}
             <link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/bootstrap.min.css")}}">
-            <script type="text/javascript" src="{{asset("bootstrap/js/bootstrap.min.js")}}"></script>
-            <script type="text/javascript" src="{{asset("jquery.js")}}"></script>
+						<script type="text/javascript" src="{{asset("jquery.js")}}"></script>
+            <script type="text/javascript" src="{{asset("bootstrap/js/bootstrap.min.js")}}"></script>  
         {% endblock %}
     </head>
 
 <body>
 
+    {#  HEADER  #}
     <div class="container-fluid">
         <div class="row"  style="background-color:beige;">
             <div class="col-md-3 offset-9" style="text-align: center">
@@ -28,11 +29,15 @@
             </div>
         </div>
     </div>
+    {#  FIN HEADER  #}
+
 
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-md-2" style="background-color:snow">
+
+            {#  SIDEBAR  #}
+            <div class="col-md-2 " style="background-color:snow">
 
                 <br />
                 <ul class="nav nav-pills nav-fill flex-column">
@@ -42,7 +47,7 @@
                     </li>
 
                     {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item">
+                        <li class="nav-item alert-warning">
                             <a class="nav-link" href="{{path('apa_platform_adminIndex')}}">Admin</a>
                         </li>
                     {% endif %}
@@ -50,13 +55,16 @@
                 </ul>
 
             </div>
+            {#  FIN SIDEBAR  #}
 
+            {#  BODY  #}
             <div id="content" class="col-md-10">
 
                 {% block body %}
                 {% endblock %}
 
             </div>
+            {#  FIN BODY  #}
 
         </div>
 

@@ -6,7 +6,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * User
  *
@@ -32,12 +31,13 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @var string
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
      */
     private $plainPassword;
 
     /**
-     * @var boolean
+     * @Assert\NotBlank()
      */
     private $isAdmin;
 
@@ -255,90 +255,5 @@ class User implements UserInterface
 
     public function eraseCredentials() {}
 
-
-    /**
-     * Set dateInscription
-     *
-     * @param \DateTime $dateInscription
-     *
-     * @return User
-     */
-    public function setDateInscription($dateInscription)
-    {
-        $this->dateInscription = $dateInscription;
-
-        return $this;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set adresse
-     *
-     * @param string $adresse
-     *
-     * @return User
-     */
-    public function setAdresse($adresse)
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    /**
-     * Get adresse
-     *
-     * @return string
-     */
-    public function getAdresse()
-    {
-        return $this->adresse;
-    }
-
-    /**
-     * Set telephone
-     *
-     * @param integer $telephone
-     *
-     * @return User
-     */
-    public function setTelephone($telephone)
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    /**
-     * Get telephone
-     *
-     * @return integer
-     */
-    public function getTelephone()
-    {
-        return $this->telephone;
-    }
 }
+
