@@ -57,9 +57,9 @@
  <script>
         $(".loading").hide();
         $("#search").keyup(function(){
-        $(".loading").show();
         var motcle = $("#search").val();
         if (motcle.length>=3){
+         $(".loading").show();
         var DATA = 'motcle=' + motcle; //On assigne l'envoi de la valeur au mot clé 'motcle'
         $.ajax({
         type: "POST", //On envoie la requete en POST
@@ -74,6 +74,7 @@
 
         return false;
         }
+       
         });
 </script>
 
