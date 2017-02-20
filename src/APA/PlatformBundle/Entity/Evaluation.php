@@ -285,5 +285,4 @@ class Evaluation
         return $this->seance;
     }
 }
-}
 
