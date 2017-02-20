@@ -4,13 +4,16 @@
 
 {% block body %}
 
-    <h1>Bienvenue sur la plateforme APANice.</h1>
-
+    <div class="jumbotron">
+    <h1 class="text-center">Bienvenue sur la plateforme APANice.</h1>
+    <br/>
     <p>Il n'y a pas grand chose pour le moment, à part:</p>
     <ul>
-        <li>Sécurité par pare feu.</li>
-        <li>Inscription utilisateurs par l'admin.</li>
+        <li class="list-group-item">Le layout général.</li>
+        <li class="list-group-item">Sécurité par pare feu.</li>
+        <li class="list-group-item">Système CRUD pour l'admin.</li>
     </ul>
+    </div>
 
     <em>Vous êtes connecté en tant que: {{app.user.username}}</em>
 
