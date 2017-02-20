@@ -12,7 +12,7 @@ class SecurityController extends Controller {
     public function loginAction(Request $request){
 
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->redirectToRoute('apa_platform_index');
+                return $this->redirectToRoute('apa_platform_redirection');
         }
 
         $authenticationUtils = $this->get('security.authentication_utils');
@@ -22,6 +22,17 @@ class SecurityController extends Controller {
             'error'         => $authenticationUtils->getLastAuthenticationError()
             ));
 
-  }
+    }
+
+    // Ceci est la page / , elle ser à rediriger l'utilisateur selon son statut.
+    public function redirectionAction(Request $request){
+
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+            return $this->redirectToRoute('apa_platform_adminIndex');
+        } else if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')){
+            return $this->redirectToRoute('apa_platform_userIndex');
+        }
+
+    }
 
 }
