@@ -8,6 +8,8 @@
 
         {% block bootstrap %}
             <link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/bootstrap.min.css")}}">
+						<link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/tableau_de_bord.css")}}">
+						<link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/menu.css")}}">
 						<script type="text/javascript" src="{{asset("jquery.js")}}"></script>
             <script type="text/javascript" src="{{asset("bootstrap/js/bootstrap.min.js")}}"></script>  
         {% endblock %}
@@ -17,13 +19,14 @@
 
     {#  HEADER  #}
     <div class="container-fluid">
-        <div class="row"  style="background-color:beige;">
-            <div class="col-md-3 offset-9" style="text-align: center">
-
-                <span class="badge badge-info" style="margin-bottom: 5px">
+        <div class="row"  style="background-color:#337ab7;">
+					<div class="col-md-3 ">
+					 <h4><span class="badge badge-info" style="margin-top: 5px">
                     Bonjour, {{ app.user.username }}
-                </span>
-
+                </span></h4>
+							 </div>
+            <div class="offset-6 col-md-3" style="text-align: center">
+                
                 <a href="{{path('logout')}}" class="btn btn-danger">Déconnection</a>
 
             </div>
@@ -35,26 +38,52 @@
     <div class="container-fluid">
 
         <div class="row">
-
+			
             {#  SIDEBAR  #}
-            <div class="col-md-2 " style="background-color:snow">
+					
+			{% if is_granted('ROLE_ADMIN') %}
+					
+					<div class="left">
+						
+						<div class="">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</div>
+				
+				<a href="{{path('apa_platform_index')}}">
+					<div class="item active">
+						<span class="glyphicon glyphicon-th-list"></span>
+							Acceuil
+					</div>
+				</a>
+						
+				<a href="{{path('apa_platform_adminIndex')}}">
+					<div class="item">
+						<span class="glyphicon glyphicon-log-out"></span>
+							Admin
+					</div>
+				</a>
+						
+						<div class="item">
+							<span class="glyphicon glyphicon-log-in"></span>
+							User
+						</div> 
+						
+				<a href="{{path('apa_platform_addUser')}}">
+					<div class="item">
+						<span class="glyphicon glyphicon-random"></span>
+							Ajoutez un utilisateur
+					</div>
+				</a>
+						
+						<div class="item">
+							<span class="glyphicon glyphicon-remove"></span>
+							...
+						</div> 
+						
+					</div>
 
-                <br />
-                <ul class="nav nav-pills nav-fill flex-column">
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{path("apa_platform_index")}}">Acceuil</a>
-                    </li>
-
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item alert-warning">
-                            <a class="nav-link" href="{{path('apa_platform_adminIndex')}}">Admin</a>
-                        </li>
-                    {% endif %}
-
-                </ul>
-
-            </div>
+       {% endif %}  
+					
             {#  FIN SIDEBAR  #}
 
             {#  BODY  #}
@@ -71,4 +100,5 @@
     </div>
 
 </body>
+
 </html>
