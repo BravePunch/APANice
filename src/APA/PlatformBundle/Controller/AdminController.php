@@ -243,4 +243,14 @@ class AdminController extends Controller
 
     }
 
+    public function MenuAction()
+    {
+        return $this->render('APAPlatformBundle:Admin:menu.html.twig');
+    }
+
+    public function tableauDeBordAction()
+    {
+        return $this->render('APAPlatformBundle:Admin:tableauDeBord.html.twig');
+    }
+
 }

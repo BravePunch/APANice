@@ -41,50 +41,17 @@
 
             {#  SIDEBAR  #}
 
-            {% if is_granted('ROLE_ADMIN') %}
+			{% if is_granted('ROLE_ADMIN') %}
 
-		<div class="left">
+					{{ render(controller("APAPlatformBundle:Admin:Menu"))}}
 
-                    <div class="">
+			{% endif %}
 
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+			{% if is_granted('ROLE_USER') %}
 
-                    </div>
+					{{ render(controller("APAPlatformBundle:User:Menu"))}}
 
-                    <a href="{{path('apa_platform_index')}}">
-			<div class="item active">
-                            <span class="glyphicon glyphicon-th-list"></span>
-                            Acceuil
-			</div>
-                    </a>
-
-                    <a href="{{path('apa_platform_adminIndex')}}">
-			<div class="item">
-                            <span class="glyphicon glyphicon-log-out"></span>
-                            Admin
-			</div>
-                    </a>
-
-                    <div class="item">
-			<span class="glyphicon glyphicon-log-in"></span>
-			User
-                    </div>
-
-                    <a href="{{path('apa_platform_addUser')}}">
-			<div class="item">
-                            <span class="glyphicon glyphicon-random"></span>
-                            Ajoutez un utilisateur
-			</div>
-                    </a>
-
-                    <div class="item">
-			<span class="glyphicon glyphicon-remove"></span>
-			...
-                    </div>
-
-                </div>
-
-            {% endif %}
+			{% endif %}
 
             {#  FIN SIDEBAR  #}
 
