@@ -116,6 +116,7 @@ class AdminController extends Controller
 //                        'second_options' =>  array('label' => 'Confirmer mot de passe'),))
                 ->add('nom',           TextType::class)
                 ->add('prenom',        TextType::class)
+                ->add('groupe' ,       ChoiceType::class, array('choices' => array('' => '','Groupe 1' => null , 'Groupe 2' => false , 'Groupe 3' => true)))
                 ->add('isAdmin',       CheckboxType::class, array('required' => false))
                 ->add('save',          SubmitType::class)
                 ->getForm()
@@ -143,6 +144,19 @@ class AdminController extends Controller
                 } else{
                     $user->setRoles(array("ROLE_USER"));
                 }
+                
+                  if ($user->getGroupe() === null){
+                    $user->setGroupe("Groupe 1");
+                } elseif ($user->getGroupe() === false){
+                    $user->setGroupe("Groupe 2");
+                } elseif ($user->getGroupe() === true){
+                    $user->setGroupe("Groupe 3");
+                }
+                else {
+                    $user->setGroupe(null);
+                }
+                
+                
 
                 $user->setSalt('salt');
 
