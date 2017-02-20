@@ -1,6 +1,6 @@
 .progress-bar {
     color: #333;
-} 
+}
 
 /*
 Reference:
@@ -59,7 +59,7 @@ form[role=login] {
 	form[role=login] > div {
 		text-align: center;
 	}
-	
+
 .form-links {
 	text-align: center;
 	margin-top: 1em;

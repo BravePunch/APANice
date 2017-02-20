@@ -22,7 +22,7 @@ class AdminController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('APAPlatformBundle:Default:index.html.twig');
+        return $this->render('APAPlatformBundle:Admin:index.html.twig');
     }
 
     public function dynamicSearchAction(Request $request)
@@ -242,12 +242,12 @@ class AdminController extends Controller
             "id"=>$id));
 
     }
-    
+
     public function MenuAction()
     {
         return $this->render('APAPlatformBundle:Admin:menu.html.twig');
     }
-    
+
     public function tableauDeBordAction()
     {
         return $this->render('APAPlatformBundle:Admin:tableauDeBord.html.twig');

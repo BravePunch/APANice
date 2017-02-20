@@ -34,7 +34,7 @@
         </div>
         
         <div class="loading text-right col-md-3 offset-6"><small class="text-muted">Recherche en cours...</small><img src="http://j-place.developpez.com/tutoriels/php/ameliorez-vos-applications-developpees-avec-symfony2/images/loading.gif">
-        
+
         </div>
       </div>
     
@@ -104,7 +104,7 @@
 
         $(".loading").hide(); //On cache l'image de chargement
         $("#search").keyup(function(){ //a chaque lettre entrée dans l'input ont déclenche la fonction
-        
+
         var motcle = $("#search").val(); //On récupere la valeur des mots ajoutées
 
         if (motcle.length>=3){
@@ -122,7 +122,7 @@
         });
         return false;
         }
-        
+
         });
 </script>
 {% endblock %}

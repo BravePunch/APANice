@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace APA\PlatformBundle\Controller;
 
@@ -20,13 +20,13 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 
 
-class UserController extends controller 
+class UserController extends controller
 {
     public function MenuAction()
     {
         return $this->render('APAPlatformBundle:User:menu.html.twig');
     }
-    
+
     public function tableauDeBordAction()
     {
         return $this->render('APAPlatformBundle:User:tableauDeBord.html.twig');

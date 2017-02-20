@@ -6,17 +6,16 @@
 
 {% block body %}
 
+        {% if is_granted('ROLE_ADMIN') %}
 
-{% if is_granted('ROLE_ADMIN') %}
-				
-					{{ render(controller("APAPlatformBundle:Admin:tableauDeBord"))}}	
-					
-{% endif %}
+					{{ render(controller("APAPlatformBundle:Admin:tableauDeBord"))}}
 
-{% if is_granted('ROLE_USER') %}
+        {% endif %}
+
+        {% if is_granted('ROLE_USER') %}
 
 					{{ render(controller("APAPlatformBundle:User:tableauDeBord"))}}
-    
-{% endif %}
+
+        {% endif %}
 
 {% endblock %}

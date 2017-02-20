@@ -26,7 +26,7 @@
                 </span></h4>
 							 </div>
             <div class="offset-6 col-md-3" style="text-align: center">
-                
+
                 <a href="{{path('logout')}}" class="btn btn-danger">Déconnection</a>
 
             </div>
@@ -38,21 +38,21 @@
     <div class="container-fluid">
 
         <div class="row">
-			
+
             {#  SIDEBAR  #}
-					
+
 			{% if is_granted('ROLE_ADMIN') %}
-				
-					{{ render(controller("APAPlatformBundle:Admin:Menu"))}}	
-					
-			{% endif %} 
-					
-			{% if is_granted('ROLE_USER') %}
-					
-					{{ render(controller("APAPlatformBundle:User:Menu"))}}
-					
+
+					{{ render(controller("APAPlatformBundle:Admin:Menu"))}}
+
 			{% endif %}
-					
+
+			{% if is_granted('ROLE_USER') %}
+
+					{{ render(controller("APAPlatformBundle:User:Menu"))}}
+
+			{% endif %}
+
             {#  FIN SIDEBAR  #}
 
             {#  BODY  #}
