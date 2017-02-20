@@ -45,7 +45,13 @@
 				
 					{{ render(controller("APAPlatformBundle:Admin:Menu"))}}	
 					
-			{% endif %}  
+			{% endif %} 
+					
+			{% if is_granted('ROLE_USER') %}
+					
+					{{ render(controller("APAPlatformBundle:User:Menu"))}}
+					
+			{% endif %}
 					
             {#  FIN SIDEBAR  #}
 
