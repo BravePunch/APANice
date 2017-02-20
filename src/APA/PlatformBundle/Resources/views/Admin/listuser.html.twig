@@ -10,7 +10,7 @@
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>
-                <form id="form_recherche" method="post" action="{{ path('apa_platform_adminIndex') }}">
+                <form id="form_recherche" method="post" action="{{ path('apa_platform_adminListe') }}">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="input-group">
@@ -63,7 +63,7 @@
         var DATA = 'motcle=' + motcle; //On assigne l'envoi de la valeur au mot clé 'motcle'
         $.ajax({
         type: "POST", //On envoie la requete en POST
-        url: "{{ path('apa_platform_adminIndex')}}",  //La requete est envoyer vers la route "apa_platform_adminIndex"
+        url: "{{ path('apa_platform_adminListe')}}",  //La requete est envoyer vers la route "apa_platform_adminIndex"
         data: DATA, //On inclus notre variable DATA
         cache: false, // ?
         success: function(data){  //On fait ensuite retourner la valeur dans la div "#resultats_recherche"
