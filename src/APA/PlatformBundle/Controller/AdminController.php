@@ -6,10 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Exception\BadCredentialsException;
-
-
-use APA\SecurityBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,10 +13,11 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use APA\SecurityBundle\Entity\User;
 
 class AdminController extends Controller
 {
-    public function indexAction()
+    public function adminIndexAction()
     {
         return $this->render('APAPlatformBundle:Admin:index.html.twig');
     }
@@ -53,7 +50,7 @@ class AdminController extends Controller
 
     }
 
-    public function adminIndexAction(Request $request)
+    public function adminListeAction(Request $request)
     {
 
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
@@ -79,10 +76,6 @@ class AdminController extends Controller
             $listUser =  $em->getRepository('APASecurityBundle:User')->findBy(array(), array('nom' => 'desc'), 10);
         }
 
-
-
-
-
         $isAdmin = array('ROLE_ADMIN'); //Permet de vérifier le role des USER pour ne pas affiché l'admin dans adminIndex.html.twig , je n'est trouvé que cette méthode ...
 
         if ($request->isXmlHttpRequest())  //Si la requete est de type AJAX
@@ -94,7 +87,7 @@ class AdminController extends Controller
             return $this->redirectToRoute('apa_platform_listUser' , array('search' => $motcle));  //On redirige vers la route  "apa_platform_listUser"
         }
 
-        return $this->render('APAPlatformBundle:Admin:adminIndex.html.twig' , array('listUser' => $listUser , 'isAdmin' => $isAdmin));
+        return $this->render('APAPlatformBundle:Admin:adminListe.html.twig' , array('listUser' => $listUser , 'isAdmin' => $isAdmin));
 
     }
 
@@ -116,6 +109,7 @@ class AdminController extends Controller
 //                        'second_options' =>  array('label' => 'Confirmer mot de passe'),))
                 ->add('nom',           TextType::class)
                 ->add('prenom',        TextType::class)
+                ->add('groupe' ,       ChoiceType::class, array('choices' => array('' => '','Groupe 1' => null , 'Groupe 2' => false , 'Groupe 3' => true)))
                 ->add('isAdmin',       CheckboxType::class, array('required' => false))
                 ->add('save',          SubmitType::class)
                 ->getForm()
@@ -143,6 +137,17 @@ class AdminController extends Controller
                 } else{
                     $user->setRoles(array("ROLE_USER"));
                 }
+                
+                  if ($user->getGroupe() === null){
+                    $user->setGroupe("Groupe 1");
+                } elseif ($user->getGroupe() === false){
+                    $user->setGroupe("Groupe 2");
+                } elseif ($user->getGroupe() === true){
+                    $user->setGroupe("Groupe 3");
+                }
+                else {
+                    $user->setGroupe(null);
+                }
 
                 $user->setSalt('salt');
 
@@ -151,7 +156,7 @@ class AdminController extends Controller
 
                 $request->getSession()->getFlashBag()->add('notif', "Utilisateur enregistré.");
 
-                return $this->redirectToRoute('apa_platform_adminIndex');
+                return $this->redirectToRoute('apa_platform_adminListe');
 
             }
 
@@ -184,7 +189,7 @@ class AdminController extends Controller
 
         $request->getSession()->getFlashBag()->add('notif', "Utilisateur supprimé.");
 
-        return $this->redirectToRoute('apa_platform_adminIndex');
+        return $this->redirectToRoute('apa_platform_adminListe');
 
     }
 
@@ -231,7 +236,7 @@ class AdminController extends Controller
 
                 $request->getSession()->getFlashBag()->add('notif', "Informations modifiées.");
 
-                return $this->redirectToRoute('apa_platform_adminIndex');
+                return $this->redirectToRoute('apa_platform_adminListe');
 
             }
 
