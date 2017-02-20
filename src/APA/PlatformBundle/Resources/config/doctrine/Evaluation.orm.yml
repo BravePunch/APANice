@@ -1,0 +1,31 @@
+APA\PlatformBundle\Entity\Evaluation:
+    type: entity
+    table: null
+    repositoryClass: APA\PlatformBundle\Repository\EvaluationRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        date:
+            type: datetime
+        presence:
+            type: boolean
+        ressenti:
+            type: smallint
+            nullable: true
+        intensite:
+            type: smallint
+            nullable: true
+        activite:
+            type: array
+            nullable: true
+        autonomie:
+            type: boolean
+            nullable: true
+        commentaire:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

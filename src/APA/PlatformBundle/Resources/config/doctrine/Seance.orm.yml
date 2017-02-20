@@ -1,0 +1,20 @@
+APA\PlatformBundle\Entity\Seance:
+    type: entity
+    table: null
+    repositoryClass: APA\PlatformBundle\Repository\SeanceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        date:
+            type: datetime
+        groupe:
+            type: string
+            length: 255
+        description:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }
