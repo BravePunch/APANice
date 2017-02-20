@@ -31,26 +31,24 @@ class AdminController extends Controller
             throw new AccessDeniedException('Accès refusé.');
         }
 
-            $em = $this->getDoctrine()->getManager();
-            //La variable $motcle est initialisée de type string vide
-            $motcle = '';
-            $motcle = $request->attributes->get('search');
-            //La variable $motcle contient maintenant l'attribut 'search' , l'argument de la route menant a cette fonction
+            $em = $this->getDoctrine()->getManager();  //On récuprer l'entity manager
+            $motcle = '';                              //la Variable $motcle est initialisé de type string vide
+            $motcle = $request->attributes->get('search');  //la Variable $motcle contient maintenant l'attribut 'search' , l'argument de la route menant a cette fonction
 
             if ($motcle != '') //Si la variable $motcle n'est plus un string vide
             {
                 $qb = $em->createQueryBuilder()->select('u')->from('APASecurityBundle:User' , 'u')->where('u.nom LIKE :motcle OR u.prenom LIKE :motcle')
-                                                            ->orderBy('u.nom' , 'ASC')->setParameter('motcle' , '%'.$motcle.'%'); //On effectue la recherche dans la base de données avec le $motcle
-                $listUser = $qb->getQuery()->getResult(); //On fait afficher le résultat
+                                                            ->orderBy('u.nom' , 'ASC')->setParameter('motcle' , '%'.$motcle.'%'); //On éféctue la recherche dans la base de donnée avec le $motcle
+                $listUser = $qb->getQuery()->getResult(); //on fait afficher le résultat
 
             }
             else
             {
-                $listUser = $em->getRepository('APASecurityBundle:User')->findAll(); //Si le $motcle est toujours = a un string vide , on fait tout afficher
+                $listUser = $em->getRepository('APASecurityBundle:User')->findAll(); //Si le $motcle est toujours = a un string vide , on fait tout affiché
             }
 
 
-        $isAdmin = array('ROLE_ADMIN');//Permet de vérifier le role des USER pour ne pas afficher l'admin dans adminIndex.html.twig , je n'ai trouvé que cette méthode ...
+        $isAdmin = array('ROLE_ADMIN');//Permet de vérifier le role des USER pour ne pas affiché l'admin dans adminIndex.html.twig , je n'est trouvé que cette méthode ...
         return $this->render('APAPlatformBundle:Admin:listuser.html.twig' , array('listUsers' => $listUser , 'isAdmin' => $isAdmin)); //On fait afficher le template listuser.html.twig
 
     }
@@ -69,7 +67,7 @@ class AdminController extends Controller
         if ($request->isMethod('POST'))
         {
 
-            $search = $request->request->get('search'); //Filtre les noms de l'entité USER avec le POST 'search'
+            $search = $request->request->get('search'); //Filtre les noms de l'entitée USER avec le POST 'search'
 
             $search1 = explode(' '  , $search);
 
@@ -85,7 +83,7 @@ class AdminController extends Controller
 
 
 
-        $isAdmin = array('ROLE_ADMIN'); //Permet de vérifier le role des USER pour ne pas afficher l'admin dans adminIndex.html.twig , je n'ai trouvé que cette méthode ...
+        $isAdmin = array('ROLE_ADMIN'); //Permet de vérifier le role des USER pour ne pas affiché l'admin dans adminIndex.html.twig , je n'est trouvé que cette méthode ...
 
         if ($request->isXmlHttpRequest())  //Si la requete est de type AJAX
         {
