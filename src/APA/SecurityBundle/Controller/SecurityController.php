@@ -24,7 +24,7 @@ class SecurityController extends Controller {
 
     }
 
-    // Ceci est la page / , elle ser à rediriger l'utilisateur selon son statut.
+    // Ceci est la page / , elle sert à rediriger l'utilisateur selon son statut après un login.
     public function redirectionAction(Request $request){
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
