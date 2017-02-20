@@ -22,7 +22,7 @@ class AdminController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('APAPlatformBundle:Default:index.html.twig');
+        return $this->render('APAPlatformBundle:Admin:index.html.twig');
     }
 
     public function dynamicSearchAction(Request $request)
