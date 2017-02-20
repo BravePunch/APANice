@@ -9,6 +9,7 @@
             <tr>
                 <th>Nom</th>
                 <th>Prénom</th>
+                <th>Groupe</th>
                 <th>
                 <form id="form_recherche" method="post" action="{{ path('apa_platform_adminListe') }}">
                     <div class="row">
@@ -38,7 +39,9 @@
                         <td>{{ list.nom }} </td>
 
                         <td>{{ list.prenom }}</td>
-
+                        
+                        <td>{{ list.groupe }}</td>
+                        
                         <td class="text-right">
                             <a href="{{ path('apa_platform_deleteUser' , {'id': list.id}) }}"> <button class="btn btn-danger btn-sm"> Supprimer </button> </a>
                             <a href="{{ path('apa_platform_editUser' , {'id': list.id}) }}"> <button class="btn btn-info btn-sm"> Modifier </button> </a>
