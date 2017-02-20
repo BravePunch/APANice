@@ -1,10 +1,10 @@
 apa_platform_index:
-    path:     /
+    path: /admin
     defaults:
         _controller: APAPlatformBundle:Admin:index
 
 apa_platform_adminIndex:
-    path: /admin
+    path: /admin/liste
     defaults:
         _controller: APAPlatformBundle:Admin:adminIndex
 

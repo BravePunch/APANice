@@ -8,6 +8,8 @@
 
         {% block bootstrap %}
             <link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/bootstrap.min.css")}}">
+						<link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/tableau_de_bord.css")}}">
+						<link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/menu.css")}}">
 						<script type="text/javascript" src="{{asset("jquery.js")}}"></script>
             <script type="text/javascript" src="{{asset("bootstrap/js/bootstrap.min.js")}}"></script>  
         {% endblock %}
@@ -17,12 +19,13 @@
 
     {#  HEADER  #}
     <div class="container-fluid">
-        <div class="row"  style="background-color:beige;">
-            <div class="col-md-3 offset-9" style="text-align: center">
-
-                <span class="badge badge-info" style="margin-bottom: 5px">
+        <div class="row"  style="background-color:#337ab7;">
+					<div class="col-md-3 ">
+					 <h4><span class="badge badge-info" style="margin-top: 5px">
                     Bonjour, {{ app.user.username }}
-                </span>
+                </span></h4>
+							 </div>
+            <div class="offset-6 col-md-3" style="text-align: center">
 
                 <a href="{{path('logout')}}" class="btn btn-danger">Déconnection</a>
 
@@ -37,24 +40,19 @@
         <div class="row">
 
             {#  SIDEBAR  #}
-            <div class="col-md-2 " style="background-color:snow">
 
-                <br />
-                <ul class="nav nav-pills nav-fill flex-column">
+			{% if is_granted('ROLE_ADMIN') %}
 
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{path("apa_platform_index")}}">Acceuil</a>
-                    </li>
+					{{ render(controller("APAPlatformBundle:Admin:Menu"))}}
 
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item alert-warning">
-                            <a class="nav-link" href="{{path('apa_platform_adminIndex')}}">Admin</a>
-                        </li>
-                    {% endif %}
+			{% endif %}
 
-                </ul>
+			{% if is_granted('ROLE_USER') %}
 
-            </div>
+					{{ render(controller("APAPlatformBundle:User:Menu"))}}
+
+			{% endif %}
+
             {#  FIN SIDEBAR  #}
 
             {#  BODY  #}
@@ -71,4 +69,5 @@
     </div>
 
 </body>
+
 </html>
