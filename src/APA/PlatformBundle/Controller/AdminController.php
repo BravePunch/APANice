@@ -20,7 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class AdminController extends Controller
 {
-    public function indexAction()
+    public function adminIndexAction()
     {
         return $this->render('APAPlatformBundle:Admin:index.html.twig');
     }
@@ -53,7 +53,7 @@ class AdminController extends Controller
 
     }
 
-    public function adminIndexAction(Request $request)
+    public function adminListeAction(Request $request)
     {
 
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
@@ -94,7 +94,7 @@ class AdminController extends Controller
             return $this->redirectToRoute('apa_platform_listUser' , array('search' => $motcle));  //On redirige vers la route  "apa_platform_listUser"
         }
 
-        return $this->render('APAPlatformBundle:Admin:adminIndex.html.twig' , array('listUser' => $listUser , 'isAdmin' => $isAdmin));
+        return $this->render('APAPlatformBundle:Admin:adminListe.html.twig' , array('listUser' => $listUser , 'isAdmin' => $isAdmin));
 
     }
 
@@ -165,7 +165,7 @@ class AdminController extends Controller
 
                 $request->getSession()->getFlashBag()->add('notif', "Utilisateur enregistré.");
 
-                return $this->redirectToRoute('apa_platform_adminIndex');
+                return $this->redirectToRoute('apa_platform_adminListe');
 
             }
 
@@ -198,7 +198,7 @@ class AdminController extends Controller
 
         $request->getSession()->getFlashBag()->add('notif', "Utilisateur supprimé.");
 
-        return $this->redirectToRoute('apa_platform_adminIndex');
+        return $this->redirectToRoute('apa_platform_adminListe');
 
     }
 
@@ -245,7 +245,7 @@ class AdminController extends Controller
 
                 $request->getSession()->getFlashBag()->add('notif', "Informations modifiées.");
 
-                return $this->redirectToRoute('apa_platform_adminIndex');
+                return $this->redirectToRoute('apa_platform_adminListe');
 
             }
 
