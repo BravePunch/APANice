@@ -1,0 +1,139 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Admin{% endblock %}
+
+{% block body %}
+
+
+    {% for message in app.session.flashbag.get('notif') %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 text-center alert-info">
+                  <p>{{ message }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+
+    <h1 class="text-center">Admin Index</h1>
+
+    <br/>
+
+    <div class="btn btn-info">
+        <a href="{{path("apa_platform_addUser")}}">Inscription utilisateur</a>
+    </div>
+
+    <div class="container-fluid" style="border-bottom: 1px solid lightsteelblue;height: 5px"></div>
+
+
+    <div class="row">
+        <div class="col-md-3">
+    <h3> Liste Utilisateurs : </h3>
+        </div>
+
+        <div class="loading text-right col-md-3 offset-6"><small class="text-muted">Recherche en cours...</small><img src="http://j-place.developpez.com/tutoriels/php/ameliorez-vos-applications-developpees-avec-symfony2/images/loading.gif">
+
+        </div>
+      </div>
+
+
+
+<div id="resultats_recherche">
+
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Groupe</th>
+                <th>
+                <form id="form_recherche" method="post" action="{{ path('apa_platform_adminListe') }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                        <input type="text" class="form-control text-center" id="search" name="search" placeholder="Cherchez par nom , prenom ...">
+                    <span class="input-group-btn">
+                        <input type="submit" class="btn btn-sm btn-secondary" value="Recherchez">
+                    </span>
+                            </div>
+
+                        </div>
+                </div>
+                </form>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% if listUser is defined %}
+                {% for list in listUser %}
+                    {% if list.roles != isAdmin %}
+
+                    <tr>
+                        <td>{{ list.nom }} </td>
+
+                        <td>{{ list.prenom }}</td>
+                        
+                        <td>
+                            {% if list.groupe is null %}
+                               
+                                  {{ list.roles|join }}
+                               
+                            {% else  %}                   
+                                {{ list.groupe }}
+                               {% endif %}
+                            </td>
+
+                        <td class="text-right">
+                            <a href="{{ path('apa_platform_deleteUser' , {'id': list.id}) }}"> <button class="btn btn-danger btn-sm"> Supprimer </button> </a>
+                            <a href="{{ path('apa_platform_editUser' , {'id': list.id}) }}"> <button class="btn btn-info btn-sm"> Modifier </button> </a>
+                        </td>
+                    </tr>
+
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% if listUsers is defined %}
+                {% include 'APAPlatformBundle:Admin:listuser.html.twig' %}
+            {% endif %}
+
+        </tbody>
+    </table>
+            </div>
+
+
+
+
+
+
+
+    <script>
+        // FILTRE DE RECHERCHE DYNAMIQUE AJAX
+
+        $(".loading").hide(); //On cache l'image de chargement
+        $("#search").keyup(function(){ //a chaque lettre entrée dans l'input ont déclenche la fonction
+
+        var motcle = $("#search").val(); //On récupere la valeur des mots ajoutées
+
+        if (motcle.length>=3){
+        $(".loading").show(); //On fait affiché
+        var DATA = 'motcle=' + motcle; //On assigne l'envoi de la valeur au mot clé 'motcle'
+        $.ajax({
+        type: "POST", //On envoie la requete en POST
+        url: "{{ path('apa_platform_adminListe')}}",  //La requete est envoyer vers la route "apa_platform_adminIndex"
+        data: DATA, //On inclus notre variable DATA
+        cache: false, // ?
+        success: function(data){  //On fait ensuite retourner la valeur dans la div "#resultats_recherche"
+           $('#resultats_recherche').html(data);
+           $(".loading").hide();
+        }
+        });
+        return false;
+        }
+
+        });
+</script>
+{% endblock %}
