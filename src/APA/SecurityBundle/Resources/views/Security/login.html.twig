@@ -6,33 +6,37 @@
         <title>APANice - Connexion</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/login.css') }}">
     </head>
 
     <body>
 
     <div class="container">
-    <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-6">
+    <div class="row" id="pwd-container">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
 
-        <form action="{{ path('login_check') }}" method="post">
+      <section class="login-form">
+
+        <form action="{{ path('login_check') }}" method="post" role="login">
+
+            <img src="http://www.botoxs.fr/visiteursdusoir/img/logo_ville_nice.png" class="img-responsive" height="200" width="300" alt="" />
 
             {% if error %}
                 <div class="alert alert-danger">Identifiants non reconnus.</div>
             {% endif %}
+            <label for="username">Votre identifiant de connexion :</label>
+            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Identifiant de connexion" />
 
-            <label for="username">Login :</label>
-            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" />
+            <label for="password">Votre mot de passe :</label>
+            <input class="form-control" type="password" id="password" name="_password" placeholder="Mot de passe"/>
 
-            <label for="password">Mot de passe :</label>
-            <input class="form-control" type="password" id="password" name="_password" />
+            <div class="pwstrength_viewport_progress"></div>
 
-            </br>
-
-            <input class="btn btn-primary" type="submit" value="Connexion" />
+            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Connexion" />
 
         </form>
+    </section>
 
     </div>
     </div>
@@ -40,3 +44,15 @@
     </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
