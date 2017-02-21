@@ -1,0 +1,4 @@
+apa_platform_redirection:
+    path: /
+    defaults:
+        _controller: APASecurityBundle:Security:redirection

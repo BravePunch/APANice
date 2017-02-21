@@ -1,5 +1,7 @@
 <?php
 
+// This entity is used for all users.
+
 namespace APA\SecurityBundle\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -35,11 +37,13 @@ class User implements UserInterface
      * @var string
      */
     private $plainPassword;
+    // $plainPassword is only used to be encrypted and set as the true password.
 
     /**
      * @var boolean
      */
     private $isAdmin;
+    // $isAdmin is only used for the checkbox in the addUser form.
 
     /**
      * @var string
@@ -54,7 +58,7 @@ class User implements UserInterface
      * @ORM\Column(name="salt", type="string", length=255)
      */
     private $salt;
-    // SALT INUTILE AVEC METHODE D'ENCRYPTAGE ACTUELLE (BCRYPT)
+    // Unused with bcrypt.
 
     /**
      * @ORM\Column(name="roles", type="array")
@@ -98,6 +102,13 @@ class User implements UserInterface
      */
     private $telephone;
 
+    
+    /**
+     * @ORM\Column(name="groupe" , type="string" , length=255 , nullable=true)
+     */
+    private $groupe;
+    
+    // This constructor sets the dateInscription attribute upon instanciation of a new User.
     public function __construct() {
         $this->dateInscription = new \Datetime();
     }
@@ -340,5 +351,29 @@ class User implements UserInterface
     public function getTelephone()
     {
         return $this->telephone;
+    }
+
+    /**
+     * Set groupe
+     *
+     * @param string $groupe
+     *
+     * @return User
+     */
+    public function setGroupe($groupe)
+    {
+        $this->groupe = $groupe;
+
+        return $this;
+    }
+
+    /**
+     * Get groupe
+     *
+     * @return string
+     */
+    public function getGroupe()
+    {
+        return $this->groupe;
     }
 }

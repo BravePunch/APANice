@@ -1,12 +1,12 @@
-apa_platform_index:
-    path:     /
-    defaults:
-        _controller: APAPlatformBundle:Admin:index
-
 apa_platform_adminIndex:
     path: /admin
     defaults:
         _controller: APAPlatformBundle:Admin:adminIndex
+
+apa_platform_adminListe:
+    path: /admin/liste
+    defaults:
+        _controller: APAPlatformBundle:Admin:adminListe
 
 apa_platform_addUser:
     path: /admin/addUser
@@ -31,3 +31,8 @@ apa_platform_listUser:
     path: /admin/listUser/{search}
     defaults:
         _controller: APAPlatformBundle:Admin:dynamicSearch
+
+apa_platform_userIndex:
+    path: /user
+    defaults:
+        _controller: APAPlatformBundle:User:userIndex
