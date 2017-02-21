@@ -1813,7 +1813,7 @@
         }
 
         .metrostyle {
-            height: 100px;
+            height: 150px;
             width: 150px;
             float: left;
             margin: 0 5px 0 0;
@@ -1825,8 +1825,8 @@
             }
 
         .metrostylelarge {
-            width: 260px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
         }
 
 
@@ -1861,4 +1861,3 @@
         .toometro {
             background-color: #2d89ef;
         }
-
