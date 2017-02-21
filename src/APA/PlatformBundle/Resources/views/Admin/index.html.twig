@@ -2,20 +2,18 @@
 
 {% block title %}{{ parent() }} - Acceuil{% endblock %}
 
-
-
 {% block body %}
 
-        {% if is_granted('ROLE_ADMIN') %}
+    {% if is_granted('ROLE_ADMIN') %}
 
-					{{ render(controller("APAPlatformBundle:Admin:tableauDeBord"))}}
+	{{ render(controller("APAPlatformBundle:Admin:tableauDeBord"))}}
 
-        {% endif %}
+    {% endif %}
 
-        {% if is_granted('ROLE_USER') %}
+    {% if is_granted('ROLE_USER') %}
 
-					{{ render(controller("APAPlatformBundle:User:tableauDeBord"))}}
+        {{ render(controller("APAPlatformBundle:User:tableauDeBord"))}}
 
-        {% endif %}
+    {% endif %}
 
 {% endblock %}

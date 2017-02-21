@@ -13,20 +13,24 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use APA\SecurityBundle\Entity\User;
 
 class AdminController extends Controller
 {
+  /**
+   * @Security("has_role('ROLE_ADMIN')")
+   */
     public function adminIndexAction()
     {
         return $this->render('APAPlatformBundle:Admin:index.html.twig');
     }
 
+  /**
+   * @Security("has_role('ROLE_ADMIN')")
+   */
     public function dynamicSearchAction(Request $request)
     {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
-            throw new AccessDeniedException('Accès refusé.');
-        }
 
             // Gets the entity manager.
             $em = $this->getDoctrine()->getManager();
@@ -63,13 +67,11 @@ class AdminController extends Controller
 
     }
 
+  /**
+   * @Security("has_role('ROLE_ADMIN')")
+   */
     public function adminListeAction(Request $request)
     {
-
-        // Checks if the user has admin rights.
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
-            throw new AccessDeniedException('Accès refusé.');
-        }
 
         $em = $this->getDoctrine()->getManager();
 
@@ -110,12 +112,11 @@ class AdminController extends Controller
 
     }
 
+  /**
+   * @Security("has_role('ROLE_ADMIN')")
+   */
     public function addUserAction(Request $request)
     {
-        // Checks if the user has admin rights
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
-            throw new AccessDeniedException('Accès refusé.');
-        }
 
         $em = $this->getDoctrine()->getManager();
 
@@ -201,16 +202,11 @@ class AdminController extends Controller
 
 
     // Deletes the user with the id given in the url
-    /**
-     * TO DO: CONFIRMATION
-     */
+  /**
+   * @Security("has_role('ROLE_ADMIN')")
+   */
     public function deleteUserAction(Request $request, $id)
     {
-
-        // Checks if the current user is admin
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
-            throw new AccessDeniedException('Accès refusé.');
-        }
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('APASecurityBundle:User');
@@ -236,12 +232,11 @@ class AdminController extends Controller
     }
 
     // Edit the user with the id given in the url
+  /**
+   * @Security("has_role('ROLE_ADMIN')")
+   */
     public function editUserAction(Request $request, $id)
     {
-        // Checks if the current user is admin
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
-            throw new AccessDeniedException('Accès refusé.');
-        }
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('APASecurityBundle:User');
