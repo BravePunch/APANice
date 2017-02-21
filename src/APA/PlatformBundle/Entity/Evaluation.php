@@ -1,11 +1,16 @@
 <?php
 
+// Every instance of this entity is linked to one User and one Seance. (OneToManyToOne)
+
 namespace APA\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * Evaluation
+ *
+ * @ORM\Table(name="evaluation")
+ * @ORM\Entity(repositoryClass="APA\PlatformBundle\Repository\EvaluationRepository")
  */
 class Evaluation
 {
@@ -47,14 +52,14 @@ class Evaluation
     /**
      * @var int
      *
-     * @ORM\Column(name="ressenti", type="smallint", nullable=true)
+     * @ORM\Column(name="ressenti", type="smallint")
      */
     private $ressenti;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="intensite", type="smallint", nullable=true)
+     * @ORM\Column(name="intensite", type="smallint")
      */
     private $intensite;
 
@@ -68,20 +73,18 @@ class Evaluation
     /**
      * @var string
      *
-     * @ORM\Column(name="commentaire", type="text", nullable=true)
+     * @ORM\Column(name="commentaire", type="text")
      */
     private $commentaire;
 
     /**
      * @var array
+     *
+     * @ORM\Column(name="activite", type="array")
      */
     private $activite;
 
 
-
-    public function __construct(){
-        $this->date = new \Datetime();
-    }
 
     /**
      * Get id
@@ -260,20 +263,5 @@ class Evaluation
     {
         return $this->activite;
     }
-
-    public function setUser($user){
-        $this->user = $user;
-    }
-
-    public function getUser(){
-        return $this->user;
-    }
-
-    public function setSeance($seance){
-        $this->seance = $seance;
-    }
-
-    public function getSeance(){
-        return $this->seance;
-    }
 }
+

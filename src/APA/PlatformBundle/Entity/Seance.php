@@ -5,7 +5,10 @@ namespace APA\PlatformBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * Seance
+ *
+ * @ORM\Table(name="seance")
+ * @ORM\Entity(repositoryClass="APA\PlatformBundle\Repository\SeanceRepository")
  */
 class Seance
 {
@@ -35,13 +38,10 @@ class Seance
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
-    public function __construct() {
-        $this->date = new \DateTime();
-    }
 
     /**
      * Get id

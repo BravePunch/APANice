@@ -1,5 +1,7 @@
 <?php
 
+// This entity is used for all users.
+
 namespace APA\SecurityBundle\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -8,7 +10,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * @ORM\Entity
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="APA\SecurityBundle\Repository\UserRepository")
  */
 class User implements UserInterface
 {
@@ -32,11 +37,13 @@ class User implements UserInterface
      * @var string
      */
     private $plainPassword;
+    // $plainPassword is only used to be encrypted and set as the true password.
 
     /**
      * @var boolean
      */
     private $isAdmin;
+    // $isAdmin is only used for the checkbox in the addUser form.
 
     /**
      * @var string
@@ -51,7 +58,7 @@ class User implements UserInterface
      * @ORM\Column(name="salt", type="string", length=255)
      */
     private $salt;
-    // SALT INUTILE AVEC METHODE D'ENCRYPTAGE ACTUELLE (BCRYPT)
+    // Unused with bcrypt.
 
     /**
      * @ORM\Column(name="roles", type="array")
@@ -101,6 +108,7 @@ class User implements UserInterface
      */
     private $groupe;
     
+    // This constructor sets the dateInscription attribute upon instanciation of a new User.
     public function __construct() {
         $this->dateInscription = new \Datetime();
     }

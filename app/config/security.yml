@@ -1,5 +1,6 @@
 security:
     encoders:
+        # We use bcrypt for password encryption
         Symfony\Component\Security\Core\User\User:
             algorithm: bcrypt
             cost:      12
@@ -29,9 +30,11 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        # Login is only used for the /login page. It allows anonymous users.
         login:
             pattern: ^/login$
             anonymous: true
+        # main is used for every page besides /login. It redirects anonymous users to /login.
         main:
             pattern:   ^/
             anonymous: false
