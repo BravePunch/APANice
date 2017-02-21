@@ -9,6 +9,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class SecurityController extends Controller {
 
+    // The "/login" page's controller.
     public function loginAction(Request $request){
 
         // If the user is already logged in, he is redirected to "/"

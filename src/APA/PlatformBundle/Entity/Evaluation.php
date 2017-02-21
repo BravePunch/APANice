@@ -1,5 +1,7 @@
 <?php
 
+// Every instance of this entity is linked to one User and one Seance. (OneToManyToOne)
+
 namespace APA\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
