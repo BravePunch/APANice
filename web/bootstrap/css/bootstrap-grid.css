@@ -85,6 +85,7 @@ html {
   margin-right: auto;
   padding-right: 15px;
   padding-left: 15px;
+
 }
 
 @media (min-width: 576px) {
@@ -131,6 +132,7 @@ html {
   .row {
     margin-right: -15px;
     margin-left: -15px;
+
   }
 }
 
@@ -211,6 +213,7 @@ html {
       -ms-flex-positive: 1;
           flex-grow: 1;
   max-width: 100%;
+
 }
 
 .col-auto {
