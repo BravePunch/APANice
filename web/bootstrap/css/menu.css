@@ -13,9 +13,17 @@ a:link
 .btn {
 
 padding:.6rem 1rem;
-
+background-color: rgba(132, 0, 0, 0.7);
+margin-left:156px;
 
 }
+
+.btn:hover {
+
+background-color: rgba(132, 0, 0, 0.7);
+
+}
+
 
 .left {
         background: #337ab7;
@@ -112,3 +120,5 @@ input[type=search]:focus {
     color: #aaa !important;
     font-size: 12px;
     }
+
+    
