@@ -42,6 +42,7 @@ class Seance
      */
     private $description;
 
+
     /**
      * Get id
      *

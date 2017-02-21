@@ -84,13 +84,6 @@ class Evaluation
 
 
 
-    public function __construct(){
-        $this->date = new \Datetime();
-    }
-
-
-
-
     /**
      * Get id
      *
@@ -267,22 +260,6 @@ class Evaluation
     public function getActivite()
     {
         return $this->activite;
-    }
-
-    public function setUser($user){
-        $this->user = $user;
-    }
-
-    public function getUser(){
-        return $this->user;
-    }
-
-    public function setSeance($seance){
-        $this->seance = $seance;
-    }
-
-    public function getSeance(){
-        return $this->seance;
     }
 }
 

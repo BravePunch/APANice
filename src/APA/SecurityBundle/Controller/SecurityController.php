@@ -11,6 +11,7 @@ class SecurityController extends Controller {
 
     public function loginAction(Request $request){
 
+        // If the user is already logged in, he is redirected to "/"
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
                 return $this->redirectToRoute('apa_platform_redirection');
         }
@@ -24,7 +25,9 @@ class SecurityController extends Controller {
 
     }
 
-    // Ceci est la page / , elle sert à rediriger l'utilisateur selon son statut après un login.
+    // This is the "/" page. The login page redirects to it upon successful login.
+    // It doesn't display anything and is only used for redirection.
+    // For example, the admin is redirected to "/admin".
     public function redirectionAction(Request $request){
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){

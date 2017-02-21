@@ -8,7 +8,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * @ORM\Entity
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="APA\SecurityBundle\Repository\UserRepository")
  */
 class User implements UserInterface
 {
