@@ -1,0 +1,30 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %} {{ parent() }} - Messagerie {% endblock %}
+
+{% block body %}
+
+    <h2 class="text-center"> Réception </h2>
+
+
+    {% for message in listMessage %}
+
+        <div class="container card">
+
+            <div class="row"><em>Reçu le: {{message.date|date('d/m/Y')}} à {{message.date|date('h:i')}}</em></div>
+            {# A FAIRE: NOM AUTEUR #}
+
+            <div class="row">
+                <p> {{message.content}} </p>
+            </div>
+
+            <div class="col-md-2 offset-10">
+                <a class="btn-outline-primary" href="">Répondre</a>
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+
+{% endblock %}

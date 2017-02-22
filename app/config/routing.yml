@@ -1,3 +1,7 @@
+apa_message:
+    resource: "@APAMessageBundle/Resources/config/routing.yml"
+    prefix:   /
+
 apa_platform:
     resource: "@APAPlatformBundle/Resources/config/routing.yml"
     prefix:   /

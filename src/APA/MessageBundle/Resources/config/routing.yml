@@ -1,0 +1,16 @@
+apa_message_inbox:
+    path:     /Message/inbox
+    defaults:
+        _controller: APAMessageBundle:Message:inbox
+
+apa_message_listUsers:
+    path:     /Message/list
+    defaults:
+        _controller: APAMessageBundle:Message:listUsers
+
+apa_platform_sendMessage:
+    path:     /Message/send/{id}
+    defaults:
+        _controller: APAPlatformBundle:Message:sendMessage
+    requirements:
+        id: \d+
