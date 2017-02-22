@@ -1,0 +1,22 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %} {{ parent() }} - Messagerie {% endblock %}
+
+{% block body %}
+
+
+    {% for message in listMessage %}
+
+        <div class="container">
+            <div class="row"><em>Reçu le: {{message.date|date('d-m-Y')}}</em></div>
+            {# A FAIRE: NOM AUTEUR #}
+
+            <div class="row">
+                <p> {{message.content}} </p>
+            </div>
+        </div>
+
+
+    {% endfor %}
+
+{% endblock %}

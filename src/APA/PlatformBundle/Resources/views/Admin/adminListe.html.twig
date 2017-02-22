@@ -30,7 +30,7 @@
 
     <div class="row">
         <div class="col-md-3">
-    <h3> Liste Utilisateurs : </h3>
+    <h3> Liste utilisateurs : </h3>
         </div>
 
         <div class="loading text-right col-md-3 offset-6"><small class="text-muted">Recherche en cours...</small><img src="http://j-place.developpez.com/tutoriels/php/ameliorez-vos-applications-developpees-avec-symfony2/images/loading.gif">
@@ -75,13 +75,13 @@
                         <td>{{ list.nom }} </td>
 
                         <td>{{ list.prenom }}</td>
-                        
+
                         <td>
                             {% if list.groupe is null %}
-                               
+
                                   {{ list.roles|join }}
-                               
-                            {% else  %}                   
+
+                            {% else  %}
                                 {{ list.groupe }}
                                {% endif %}
                             </td>
