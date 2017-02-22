@@ -1,0 +1,4 @@
+apa_message_inbox:
+    path:     /Message/inbox
+    defaults:
+        _controller: APAMessageBundle:Message:inbox

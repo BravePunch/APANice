@@ -1,3 +1,5 @@
+{# This is the main layout. It is inherited by all the other twigs #}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,7 +13,11 @@
 						<link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/tableau_de_bord.css")}}">
 						<link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/menu.css")}}">
 						<script type="text/javascript" src="{{asset("jquery.js")}}"></script>
+<<<<<<< HEAD
             <script type="text/javascript" src="{{asset("bootstrap/js/bootstrap.min.js")}}"></script>  
+=======
+            <script type="text/javascript" src="{{asset("bootstrap/js/bootstrap.min.js")}}"></script>
+>>>>>>> master
         {% endblock %}
     </head>
 
@@ -19,20 +25,32 @@
 
     {#  HEADER  #}
     <div class="container-fluid">
+<<<<<<< HEAD
         <div class="row"  style="background-color:#337ab7;">
 					<div class="col-md-3 ">
 					 <h4><span class="badge badge-info" style="margin-top: 5px">
                     Bonjour, {{ app.user.username }}
                 </span></h4>
+=======
+        <div class="row"  style="background-color:rgba(42, 34, 65, 1);">
+					<div class="col-md-3 ">
+					 <h5><span class="badge badge-info" style="margin-top: 5px; background-color:rgba(42, 75, 164, 0.6);">
+                    Bonjour, {{ app.user.username }}
+                </span></h5>
+>>>>>>> master
 							 </div>
             <div class="offset-6 col-md-3" style="text-align: center">
 
-                <a href="{{path('logout')}}" class="btn btn-danger">Déconnection</a>
+                <a href="{{path('logout')}}" class="btn btn-danger">Déconnexion</a>
 
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     {#  FIN HEADER  #}
+=======
+    {#  END OF HEADER  #}
+>>>>>>> master
 
 
     <div class="container-fluid">
@@ -48,12 +66,21 @@
 			{% endif %}
 
 			{% if is_granted('ROLE_USER') %}
+<<<<<<< HEAD
 
 					{{ render(controller("APAPlatformBundle:User:Menu"))}}
 
 			{% endif %}
 
             {#  FIN SIDEBAR  #}
+=======
+
+					{{ render(controller("APAPlatformBundle:User:Menu"))}}
+
+			{% endif %}
+
+            {#  END OF SIDEBAR  #}
+>>>>>>> master
 
             {#  BODY  #}
             <div id="content" class="col-md-10">
@@ -62,7 +89,11 @@
                 {% endblock %}
 
             </div>
+<<<<<<< HEAD
             {#  FIN BODY  #}
+=======
+            {#  END OF BODY  #}
+>>>>>>> master
 
         </div>
 

@@ -31,3 +31,11 @@ apa_platform_listUser:
     path: /admin/listUser/{search}
     defaults:
         _controller: APAPlatformBundle:Admin:dynamicSearch
+<<<<<<< HEAD
+=======
+
+apa_platform_userIndex:
+    path: /user
+    defaults:
+        _controller: APAPlatformBundle:User:userIndex
+>>>>>>> master
