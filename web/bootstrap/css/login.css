@@ -50,6 +50,9 @@ form[role=login] {
 		display: block;
 		margin: 0 auto;
 		margin-bottom: 35px;
+    max-width: 100%;
+	  height: auto;
+
 	}
 	form[role=login] input,
 	form[role=login] button {
@@ -68,4 +71,3 @@ form[role=login] {
 	.form-links a {
 		color: #fff;
 	}
-

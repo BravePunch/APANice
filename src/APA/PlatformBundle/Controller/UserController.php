@@ -7,8 +7,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> master
 use APA\SecurityBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,16 +20,39 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+<<<<<<< HEAD
 
 
 
 class UserController extends controller
 {
+=======
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
+
+
+class UserController extends Controller
+{
+  /**
+   * @Security("has_role('ROLE_USER')")
+   */
+    public function userIndexAction(Request $request){
+
+        return $this->render('APAPlatformBundle:User:index.html.twig');
+
+    }
+
+    // This action is called by the twig. It displays the content of the sidebar.
+>>>>>>> master
     public function MenuAction()
     {
         return $this->render('APAPlatformBundle:User:menu.html.twig');
     }
 
+<<<<<<< HEAD
+=======
+    // Same as MenuAction for the index's body.
+>>>>>>> master
     public function tableauDeBordAction()
     {
         return $this->render('APAPlatformBundle:User:tableauDeBord.html.twig');

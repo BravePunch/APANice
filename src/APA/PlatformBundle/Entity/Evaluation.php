@@ -1,5 +1,7 @@
 <?php
 
+// Every instance of this entity is linked to one User and one Seance. (OneToManyToOne)
+
 namespace APA\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -17,13 +19,13 @@ class Evaluation
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
-            
+
     /**
      * @ORM\ManyToOne(targetEntity="APA\PlatformBundle\Entity\Seance")
      * @ORM\JoinColumn(nullable=false)
      */
     private $seance;
-    
+
     /**
      * @var int
      *
@@ -83,7 +85,10 @@ class Evaluation
     private $activite;
 
 
-    
+    public function __construct() {
+        $this->date = new \DateTime();
+    }
+
     /**
      * Get id
      *
