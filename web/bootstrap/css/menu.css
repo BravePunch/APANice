@@ -10,6 +10,21 @@ a:link
  text-decoration:none;
 }
 
+.btn {
+
+padding:.6rem 1rem;
+background-color: rgba(132, 0, 0, 0.7);
+
+
+}
+
+.btn:hover {
+
+background-color: rgba(132, 0, 0, 0.7);
+
+}
+
+
 .left {
         background: #337ab7;
         display: inline-block;
@@ -31,6 +46,16 @@ a:link
 
 .item:hover {
         background-color:#1af9;
+
+
+
+
+        }
+
+        .tabor {
+
+        margin-top: 10px;
+
         }
 
 .left .glyphicon {
@@ -48,8 +73,11 @@ span.glyphicon.glyphicon-refresh{
     }
 
 .item {
-        height:50px;
+        height:40px;
+        padding-top: 8px;
+        margin-top: 10px;
         overflow:hidden;
+        text-align: center;
         color:#fff;
     }
 .title {
@@ -98,8 +126,3 @@ input[type=search]:focus {
     color: #aaa !important;
     font-size: 12px;
     }
-
-
-
-
-

@@ -11,6 +11,18 @@
   font-weight: normal;
   font-style: normal;
 }
+
+img {
+
+width: 90px;
+height:90px;
+margin-left:28px;
+margin-top: 25px;
+
+}
+
+
+
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -1810,6 +1822,7 @@
             padding: 5px;
             height: auto;
             display: table;
+            padding-top:35px;
         }
 
         .metrostyle {
