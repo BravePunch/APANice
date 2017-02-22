@@ -14,7 +14,7 @@ a:link
 
 padding:.6rem 1rem;
 background-color: rgba(132, 0, 0, 0.7);
-margin-left:156px;
+
 
 }
 
@@ -49,6 +49,12 @@ background-color: rgba(132, 0, 0, 0.7);
 
 
 
+
+        }
+
+        .tabor {
+
+        margin-top: 10px;
 
         }
 
@@ -120,5 +126,3 @@ input[type=search]:focus {
     color: #aaa !important;
     font-size: 12px;
     }
-
-    
