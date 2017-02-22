@@ -11,6 +11,6 @@ apa_message_listUsers:
 apa_platform_sendMessage:
     path:     /Message/send/{id}
     defaults:
-        _controller: APAPlatformBundle:Message:sendMessage
+        _controller: APAMessageBundle:Message:sendMessage
     requirements:
         id: \d+

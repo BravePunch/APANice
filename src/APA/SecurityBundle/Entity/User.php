@@ -29,7 +29,7 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=255, unique=true)
+     * @ORM\Column(name="username", type="string", length=30, unique=true)
      */
     private $username;
 
@@ -68,14 +68,14 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=50)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", length=50)
      */
     private $prenom;
 
@@ -86,7 +86,7 @@ class User implements UserInterface
     
     
     /**
-     * @ORM\Column(name="email" , type="string", length=255 , nullable=true)
+     * @ORM\Column(name="email" , type="string", length=60 , nullable=true)
      */
     private $email;
     
@@ -104,7 +104,7 @@ class User implements UserInterface
 
     
     /**
-     * @ORM\Column(name="groupe" , type="string" , length=255 , nullable=true)
+     * @ORM\Column(name="groupe" , type="string" , length=50 , nullable=true)
      */
     private $groupe;
     
