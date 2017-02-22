@@ -1,0 +1,28 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %} {{ parent() }} - Messagerie {% endblock %}
+
+{% block body %}
+
+    <h2 class="text-center"> Liste des membres du groupe </h2>
+
+
+    {% for user in listUsers %}
+
+        {% if user.id != currentUser.id %}
+        <div class="container card">
+
+            <div class="row"><em>{{user.nom}} {{user.prenom}}</em></div>
+            {# A FAIRE: NOM AUTEUR #}
+
+            <div class="col-md-3 offset-9">
+                <a class="btn-outline-primary" href="">Envoyer un message</a>
+            </div>
+
+        </div>
+        {% endif %}
+
+    {% endfor %}
+
+
+{% endblock %}

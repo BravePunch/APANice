@@ -1,0 +1,36 @@
+
+.item  > .tab1, .files, .mess, .pagem, .settings {
+
+height:30px;
+width:30px;
+float:left;
+margin-left: 0;
+margin-top: -3px;
+
+
+}
+
+.team {
+
+  height:40px;
+  width:40px;
+  float:left;
+  margin-left: 0;
+  margin-top: -8px;
+
+
+}
+
+ .doss {
+
+text-align: right;
+margin-left: 37px;
+
+}
+
+.toget {
+
+margin-right:10px;
+
+
+}
