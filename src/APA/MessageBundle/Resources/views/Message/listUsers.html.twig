@@ -4,6 +4,8 @@
 
 {% block body %}
 
+    <a class="link-inverse" href="{{path('apa_message_inbox')}}"><< Voir les messages récents</a>
+
     <h2 class="text-center"> Liste des membres du groupe </h2>
 
 
@@ -21,7 +23,10 @@
                     <td><strong>{{user.nom}} {{user.prenom}}</strong></td>
 
                     <td class="btn-group-vertical btn-group-sm text-right">
-                        <a class="btn btn-sm btn-primary" href="{{path('apa_message_sendMessage', {'id':user.id})}}">Envoyer un message</a>
+                        <a class="btn btn-sm btn-primary"
+                           href="{{path('apa_message_sendMessage', {'id':user.id})}}">
+                            Ouvrir une conversation
+                        </a>
                     </td>
 
                 <tr>

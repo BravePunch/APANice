@@ -3,6 +3,8 @@
 {% block title %} {{ parent() }} - Envoi d'un message {% endblock %}
 
 {% block body %}
+    <a class="link-inverse" href="{{path('apa_message_inbox')}}"><< Voir les messages récents</a>
+    <a class="link-inverse" href="{{path('apa_message_listUsers')}}"><< Voir la liste du groupe</a>
 
     <h4>Conversation avec {{targetUser.nom}} {{targetUser.prenom}}</h4>
 

@@ -24,15 +24,19 @@ class MessageController extends Controller
         // Gets the logged in user as an object.
         $currentUser = $this->get('security.token_storage')->getToken()->getUser();
 
+        $query = $em->createQueryBuilder()
+                ->select('a')
+                ->from('APAMessageBundle:Message', 'a')
+                ->where('a.user = :user')
+                ->orderBy('a.date', 'DESC')
+                ->setMaxResults(5)
+                ->setParameter('user', $currentUser->getId());
+
         // Gets messages as objects by their user_id, DESC order
-        $listMessage = $em->getRepository("APAMessageBundle:Message")->findBy(array(
-            "user" => $currentUser->getId()
-        ), array(
-            "id" => "DESC"
-        ));
+        $listMessage = $query->getQuery()->getResult();
 
         return $this->render('APAMessageBundle:Message:inbox.html.twig', array(
-            "listMessage" => array_slice($listMessage, 0, 5)
+            "listMessage" => $listMessage
         ));
     }
 
@@ -66,16 +70,18 @@ class MessageController extends Controller
         // Gets the target of the message as an object
         $targetUser = $em->getRepository("APASecurityBundle:User")->find($id);
 
-        $queryBuilder = $em->createQueryBuilder()
+        // Gets the 5 last messages between current user and target user
+        $query = $em->createQueryBuilder()
                 ->select('a')
                 ->from('APAMessageBundle:Message', 'a')
                 ->where('a.sender = :sender AND a.user = :user')
                 ->orWhere('a.sender = :user AND a.user = :sender')
+                ->orderBy('a.date', 'DESC')
                 ->setMaxResults(5)
                 ->setParameter('sender', $targetUser->getId())
                 ->setParameter('user'  , $currentUser->getId());
 
-        $convo = $queryBuilder->getQuery()->getResult();
+        $convo = $query->getQuery()->getResult();
 
         $message = new Message();
 
@@ -110,7 +116,7 @@ class MessageController extends Controller
         return $this->render("APAMessageBundle:Message:sendMessage.html.twig", array(
            "targetUser" => $targetUser,
            "form"       => $form->createView(),
-           "convo"      => $convo
+           "convo"      => array_reverse($convo)
         ));
 
     }
