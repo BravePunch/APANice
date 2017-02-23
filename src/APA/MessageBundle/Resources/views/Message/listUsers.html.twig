@@ -7,22 +7,28 @@
     <h2 class="text-center"> Liste des membres du groupe </h2>
 
 
-    {% for user in listUsers %}
+    <table class="table table-hover table-sm">
+        <thead>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
+            {% for user in listUsers %}
 
-        {% if user.id != currentUser.id %}
-        <div class="container card">
+                {% if user.id != currentUser.id %}
+                <tr>
 
-            <div class="row"><em>{{user.nom}} {{user.prenom}}</em></div>
-            {# A FAIRE: NOM AUTEUR #}
+                    <td><strong>{{user.nom}} {{user.prenom}}</strong></td>
 
-            <div class="col-md-3 offset-9">
-                <a class="btn btn-primary" href="">Envoyer un message</a>
-            </div>
+                    <td class="btn-group-vertical btn-group-sm text-right">
+                        <a class="btn btn-sm btn-primary" href="{{path('apa_message_sendMessage', {'id':user.id})}}">Envoyer un message</a>
+                    </td>
 
-        </div>
-        {% endif %}
+                <tr>
+                {% endif %}
 
-    {% endfor %}
-
+            {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}

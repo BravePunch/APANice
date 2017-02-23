@@ -61,7 +61,7 @@
         $(".loading").hide();
         $("#search").keyup(function(){
         var motcle = $("#search").val();
-        if (motcle.length>=3){
+        if (motcle.length>=5){
          $(".loading").show();
         var DATA = 'motcle=' + motcle; //On assigne l'envoi de la valeur au mot clé 'motcle'
         $.ajax({

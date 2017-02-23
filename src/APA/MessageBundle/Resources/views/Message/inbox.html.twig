@@ -6,25 +6,44 @@
 
     <h2 class="text-center"> Réception </h2>
 
+    <table class="table table-striped table-sm">
+        <thead>
+            <th></th>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
 
-    {% for message in listMessage %}
+            {% for message in listMessage %}
 
-        <div class="container card">
+                <tr>
 
-            <div class="row"><em>Reçu le: {{message.date|date('d/m/Y')}} à {{message.date|date('h:i')}}</em></div>
-            <div class="row"><em>Envoyé par: {{message.author}}</em></div>
+                    <td>
+                        <p>De: <strong>{{message.author}}</strong></p>
+                        <em>{{message.date|date('d/m/Y')}} à {{message.date|date('h:i')}}</em>
+                    </td>
 
-            <div class="row">
-                <p> {{message.content}} </p>
-            </div>
 
-            <div class="col-md-2 offset-10">
-                <a class="btn btn-primary" href="">Répondre</a>
-            </div>
+                    <td>
+                        <p> {{message.content}} </p>
+                    <td>
 
-        </div>
+                    <td class="text-center btn-group-vertical btn-group-sm">
+                        <a class="btn btn-sm btn-primary" href="">Répondre</a>
+                        <a class="btn btn-sm btn-danger" href="">Supprimer</a>
+                    <td>
 
-    {% endfor %}
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+        {% if listMessage is empty %}
+
+            <div class="col-md-4 offset-4 text-center">Aucun message.</div>
+
+        {% endif %}
 
 
 {% endblock %}

@@ -32,7 +32,7 @@ class MessageController extends Controller
         ));
 
         return $this->render('APAMessageBundle:Message:inbox.html.twig', array(
-            "listMessage" => $listMessage,
+            "listMessage" => array_slice($listMessage, 0, 5)
         ));
     }
 
@@ -66,6 +66,17 @@ class MessageController extends Controller
         // Gets the target of the message as an object
         $targetUser = $em->getRepository("APASecurityBundle:User")->find($id);
 
+        $queryBuilder = $em->createQueryBuilder()
+                ->select('a')
+                ->from('APAMessageBundle:Message', 'a')
+                ->where('a.sender = :sender AND a.user = :user')
+                ->orWhere('a.sender = :user AND a.user = :sender')
+                ->setMaxResults(5)
+                ->setParameter('sender', $targetUser->getId())
+                ->setParameter('user'  , $currentUser->getId());
+
+        $convo = $queryBuilder->getQuery()->getResult();
+
         $message = new Message();
 
         $form = $this->get('form.factory')->createBuilder(FormType::class, $message)
@@ -89,6 +100,8 @@ class MessageController extends Controller
 
                 $em->flush();
 
+                return $this->redirectToRoute('apa_message_sendMessage', array("id"=>$id));
+
             }
 
         }
@@ -96,7 +109,8 @@ class MessageController extends Controller
 
         return $this->render("APAMessageBundle:Message:sendMessage.html.twig", array(
            "targetUser" => $targetUser,
-           "form"       => $form->createView()
+           "form"       => $form->createView(),
+           "convo"      => $convo
         ));
 
     }
