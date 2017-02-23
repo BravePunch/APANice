@@ -2,16 +2,17 @@
 
 <section id="middle">
 
-<article>Titre</article>
-<article>Titre</article>
-<article>Titre</article>
-<article>Titre</article>
+
+<article><div><img class="pdf"src="{{asset("img/files.png")}}"/><p class="middle text">Dossiers et fichiers</p></div></article>
+<article><p class="middle text">Équipe</p></article>
+<article><p class="middle text">Message</p></article>
+<article><p class="middle text">Ma fiche</p></article>
 
 </section>
 
 <section id="right">
 
-<article>Titre</article>
+<article><p>Paramètres</p></article>
 
 </section>
 
@@ -33,6 +34,7 @@ main {
 
 
 
+
 #middle {
 display:flex;
 flex-wrap: wrap;
@@ -45,7 +47,19 @@ height:100%;
   background-color: #9AB4CB;
   border: 1px solid  rgba(57,106,146,0.3);
   width:50%;
+  display:flex;
 
+
+}
+
+#middle article div {
+ margin:auto;
+ text-align:center;
+}
+
+#middle article img {
+ width:60%;
+ height:auto;
 }
 
 #right {
