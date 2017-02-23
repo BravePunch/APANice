@@ -24,7 +24,9 @@ background-color: rgba(132, 0, 0, 0.7);
 
 }
 
-
+.col-md-2 {
+    background-color: #091D42;
+}
 
 .left {
         background: #337ab7;

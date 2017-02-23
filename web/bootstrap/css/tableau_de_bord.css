@@ -12,14 +12,7 @@
   font-style: normal;
 }
 
-img {
 
-width: 90px;
-height:90px;
-margin-left:28px;
-margin-top: 25px;
-
-}
 
 
 
@@ -1812,72 +1805,3 @@ margin-top: 25px;
 .fa-medium:before {
   content: "\f23a";
 }
-
- .page {
-            width: auto;
-            height: auto;
-        }
-
-        .metr {
-            width: auto;
-            padding: 5px;
-            height: auto;
-            display: table;
-            padding-top:35px;
-        }
-
-        .metrostyle {
-            height: 150px;
-            width: 150px;
-            float: left;
-            margin: 60px 50px 0 100px;
-            padding: 2px;
-        }
-
-            .metrostyle:hover {
-                background-color: #5190d9;
-            }
-
-        .metrostylelarge {
-            width: 150px;
-            height: 150px;
-        }
-
-
-        .orgmetro {
-            background-color: #603cba;
-
-
-
-
-        }
-
-        .ueemetro {
-            background-color: #a200ff;
-
-        }
-
-        .reemetro {
-            background-color: #f47835;
-
-        }
-
-        .eenmetro {
-            background-color: #d41243;
-        }
-
-        .boometro {
-            background-color: #8ec127;
-        }
-
-        .goometro {
-            background-color: #9f00a7;
-        }
-
-        .yoometro {
-            background-color: #00aba9;
-        }
-
-        .toometro {
-            background-color: #2d89ef;
-        }

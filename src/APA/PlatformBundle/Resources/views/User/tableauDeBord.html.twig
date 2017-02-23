@@ -1,36 +1,63 @@
-<div class="container">
-	<div class="row">
-	  <div class="page">
-                        <div class="metr">
-                         
-                         <a class="metrostyle eenmetro" style="cursor: pointer" href="#">
 
-                             <img style="tabor"src="{{asset("img/files.png")}}"/>
-                             <span style="color: black; float: left; margin-top: 6px; margin-left: 15px ;margin-right:50px"> Fichiers/dossiers</span>
 
-                         </a>
-                         <a style="cursor: pointer" class="metrostyle metrostylelarge  boometro" href="#">
+<section id="middle">
 
-                                <img style="tabor"src="{{asset("img/team.png")}}"/>
-                                <span style="color:black;float:left;margin-top:4px;margin-left:50px;margin-right:180px">Équipe</span>
-                            </a>
-                         <a class="metrostyle reemetro" style="cursor: pointer" href="#">
+<article>Titre</article>
+<article>Titre</article>
+<article>Titre</article>
+<article>Titre</article>
 
-														 <img style="tabor"src="{{asset("img/message.png")}}"/>
-                             <span style="color: black; float: left; margin-top: 6px; margin-left: 38px;margin-right:80px">Messages </span>
-                         </a>
-                         <a class="metrostyle yoometro" style="cursor: pointer" href="#">
+</section>
 
-                             <img style="tabor"src="{{asset("img/user.png")}}"/>
-                             <span style="color: black; float: left; margin-top: 6px; margin-left: 46px;">Ma fiche</span>
-                         </a>
+<section id="right">
 
-												 <a class="metrostyle orgmetro" style="cursor: pointer" href="#">
+<article>Titre</article>
 
-                             <img style="tabor"src="{{asset("img/settings.png")}}"/>
-                             <span style="color: black; float: left; margin-top: 6px; margin-left: 36px;margin-right:80px">Paramètres</span>
-                         </a>
+</section>
 
-               </div>
-	</div>
-</div>
+
+<style type="text/css">
+
+html, body{margin:0;padding:0;height:100%;}
+article{box-sizing: border-box;}
+
+
+
+main {
+
+ display:flex;
+ height:93.55%;
+ width:100%;
+ background-color:red;
+}
+
+
+
+#middle {
+display:flex;
+flex-wrap: wrap;
+align-content: stretch;
+width:60%;
+height:100%;
+}
+
+#middle article {
+  background-color: #9AB4CB;
+  border: 1px solid  rgba(57,106,146,0.3);
+  width:50%;
+
+}
+
+#right {
+ display: flex;
+ flex:3;
+ background-color: #396A92;
+ border: 1px solid  rgba(57,106,146,0.3);
+ height:100%;
+
+}
+
+#right article {
+
+ margin: auto;
+}
