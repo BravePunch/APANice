@@ -3,7 +3,7 @@
 <section id="middle">
 
 
-<article><div><img class="pdf"src="{{asset("img/files.png")}}"/><p class="middle text">Dossiers et fichiers</p></div></article>
+<article><div><a href="#"><img class="pdf"src="{{asset("img/files.png")}}"/><p class="middle text">Dossiers et fichiers</p></a></div></article>
 <article><div><img class="équipe"src="{{asset("img/team.png")}}"/><p class="middle text">Équipe</p></div></article>
 <article><div><img class="message"src="{{asset("img/message.png")}}"/><p class="middle text">Message</p></div></article>
 <article><div><img class="utilisateur"src="{{asset("img/user.png")}}"/><p class="middle text">Ma fiche</p></div></article>
@@ -12,7 +12,8 @@
 
 <section id="right">
 
-<article><div><img class="settings"src="{{asset("img/settings.png")}}"/><p>Paramètres</p><img class="arrow"src="{{asset("img/arrow.png")}}"/></div>
+<article><div><img class="settings"src="{{asset("img/settings.png")}}"/><p>Paramètres</p></div>
+<br />
 <br />
 <br />
 <ul>
@@ -86,35 +87,35 @@ color: #091D42;
 
 }
 
+@media screen and (min-width: 200px) and (max-width: 640px) {
+  #right  {
+
+
+  }
+}
 #right article .settings {
- width:50%;
+ width:30%;
  height:auto;
  margin-top:50px;
- margin-left:75px;
+ margin-left:120px;
 }
 
-#right article .arrow {
 
-width:18%;
-margin-left:125px;
-margin-top:40px;
-
-}
 
 #right article p {
 
-padding-top:235px;
+padding-top:160px;
 text-align:center;
-margin-left:5px;
-color:#091D42;
+margin-left:33px;
+color:white;
 
 }
 
 .parameters {
 
-margin-right:36px;
-text-align:center;
-list-style-type:none;
-color:#091D42;
-
+ margin-right:15px;
+ text-align:center;
+ text-decoration:underline;
+ list-style-type:none;
+ color:white;
 }
