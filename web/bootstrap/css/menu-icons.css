@@ -5,6 +5,12 @@
   background-color: #091D42;
 }
 
+.col-md-2 p {
+
+color:#B3E0F9;
+
+}
+
 
 .item  > .tab1, .files, .mess, .pagem, .settings {
  height:30px;
@@ -23,9 +29,13 @@
 }
 
  .doss {
-  margin-left: 37px;
+
+margin-left:10px;
+
 }
 
 .toget {
-  margin-right:10px;
+
+margin-right: 10px;
+
 }

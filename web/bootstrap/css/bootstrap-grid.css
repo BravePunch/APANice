@@ -19,7 +19,7 @@ html {
 }
 
 .container {
-
+width: 100%;
 }
 
 @media (min-width: 576px) {
@@ -38,13 +38,15 @@ html {
 
 @media (min-width: 992px) {
   .container {
-
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 
 @media (min-width: 1200px) {
   .container {
-
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 
@@ -71,7 +73,7 @@ html {
 
 @media (min-width: 1200px) {
   .container {
-    width: 1140px;
+    width: 100%;
     max-width: 100%;
   }
 }
@@ -121,8 +123,7 @@ html {
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+
 
 }
 
