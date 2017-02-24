@@ -40,14 +40,11 @@
     </div>
     {#  END OF HEADER  #}
 
-    <!-- <div class="container-fluid"> -->
 
+    <div class="container-fluid">
 
-<div class="container">
-<div class="row">
+        <div class="row">
 
-
-  <div class="col-md-2">
             {#  SIDEBAR  #}
 
 			{% if is_granted('ROLE_ADMIN') %}
@@ -63,9 +60,7 @@
 			{% endif %}
 
             {#  END OF SIDEBAR  #}
-</div>
 
-<div class="col-md-10">
             {#  BODY  #}
             <div id="content" class="col-md-10">
 
@@ -75,10 +70,9 @@
             </div>
             {#  END OF BODY  #}
 
-</div>
-</div>
-</div>
+        </div>
 
+    </div>
 
 </body>
 

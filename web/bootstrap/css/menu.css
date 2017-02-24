@@ -75,13 +75,11 @@ span.glyphicon.glyphicon-refresh{
 
 .item {
         height:40px;
-        width:190px;
         padding-top: 8px;
         margin-top: 10px;
         overflow:hidden;
         text-align: center;
         color:#fff;
-
     }
 .title {
         background-color:#eee;
