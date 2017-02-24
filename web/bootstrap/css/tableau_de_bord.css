@@ -1819,11 +1819,10 @@ margin-top: 25px;
         }
 
         .metr {
-            width: auto;
-            padding: 5px;
-            height: auto;
-            display: table;
-            padding-top:35px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+
         }
 
         .metrostyle {

@@ -25,7 +25,7 @@
 
     {#  HEADER  #}
     <div class="container-fluid">
-        <div class="row"  style="background-color:rgba(42, 34, 65, 1);">
+        <div class="row"  style="background-color:#091D42;">
 					<div class="col-md-3 ">
 					 <h5><span class="badge badge-info" style="margin-top: 5px; background-color:rgba(42, 75, 164, 0.6);">
                     Bonjour, {{ app.user.username }}
@@ -62,7 +62,7 @@
             {#  END OF SIDEBAR  #}
 
             {#  BODY  #}
-            <div id="content" class="col-md-10">
+            <div id="content" class="col-md-10" style="padding:0;">
 
                 {% block body %}
                 {% endblock %}
