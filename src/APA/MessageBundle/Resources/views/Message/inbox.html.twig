@@ -4,27 +4,47 @@
 
 {% block body %}
 
-    <h2 class="text-center"> Réception </h2>
+    <a class="link-inverse" href="{{path('apa_message_listUsers')}}"><< Voir la liste du groupe</a>
+
+    <h2 class="text-center"> Conversations récentes </h2>
+
+    <table class="table table-striped table-sm">
+        <thead>
+            <th></th>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
+
+            {% for message in listMessage %}
+
+                <tr>
+
+                    <td>
+                        <p>De: <strong>{{message.author}}</strong></p>
+                        <em>{{message.date|date('d/m/Y')}} à {{message.date|date('h:i')}}</em>
+                    </td>
 
 
-    {% for message in listMessage %}
+                    <td>
+                        <p> {{message.content}} </p>
+                    <td>
 
-        <div class="container card">
+                    <td class="text-center btn-group-sm">
+                        <a class="btn btn-sm btn-primary" href="{{path('apa_message_sendMessage', {'id':message.sender.id})}}">Répondre</a>
+                    <td>
 
-            <div class="row"><em>Reçu le: {{message.date|date('d/m/Y')}} à {{message.date|date('h:i')}}</em></div>
-            <div class="row"><em>Envoyé par: {{message.author}}</em></div>
+                </tr>
 
-            <div class="row">
-                <p> {{message.content}} </p>
-            </div>
+            {% endfor %}
+        </tbody>
+    </table>
 
-            <div class="col-md-2 offset-10">
-                <a class="btn btn-primary" href="">Répondre</a>
-            </div>
+        {% if listMessage is empty %}
 
-        </div>
+            <div class="col-md-4 offset-4 text-center">Aucun message.</div>
 
-    {% endfor %}
+        {% endif %}
 
 
 {% endblock %}

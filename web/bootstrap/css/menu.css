@@ -24,9 +24,7 @@ background-color: rgba(132, 0, 0, 0.7);
 
 }
 
-.col-md-2 {
-    background-color: #091D42;
-}
+
 
 .left {
         background: #337ab7;
@@ -77,13 +75,11 @@ span.glyphicon.glyphicon-refresh{
 
 .item {
         height:40px;
-        width:190px;
         padding-top: 8px;
         margin-top: 10px;
         overflow:hidden;
         text-align: center;
         color:#fff;
-
     }
 .title {
         background-color:#eee;

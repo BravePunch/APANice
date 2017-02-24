@@ -8,7 +8,7 @@ apa_message_listUsers:
     defaults:
         _controller: APAMessageBundle:Message:listUsers
 
-apa_platform_sendMessage:
+apa_message_sendMessage:
     path:     /Message/send/{id}
     defaults:
         _controller: APAMessageBundle:Message:sendMessage

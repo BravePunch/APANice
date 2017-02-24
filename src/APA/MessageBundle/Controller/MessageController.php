@@ -24,15 +24,19 @@ class MessageController extends Controller
         // Gets the logged in user as an object.
         $currentUser = $this->get('security.token_storage')->getToken()->getUser();
 
+        $query = $em->createQueryBuilder()
+                ->select('a')
+                ->from('APAMessageBundle:Message', 'a')
+                ->where('a.user = :user')
+                ->orderBy('a.date', 'DESC')
+                ->setMaxResults(5)
+                ->setParameter('user', $currentUser->getId());
+
         // Gets messages as objects by their user_id, DESC order
-        $listMessage = $em->getRepository("APAMessageBundle:Message")->findBy(array(
-            "user" => $currentUser->getId()
-        ), array(
-            "id" => "DESC"
-        ));
+        $listMessage = $query->getQuery()->getResult();
 
         return $this->render('APAMessageBundle:Message:inbox.html.twig', array(
-            "listMessage" => $listMessage,
+            "listMessage" => $listMessage
         ));
     }
 
@@ -66,6 +70,19 @@ class MessageController extends Controller
         // Gets the target of the message as an object
         $targetUser = $em->getRepository("APASecurityBundle:User")->find($id);
 
+        // Gets the 5 last messages between current user and target user
+        $query = $em->createQueryBuilder()
+                ->select('a')
+                ->from('APAMessageBundle:Message', 'a')
+                ->where('a.sender = :sender AND a.user = :user')
+                ->orWhere('a.sender = :user AND a.user = :sender')
+                ->orderBy('a.date', 'DESC')
+                ->setMaxResults(5)
+                ->setParameter('sender', $targetUser->getId())
+                ->setParameter('user'  , $currentUser->getId());
+
+        $convo = $query->getQuery()->getResult();
+
         $message = new Message();
 
         $form = $this->get('form.factory')->createBuilder(FormType::class, $message)
@@ -89,6 +106,8 @@ class MessageController extends Controller
 
                 $em->flush();
 
+                return $this->redirectToRoute('apa_message_sendMessage', array("id"=>$id));
+
             }
 
         }
@@ -96,7 +115,8 @@ class MessageController extends Controller
 
         return $this->render("APAMessageBundle:Message:sendMessage.html.twig", array(
            "targetUser" => $targetUser,
-           "form"       => $form->createView()
+           "form"       => $form->createView(),
+           "convo"      => array_reverse($convo)
         ));
 
     }

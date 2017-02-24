@@ -104,36 +104,41 @@
     </table>
             </div>
 
-
-
-
-
-
-
     <script>
-        // FILTRE DE RECHERCHE DYNAMIQUE AJAX
+        // AJAX SEARCH FILTER
 
-        $(".loading").hide(); //On cache l'image de chargement
-        $("#search").keyup(function(){ //a chaque lettre entrée dans l'input ont déclenche la fonction
+        $(".loading").hide(); // Hides loading icon
 
-        var motcle = $("#search").val(); //On récupere la valeur des mots ajoutées
+        // This function is called when the user inputs a letter in the search field
+        $("#search").keyup(function(){
 
-        if (motcle.length>=3){
-        $(".loading").show(); //On fait affiché
-        var DATA = 'motcle=' + motcle; //On assigne l'envoi de la valeur au mot clé 'motcle'
-        $.ajax({
-        type: "POST", //On envoie la requete en POST
-        url: "{{ path('apa_platform_adminListe')}}",  //La requete est envoyer vers la route "apa_platform_adminIndex"
-        data: DATA, //On inclus notre variable DATA
-        cache: false, // ?
-        success: function(data){  //On fait ensuite retourner la valeur dans la div "#resultats_recherche"
-           $('#resultats_recherche').html(data);
-           $(".loading").hide();
-        }
-        });
-        return false;
-        }
+            // Gets the value of the search field
+            var motcle = $("#search").val();
 
+            // If the value is greater than x characters
+            if (motcle.length>=5){
+
+                // Dislpays the loading icon
+                $(".loading").show();
+
+                // Sends the search field value
+                var DATA = 'motcle=' + motcle;
+                $.ajax({
+                    // Sets the request to POST
+                    type: "POST",
+                    // The request is sent to adminListe
+                    url: "{{ path('apa_platform_adminListe')}}",
+                    // Includes DATA
+                    data: DATA,
+                    cache: false,
+                    // Returns the value in the "#resultats_recherche" div
+                    success: function(data){
+                        $('#resultats_recherche').html(data);
+                        $(".loading").hide();
+                    }
+                });
+            return false;
+            }
         });
 </script>
 {% endblock %}

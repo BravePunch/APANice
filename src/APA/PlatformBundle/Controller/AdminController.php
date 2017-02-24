@@ -92,7 +92,7 @@ class AdminController extends Controller
             $listUser =  $em->getRepository('APASecurityBundle:User')->findBy(array(), array('nom' => 'desc'), 10);
         }
 
-        // Used to check for admin rights
+        // Used to check for admin rights, in order to keep them hidden.
         $isAdmin = array('ROLE_ADMIN');
 
         // If request is AJAX
@@ -101,7 +101,7 @@ class AdminController extends Controller
             // Unsets the current user list
             unset($listUser);
 
-            // Gets $motcle in the search input
+            // Gets $motcle from the request
             $motcle = $request->request->get('motcle');
 
             // Redirects to apa_platform_listuser with $motcle as argument
