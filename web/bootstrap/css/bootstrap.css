@@ -778,15 +778,14 @@ pre code {
 
 @media (min-width: 992px) {
   .container {
-    padding-right: 15px;
-    padding-left: 15px;
+max-width: 100%;
   }
 }
 
 @media (min-width: 1200px) {
   .container {
-    padding-right: 15px;
-    padding-left: 15px;
+ width:1205px;
+   max-width: 100%;
   }
 }
 
@@ -862,8 +861,8 @@ pre code {
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+          margin-right: -15px;
+          margin-left: -15px;
 }
 
 @media (min-width: 576px) {
@@ -1511,6 +1510,7 @@ pre code {
         -ms-flex: 0 0 83.333333%;
             flex: 0 0 83.333333%;
     max-width: 83.333333%;
+
   }
   .col-md-11 {
     -webkit-box-flex: 0;
