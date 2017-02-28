@@ -4,9 +4,9 @@
 
 {% block body %}
     <a class="link-inverse" href="{{path('apa_message_inbox')}}"><< Voir les messages récents</a>
-    <a class="link-inverse" href="{{path('apa_message_listUsers')}}"> Voir la liste du groupe>></a>
+    <a class="link-inverse" href="{{path('apa_message_listUsers')}}" style="float:right;"> Voir la liste du groupe>></a>
 
-    <h4>Conversation avec {{targetUser.nom}} {{targetUser.prenom}}</h4>
+    <h4 style="text-align:center; padding-top:20px;">Conversation avec {{targetUser.nom}} {{targetUser.prenom}}</h4>
 
     <ul class="list-unstyled">
     {% for message in convo %}
@@ -16,5 +16,26 @@
 
     {{ form(form) }}
 
+    <style type="text/CSS">
+
+    .list-unstyled {
+
+     margin-left:275px;
+     border: 1px solid black;
+     border-radius:15px;
+     background-color: rgba(29, 24, 24, 0.2);
+     height:140px;
+     width:450px;
+
+    }
+
+    .list-unstyled li {
+
+    padding-top:5px;
+    margin-left:10px;
+
+    }
+
+    </style>
 
 {% endblock %}
