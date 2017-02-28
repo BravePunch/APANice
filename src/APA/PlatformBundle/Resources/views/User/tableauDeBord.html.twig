@@ -7,15 +7,15 @@
 
 
 												<article><div><a href="#"><img class="pdf"src="{{asset("img/files.png")}}"/><p class="middle text">Dossiers et fichiers</p></a></div></article>
-												<article><div><img class="équipe"src="{{asset("img/team.png")}}"/><p class="middle text">Équipe</p></div></article>
-												<article><div><img class="message"src="{{asset("img/message.png")}}"/><p class="middle text">Message</p></div></article>
-												<article><div><img class="utilisateur"src="{{asset("img/user.png")}}"/><p class="middle text">Ma fiche</p></div></article>
+												<article><div><a href="#"><img class="equipe"src="{{asset("img/team.png")}}"/><p class="middle text">Équipe</p></a></div></article>
+												<article><div><a href="{{path('apa_message_inbox')}}"><img class="message"src="{{asset("img/message.png")}}"/><p class="middle text">Message</p></a></div></article>
+												<article><div><a href="#"><img class="utilisateur"src="{{asset("img/user.png")}}"/><p class="middle text">Ma fiche</p></a></div></article>
 
 												</section>
 
 												<section id="right">
 
-												<article><div><img class="settings"src="{{asset("img/settings1.png")}}"/><p>Paramètres</p></div>
+												<article><div><a href="#"><img class="settings"src="{{asset("img/settings1.png")}}"/><p>Paramètres</p></a></div>
 												<br />
 												<br />
 												<br />
@@ -32,23 +32,28 @@
 												<style type="text/css">
 
 												.container {
+												  width:100%;
+												  height:100%;
+                         }
 
-												width:100%;
-												height:100%;
+									     .pdf:hover, .equipe:hover , .message:hover , .utilisateur:hover  {
+									       background-color:#9AB4CB;
+									       opacity:0.8;
+                         }
 
-
-												}
-
-
+											 .settings:hover {
+                          background-color:#396A92;
+													opacity:0.5;
+													}
 
 												#middle {
-												display:flex;
-												flex-wrap: wrap;
-												align-content: stretch;
-												width:70%;
-												height:100%;
-												padding:0;
-												margin:0;
+												 display:flex;
+												 flex-wrap: wrap;
+												 align-content: stretch;
+												 width:70%;
+												 height:100%;
+												 padding:0;
+												 margin:0;
 												}
 
 												#middle article {
