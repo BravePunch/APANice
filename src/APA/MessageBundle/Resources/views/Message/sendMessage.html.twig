@@ -8,52 +8,22 @@
 
     <h4 style="text-align:center; padding-top:20px;">Conversation avec {{targetUser.nom}} {{targetUser.prenom}}</h4>
 
-    <ul class="list-unstyled">
+   <div class="container">
     {% for message in convo %}
-        <li><strong>{{message.author}}: </strong>{{message.content}}</li>
+        {% if message.sender != app.user %}
+            <div class="col-md-8" style="background-color:lightblue">
+                <p><strong>{{message.author}}:</strong></p>
+                <p>{{message.content}}</p>
+            </div>
+        {% else %}
+            <div class="col-md-8 offset-4" style="background-color:lightgreen">
+                <p><strong>{{message.author}}:</strong></p>
+                <p>{{message.content}}</p>
+            </div>
+        {% endif %}
     {% endfor %}
-    </ul>
+   </div>
 
     {{ form(form) }}
-
-    <style type="text/CSS">
-
-    .list-unstyled {
-
-     margin-left:275px;
-     border: 1px solid black;
-     border-radius:15px;
-     background-color: rgba(29, 24, 24, 0.2);
-     height:145px;
-     width:450px;
-
-    }
-
-    .list-unstyled li {
-
-    padding-top:5px;
-    margin-left:10px;
-
-    }
-
-    .col-md-2 {
-    height: 601px;
-
-    }
-
-    .form-control {
-
-    width:540px;
-    margin-left:230px;
-
-    }
-
-    #form_Submit {
-
-     margin-left:460px;
-
-    }
-
-    </style>
 
 {% endblock %}

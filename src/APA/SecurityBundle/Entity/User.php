@@ -46,6 +46,12 @@ class User implements UserInterface
     // $isAdmin is only used for the checkbox in the addUser form.
 
     /**
+     * @var boolean
+     */
+    private $isProf;
+    // $isProf is only used for the checkbox in the addUser form.
+
+    /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
@@ -165,6 +171,16 @@ class User implements UserInterface
     public function getIsAdmin()
     {
         return $this->isAdmin;
+    }
+
+    public function setIsProf($isProf)
+    {
+        $this->isProf = $isProf;
+    }
+
+    public function getIsProf()
+    {
+        return $this->isProf;
     }
 
     /**
