@@ -10,10 +10,12 @@ html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+
 }
 
 body {
   margin: 0;
+
 }
 
 article,
@@ -239,6 +241,7 @@ summary {
 canvas {
   display: inline-block;
 }
+
 
 template {
   display: none;
@@ -9321,4 +9324,6 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
     display: none !important;
   }
 }
+
+
 /*# sourceMappingURL=bootstrap.css.map */

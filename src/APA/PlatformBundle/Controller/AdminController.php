@@ -132,7 +132,8 @@ class AdminController extends Controller
                 ->add('nom',           TextType::class)
                 ->add('prenom',        TextType::class)
                 ->add('groupe' ,       ChoiceType::class, array('choices' => array('' => '','Groupe 1' => null , 'Groupe 2' => false , 'Groupe 3' => true)))
-                ->add('isAdmin',       CheckboxType::class, array('required' => false))
+                ->add('isAdmin',       CheckboxType::class, array('required' => false, 'label'=>'Droits administrateur'))
+                ->add('isProf',        CheckboxType::class, array('required' => false, 'label'=>'Professeur APA'))
                 ->add('save',          SubmitType::class)
                 ->getForm()
                 ;
@@ -161,6 +162,8 @@ class AdminController extends Controller
                 // Sets roles depending on the value of the checkbox
                 if ($user->getIsAdmin() === true){
                     $user->setRoles(array("ROLE_ADMIN"));
+                } else if($user->getIsProf() === true){
+                    $user->setRoles(array("ROLE_PROF"));
                 } else{
                     $user->setRoles(array("ROLE_USER"));
                 }
@@ -218,16 +221,31 @@ class AdminController extends Controller
             throw new NotFoundHttpException("L'utilisateur " . $id . " n'existe pas.");
         } else if($user->getRoles() == array("ROLE_ADMIN")){
             throw new AccessDeniedException("Opération impossible.");
-        } else {
-            $em->remove($user);
-            $em->flush();
         }
 
-        // Creates a flash message
-        $request->getSession()->getFlashBag()->add('notif', "Utilisateur supprimé.");
 
-        // Redirects to the user list
-        return $this->redirectToRoute('apa_platform_adminListe');
+        if ($request->isMethod('POST')){
+
+            $query = $em->createQuerybuilder()
+                    ->delete('APAMessageBundle:Message', 'a')
+                    ->where('a.sender = :user')
+                    ->setParameter('user', $user->getId())
+                    ->getQuery();
+
+            $query->execute();
+
+            $em->remove($user);
+            $em->flush();
+
+            // Creates a flash message
+            $request->getSession()->getFlashBag()->add('notif', "Utilisateur supprimé.");
+
+            // Redirects to the user list
+            return $this->redirectToRoute('apa_platform_adminListe');
+
+        }
+
+        return $this->render('APAPlatformBundle:Admin:deleteUser.html.twig', array('user'=>$user));
 
     }
 

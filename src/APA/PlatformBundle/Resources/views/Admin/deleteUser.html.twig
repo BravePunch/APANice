@@ -1,0 +1,44 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Suppression de l'utilisateur {{user.id}}{% endblock %}
+
+{% block body %}
+
+    <h3> Confirmez la suppression de l'utilisateur {{ user.id }}</h3>
+
+    <table class="table table-sm">
+
+        <thead>
+            <th></th>
+            <th></th>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Nom d'utilisateur:</td>
+                <td><strong>{{user.username}}</strong></td>
+            </tr>
+
+            <tr>
+                <td>Nom:</td>
+                <td><strong>{{user.nom}}</strong></td>
+            </tr>
+
+            <tr>
+                <td>Prénom:</td>
+                <td><strong>{{user.prenom}}</strong></td>
+            </tr>
+
+            <tr>
+                <td>Date d'inscription:</td>
+                <td><strong>{{user.dateInscription|date('d-m-Y')}}</strong></td>
+            </tr>
+        </tbody>
+
+    </table>
+
+            <form class="text-center" method='post'>
+                <input class="btn btn-danger" type='submit' value="Confirmer">
+            </form>
+
+{% endblock %}

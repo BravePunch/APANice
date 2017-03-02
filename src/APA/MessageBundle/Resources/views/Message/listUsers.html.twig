@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <a class="link-inverse" href="{{path('apa_message_inbox')}}"><< Voir les messages récents</a>
+    <a class="link-inverse" href="{{path('apa_message_inbox')}}"><< Voir les messages reçus</a>
 
     <h2 class="text-center"> Liste des membres du groupe </h2>
 
@@ -35,5 +35,19 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <style type="text/CSS">
+
+        .col-md-2 {
+        height: 601px;
+          }
+
+          .btn-group-vertical {
+
+          float:right;
+
+          }
+
+    </style>
 
 {% endblock %}

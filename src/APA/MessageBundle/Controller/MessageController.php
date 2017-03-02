@@ -86,7 +86,7 @@ class MessageController extends Controller
         $message = new Message();
 
         $form = $this->get('form.factory')->createBuilder(FormType::class, $message)
-                ->add('content', TextareaType::class)
+                ->add('content', TextareaType::class, array('label'=>false))
                 ->add('Submit',  SubmitType::class)
                 ->getForm();
 
