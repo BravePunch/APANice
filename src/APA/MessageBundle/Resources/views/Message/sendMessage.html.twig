@@ -6,7 +6,7 @@
     <a class="link-inverse" href="{{path('apa_message_inbox')}}"><< Voir les messages récents</a>
     <a class="link-inverse" href="{{path('apa_message_listUsers')}}" style="float:right;"> Voir la liste du groupe>></a>
 
-    <h4 style="text-align:center; padding-top:20px;">Conversation avec {{targetUser.nom}} {{targetUser.prenom}}</h4>
+    <h4 style="text-align:center;">Conversation avec {{targetUser.nom}} {{targetUser.prenom}}</h4>
 
    <div class="container">
     {% for message in convo %}
