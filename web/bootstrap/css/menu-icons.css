@@ -1,4 +1,52 @@
 
+
+
+
+
+@media screen and (min-width:200px) and (max-width:350px) {
+
+.offset-6 {
+
+margin-left:43%;
+
+}
+
+}
+
+@media screen and (min-width:200px) and (max-width:513px) {
+
+.metr {
+
+margin-right:0;
+
+}
+
+
+}
+
+@media screen and (min-width: 200px) and (max-width: 1920px) {
+
+.param {
+
+
+
+margin-top: -1px;
+
+}
+
+@media screen and (min-width: 200px) and (max-width: 1920px) {
+
+.col-md-2 {
+ margin:0;
+ padding:0;
+ }
+
+
+}
+
+
+
+
 .item  > .tab1, .files, .mess, .pagem, .settings {
 
 height:30px;
