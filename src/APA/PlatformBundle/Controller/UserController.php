@@ -41,5 +41,25 @@ class UserController extends Controller
     {
         return $this->render('APAPlatformBundle:User:tableauDeBord.html.twig');
     }
+
+    public function dossierAction()
+    {
+        return $this->render('::chantier.html.twig');
+    }
+
+    public function staffAction()
+    {
+        return $this->render('::chantier.html.twig');
+    }
+
+    public function ficheAction()
+    {
+        return $this->render('::chantier.html.twig');
+    }
+
+    public function settingsAction()
+    {
+        return $this->render('::chantier.html.twig');
+    }
 }
 
