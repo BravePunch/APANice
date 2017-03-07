@@ -95,6 +95,9 @@ class AdminController extends Controller
         // Used to check for admin rights, in order to keep them hidden.
         $isAdmin = array('ROLE_ADMIN');
 
+        // Used to check for prof role, in order to highlight them.
+        $isProf = array('ROLE_PROF');
+
         // If request is AJAX
         if ($request->isXmlHttpRequest())
         {
@@ -108,7 +111,10 @@ class AdminController extends Controller
             return $this->redirectToRoute('apa_platform_listUser' , array('search' => $motcle));
         }
 
-        return $this->render('APAPlatformBundle:Admin:adminListe.html.twig' , array('listUser' => $listUser , 'isAdmin' => $isAdmin));
+        return $this->render('APAPlatformBundle:Admin:adminListe.html.twig' , array(
+            'listUser' => $listUser ,
+            'isAdmin' => $isAdmin,
+            'isProf' => $isProf));
 
     }
 
