@@ -53,6 +53,9 @@ padding:.6rem 1rem;
 
         }
 
+
+
+
         .tabor {
 
         margin-top: 10px;
@@ -79,7 +82,8 @@ span.glyphicon.glyphicon-refresh{
         margin-top: 10px;
         overflow:hidden;
         text-align: center;
-        color:#fff;
+        color:black;
+        font-family: 'Verdana';
     }
 .title {
         background-color:#eee;
