@@ -6,17 +6,17 @@
     <a class="link-inverse" href="{{path('apa_message_inbox')}}"><< Voir les messages récents</a>
     <a class="link-inverse" href="{{path('apa_message_listUsers')}}" style="float:right;"> Voir la liste du groupe>></a>
 
-    <h4 style="text-align:center;">Conversation avec {{targetUser.nom}} {{targetUser.prenom}}</h4>
+    <h4 style="margin-left:350px; margin-top:-10px;">Conversation avec {{targetUser.nom}} {{targetUser.prenom}}</h4>
 
-   <div class="container">
+   <div class="container" style="overflow:scroll;">
     {% for message in convo %}
         {% if message.sender != app.user %}
-            <div class="col-md-8" style="background-color:lightblue">
+            <div class="col-md-8" style="background-color:lightblue;border-radius:10px;">
                 <p><strong>{{message.author}}:</strong></p>
                 <p>{{message.content}}</p>
             </div>
         {% else %}
-            <div class="col-md-8 offset-4" style="background-color:lightgreen">
+            <div class="col-md-8 offset-4" style="background-color:lightgreen; border-radius:10px;">
                 <p><strong>{{message.author}}:</strong></p>
                 <p>{{message.content}}</p>
             </div>
