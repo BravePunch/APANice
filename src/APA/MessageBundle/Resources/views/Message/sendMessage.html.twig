@@ -8,7 +8,7 @@
 
     <h4 style="margin-left:350px; margin-top:-10px;">Conversation avec {{targetUser.nom}} {{targetUser.prenom}}</h4>
 
-   <div class="container" style="overflow:scroll;">
+   <div class="container">
     {% for message in convo %}
         {% if message.sender != app.user %}
             <div class="col-md-8" style="background-color:lightblue;border-radius:10px;">
