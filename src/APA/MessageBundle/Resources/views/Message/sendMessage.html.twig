@@ -11,12 +11,12 @@
    <div class="container">
     {% for message in convo %}
         {% if message.sender != app.user %}
-            <div class="col-md-8" style="background-color:lightblue">
+            <div class="col-md-8" style="background-color:lightskyblue;border-radius:10px">
                 <p><strong>{{message.author}}:</strong></p>
                 <p>{{message.content}}</p>
             </div>
         {% else %}
-            <div class="col-md-8 offset-4" style="background-color:lightgreen">
+            <div class="col-md-8 offset-4" style="background-color:lightsteelblue;border-radius:10px">
                 <p><strong>{{message.author}}:</strong></p>
                 <p>{{message.content}}</p>
             </div>

@@ -31,7 +31,7 @@
                     Bonjour, {{ app.user.username }}
                 </span></h5>
 							 </div>
-            <div class="offset-6 col-md-3" style="text-align: center">
+            <div class="offset-6 col-md-3 text-right">
 
                 <a href="{{path('logout')}}" class="btn btn-danger">Déconnexion</a>
 
@@ -75,5 +75,9 @@
     </div>
 
 </body>
+
+{% block scripts %}
+
+{% endblock %}
 
 </html>
