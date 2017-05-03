@@ -92,7 +92,7 @@ class AdminController extends Controller
             $listUser =  $em->getRepository('APASecurityBundle:User')->findBy(array(), array('id' => 'desc'), 10);
         }
 
-        // Used to check for admin rights, in order to keep them hidden.
+        // Used to check for admin rights in the twig, in order to keep admins hidden.
         $isAdmin = array('ROLE_ADMIN');
 
         // Used to check for prof role, in order to highlight them.

@@ -2,46 +2,50 @@
 
 <html>
 
-    <head>
-        <title>APANice - Connexion</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('bootstrap/css/login.css') }}">
-    </head>
+<head>
+    <title>APANice - Connexion</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/login.css') }}">
+</head>
 
-    <body>
+<body>
 
     <div class="container">
-    <div class="row" id="pwd-container">
-<div class="col-md-4"></div>
+        <div class="row" id="pwd-container">
 
-    <div class="col-md-4">
+            <div class="col-md-4"></div>
 
-      <section class="login-form">
+            <div class="col-lg-4">
 
-        <form action="{{ path('login_check') }}" method="post" role="login">
+                <section class="login-form">
 
-            <img src="http://www.botoxs.fr/visiteursdusoir/img/logo_ville_nice.png" class="img-responsive" height="200" width="300" alt="" />
+                    <form action="{{ path('login_check') }}" method="post" role="login">
 
-            {% if error %}
-                <div class="alert alert-danger">Identifiants non reconnus.</div>
-            {% endif %}
-            <label for="username">Votre identifiant de connexion :</label>
-            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Identifiant de connexion" />
+                        <img src="{{asset("img/LogoNiceSportSante.png")}}" class="img-responsive" height="200" width="300" alt="" />
 
-            <label for="password">Votre mot de passe :</label>
-            <input class="form-control" type="password" id="password" name="_password" placeholder="Mot de passe"/>
+                        {% if error %}
+                            <div class="alert alert-danger">Identifiants non reconnus.</div>
+                        {% endif %}
 
-            <div class="pwstrength_viewport_progress"></div>
+                        <label for="username">Votre identifiant de connexion :</label>
+                        <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Identifiant de connexion" />
 
-            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Connexion" />
+                        <label for="password">Votre mot de passe :</label>
+                        <input class="form-control" type="password" id="password" name="_password" placeholder="Mot de passe"/>
 
-        </form>
-    </section>
+                        <div class="pwstrength_viewport_progress"></div>
 
+                        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Connexion" />
+
+                    </form>
+
+                </section>
+
+            </div>
+
+        </div>
     </div>
-    </div>
-    </div>
-    </body>
+</body>
 
 </html>

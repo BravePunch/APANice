@@ -36,12 +36,6 @@ class UserController extends Controller
         return $this->render('APAPlatformBundle:User:menu.html.twig');
     }
 
-    // Same as MenuAction for the index's body.
-    public function tableauDeBordAction()
-    {
-        return $this->render('APAPlatformBundle:User:tableauDeBord.html.twig');
-    }
-
     public function gestionAPAAction()
     {
         return $this->render('::chantier.html.twig');
