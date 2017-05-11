@@ -12,29 +12,29 @@
 
                     <article>
                         <div>
-                            <a href="#"><img class="pdf" src="{{asset("img/files.png")}}"/>
+                            <a href="#"><img class="pdf" src="{{asset("img/filesBlue.png")}}"/>
                                 <p class="middle text">Dossiers et fichiers</p>
                             </a>
                         </div>
                     </article>
                     <article>
                         <div>
-                            <a href="#"><img class="equipe" src="{{asset("img/team.png")}}"/>
-                                <p class="middle text">Équipe</p>
-                            </a>
-                        </div>
-                    </article>
-                    <article>
-                        <div>
-                            <a href="{{path('apa_message_inbox')}}"><img class="message" src="{{asset("img/message.png")}}"/>
-                                <p class="middle text">Message</p>
-                            </a>
-                        </div>
-                    </article>
-                    <article>
-                        <div>
-                            <a href="#"><img class="utilisateur" src="{{asset("img/user.png")}}"/>
+                            <a href="#"><img class="utilisateur" src="{{asset("img/userBlue.png")}}"/>
                                 <p class="middle text">Ma fiche</p>
+                            </a>
+                        </div>
+                    </article>
+                    <article>
+                        <div>
+                            <a href="{{path('apa_message_inbox')}}"><img class="message" src="{{asset("img/messageBlue.png")}}"/>
+                                <p class="middle text">Messages</p>
+                            </a>
+                        </div>
+                    </article>
+                    <article>
+                        <div>
+                            <a href="#"><img class="equipe" src="{{asset("img/teamBlue.png")}}"/>
+                                <p class="middle text">Equipe et contacts</p>
                             </a>
                         </div>
                     </article>
@@ -45,15 +45,10 @@
 
                     <article>
                         <div>
-                            <a href="#"><img class="settings1" src="{{asset("img/settings1.png")}}"/>
-                                <p>Paramètres</p>
+                            <a href="#"><img class="settings1" src="{{asset("img/settingsYellow.png")}}"/>
+                                <p>Enregistrement d'une séance</p>
                             </a>
 
-                            <ul>
-                                <li class="parameters">Général</li>
-                                <li class="parameters">Personnalisation</li>
-                                <li class="parameters">Autres</li>
-                            </ul>
                         </div>
                     </article>
                 </section>
@@ -64,7 +59,7 @@
 
                 <style type="text/css">
                     .menuAccueil{
-                        background-color: darkslateblue;
+                        background-color: grey;
                     }
 
                     @font-face {
@@ -87,12 +82,10 @@
                     .message:hover,
                     .utilisateur:hover {
                         background-color: #9AB4CB;
-                        opacity: 0.8;
                     }
 
                     .settings1:hover {
-                        background-color: #396A92;
-                        opacity: 0.5;
+                        background-color: lightblue;
                     }
 
                     #middle {
@@ -106,7 +99,7 @@
                     }
 
                     #middle article {
-                        background-color: white;
+                        background-color:#F4F3F2;
                         border: 1px solid grey;
                         width: 50%;
                         display: flex;
@@ -132,7 +125,7 @@
                     #right {
                         display: flex;
                         flex: 1;
-                        background-color: grey;
+                        background-color: #F4F3F2;
                         border: 1px solid rgba(57, 106, 146, 0.3);
                         height: 94vh;
                     }
@@ -151,7 +144,7 @@
                     }
 
                     #right article p {
-                        color: white;
+                        color: black;
                     }
 
                     #right ul {
