@@ -112,7 +112,6 @@ class MessageController extends Controller
 
         }
 
-
         return $this->render("APAMessageBundle:Message:sendMessage.html.twig", array(
            "targetUser" => $targetUser,
            "form"       => $form->createView(),

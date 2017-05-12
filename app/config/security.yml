@@ -1,6 +1,5 @@
 security:
     encoders:
-        # We use bcrypt for password encryption
         Symfony\Component\Security\Core\User\User:
             algorithm: bcrypt
             cost:      12

@@ -89,10 +89,10 @@ class AdminController extends Controller
         }
         else
         {
-            $listUser =  $em->getRepository('APASecurityBundle:User')->findBy(array(), array('nom' => 'desc'), 10);
+            $listUser =  $em->getRepository('APASecurityBundle:User')->findBy(array(), array('id' => 'desc'), 10);
         }
 
-        // Used to check for admin rights, in order to keep them hidden.
+        // Used to check for admin rights in the twig, in order to keep admins hidden.
         $isAdmin = array('ROLE_ADMIN');
 
         // Used to check for prof role, in order to highlight them.
@@ -234,7 +234,9 @@ class AdminController extends Controller
 
             $query = $em->createQuerybuilder()
                     ->delete('APAMessageBundle:Message', 'a')
-                    ->where('a.sender = :user')
+                    ->where('a.sender = :sender')
+                    ->orWhere('a.user = :user')
+                    ->setParameter('sender', $user->getId())
                     ->setParameter('user', $user->getId())
                     ->getQuery();
 

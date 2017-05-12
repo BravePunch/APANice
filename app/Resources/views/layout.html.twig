@@ -10,14 +10,14 @@
 
         {% block bootstrap %}
             <link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/bootstrap.min.css")}}">
-						<link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/tableau_de_bord.css")}}">
-						<link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/menu.css")}}">
-						<script type="text/javascript" src="{{asset("jquery.js")}}"></script>
+            <link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/tableau_de_bord.css")}}">
+            <link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/menu.css")}}">
+            <script type="text/javascript" src="{{asset("jquery.js")}}"></script>
             <script type="text/javascript" src="{{asset("bootstrap/js/bootstrap.min.js")}}"></script>
         {% endblock %}
 
         {% block stylesheets %}
-         <link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/menu-icons.css")}}">
+            <link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/menu-icons.css")}}">
         {% endblock %}
     </head>
 
@@ -25,17 +25,16 @@
 
     {#  HEADER  #}
     <div class="container-fluid">
-        <div class="row"  style="background-color:#091D42;">
-					<div class="col-md-3 ">
-					 <h5><span class="badge badge-info" style="margin-top: 5px; background-color:rgba(42, 75, 164, 0.6);">
-                    Bonjour, {{ app.user.username }}
-                </span></h5>
-							 </div>
-            <div class="offset-6 col-md-3" style="text-align: center">
+        <div class="row"  style="background-color:#222222;height:6vh;">
 
-                <a href="{{path('logout')}}" class="btn btn-danger">Déconnexion</a>
+            <p style="color:#C0C0C0;">
+                <strong>Bonjour, {{ app.user.username }}</strong>
+            </p>
 
+            <div style="position:absolute;top:0;right:0;">
+                <a href="{{path('logout')}}" class="btn btn-sm btn-danger" style="max-height:6vh"><strong>X</strong></a>
             </div>
+
         </div>
     </div>
     {#  END OF HEADER  #}
@@ -43,21 +42,21 @@
 
     <div class="container-fluid">
 
-        <div class="row">
+        <div class="row" style="min-height:94vh">
 
             {#  SIDEBAR  #}
 
-			{% if is_granted('ROLE_ADMIN') %}
+            {% if is_granted('ROLE_ADMIN') %}
 
-					{{ render(controller("APAPlatformBundle:Admin:Menu"))}}
+		{{ render(controller("APAPlatformBundle:Admin:Menu"))}}
 
-			{% endif %}
+            {% endif %}
 
-			{% if is_granted('ROLE_USER') %}
+            {% if is_granted('ROLE_USER') %}
 
-					{{ render(controller("APAPlatformBundle:User:Menu"))}}
+		{{ render(controller("APAPlatformBundle:User:Menu"))}}
 
-			{% endif %}
+            {% endif %}
 
             {#  END OF SIDEBAR  #}
 
@@ -75,5 +74,25 @@
     </div>
 
 </body>
+
+{% block scripts %}
+
+{% endblock %}
+
+{% block style %}
+    <style>
+        .menu {
+            background-color: #222222;
+            padding-left: 2px;
+        }
+        .menu div {
+            margin: 0;
+            height:45px;
+        }
+        .menu p {
+            color:#C0C0C0;
+        }
+    </style>
+{% endblock %}
 
 </html>

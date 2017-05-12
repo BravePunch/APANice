@@ -4,16 +4,6 @@
 
 {% block body %}
 
-    {% if is_granted('ROLE_ADMIN') %}
-
 	{{ render(controller("APAPlatformBundle:Admin:tableauDeBord"))}}
-
-    {% endif %}
-
-    {% if is_granted('ROLE_USER') %}
-
-        {{ render(controller("APAPlatformBundle:User:tableauDeBord"))}}
-
-    {% endif %}
 
 {% endblock %}

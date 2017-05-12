@@ -1,3 +1,5 @@
+# PARTIE ADMIN
+
 apa_platform_adminIndex:
     path: /admin
     defaults:
@@ -32,7 +34,30 @@ apa_platform_listUser:
     defaults:
         _controller: APAPlatformBundle:Admin:dynamicSearch
 
+# PARTIE USER
+
 apa_platform_userIndex:
     path: /user
     defaults:
         _controller: APAPlatformBundle:User:userIndex
+
+apa_platform_userGestionAPA:
+    path: /user/Gestionnaire
+    defaults:
+        _controller: APAPlatformBundle:User:gestionAPA
+
+apa_platform_staff:
+    path: /staff
+    defaults:
+        _controller: APAPlatformBundle:User:staff
+
+apa_platform_fiche:
+    path: /user/fiche
+    defaults:
+        _controller: APAPlatformBundle:User:fiche
+
+apa_platform_settings:
+    path: /user/settings
+    defaults:
+        _controller: APAPlatformBundle:User:settings
+

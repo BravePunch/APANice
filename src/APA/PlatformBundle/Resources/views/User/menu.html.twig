@@ -1,54 +1,44 @@
-        <div class="col-md-2" style="background-color: #091D42;">
+<div class="col-md-2 menu">
 
-            <div class="">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            </div>
-
-            <a href="{{path('apa_platform_userIndex')}}">
-
-                <div class="item active">
-
-
-                    <img class="tab1"src="{{asset("img/tabor.png")}}"/>
-                    <p>Accueil</p>
-                    </div>
-            </a>
-
-            <a href="#">
-                <div class="item">
-
-                    <img class="files"src="{{asset("img/files.png")}}"/>
-                    <p class="doss">Dossiers & fichiers</p>
-                </div>
-            </a>
-                <a href="#">
-                <div class="item">
-
-                    <img class="team"src="{{asset("img/team.png")}}"/>
-                    <p class="toget">Équipe</p>
-                </div>
-                </a>
-
-            <a href="{{path('apa_message_inbox')}}">
-                <div class="item">
-
-                    <img class="mess"src="{{asset("img/message.png")}}"/>
-                    <p>Messages</p>
-                </div>
-            </a>
-
-            <a href="#">
-            <div class="item">
-                    <img class="pagem"src="{{asset("img/user.png")}}"/>
-                    <p>Ma fiche</p>
-            </div>
-             </a>
-
-            <a href="#">
-            <div class="item">
-
-                    <img class="settings"src="{{asset("img/settings.png")}}"/>
-                    <p>Paramètres</p>
-            </div>
-            </a>
+    <a href="{{path('apa_platform_userIndex')}}">
+        <div class="item active menuAccueil">
+            <img class="tab1"src="{{asset("img/taborGrey.png")}}"/>
+            <p><strong>Accueil</strong></p>
         </div>
+    </a>
+
+    <a href="{{path('apa_platform_userGestionAPA')}}">
+        <div class="item menuDossiers">
+            <img class="files"src="{{asset("img/filesGrey.png")}}"/>
+            <p class="doss">Dossiers</p>
+        </div>
+    </a>
+
+    <a href="{{path('apa_platform_staff')}}">
+        <div class="item menuEquipe">
+            <img class="team"src="{{asset("img/teamGrey.png")}}"/>
+            <p class="toget">Équipe</p>
+        </div>
+    </a>
+
+    <a href="{{path('apa_message_inbox')}}">
+        <div class="item menuMessage">
+            <img class="mess"src="{{asset("img/messageGrey.png")}}"/>
+            <p>Messages</p>
+        </div>
+    </a>
+
+    <a href="{{path('apa_platform_fiche')}}">
+        <div class="item menuFiche">
+            <img class="pagem"src="{{asset("img/userGrey.png")}}"/>
+            <p>Ma fiche</p>
+        </div>
+    </a>
+
+    <a href="{{path('apa_platform_settings')}}">
+        <div class="item menuParametres">
+            <img class="settings"src="{{asset("img/settingsGrey.png")}}"/>
+            <p class="param">Paramètres</p>
+        </div>
+    </a>
+</div>
