@@ -1,0 +1,68 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %} {{ parent() }} - Fichiers {% endblock %}
+
+{% block body %}
+
+
+    <div class="container-fluid" id="wrapper">
+
+
+        <div class="col-md-12 categorieInfo">
+            <h3>Infos Santé</h3>
+            <p><em>Dernières infos:</em></p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><p>fiche_info_nutrition.pdf</p><p>par: docteur X</li>
+                <li class="list-inline-item">Item</li>
+                <li class="list-inline-item">Item</li>
+            </ul>
+        </div>
+
+        <div class="col-md-12 categorieInfo">
+            <h3>Infos Sport</h3>
+            <p><em>Dernières infos:</em></p>
+            <ul class="list-unstyled list-inline">
+                <li class="list-inline-item">Item</li>
+                <li class="list-inline-item">Item</li>
+                <li class="list-inline-item">Item</li>
+            </ul>
+        </div>
+
+        <div class="col-md-12 categorieInfo">
+            <h3>Infos Autres</h3>
+            <p><em>Dernières infos:</em></p>
+            <ul class="list-unstyled list-inline">
+                <li class="list-inline-item">Item</li>
+                <li class="list-inline-item">Item</li>
+                <li class="list-inline-item">Item</li>
+            </ul>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}
+
+{% block style %}
+
+    {{ parent() }}
+
+    <style type="text/css">
+
+        #wrapper{
+            min-height: 94vh;
+        }
+
+        #wrapper .categorieInfo {
+            border: 1px solid grey;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        #wrapper .categorieInfo p {
+            margin:0;
+        }
+
+    </style>
+
+{% endblock %}

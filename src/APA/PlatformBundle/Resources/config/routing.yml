@@ -41,20 +41,20 @@ apa_platform_userIndex:
     defaults:
         _controller: APAPlatformBundle:User:userIndex
 
-apa_platform_userGestionAPA:
-    path: /user/Gestionnaire
+apa_platform_userFichiers:
+    path: /user/Fichiers
     defaults:
-        _controller: APAPlatformBundle:User:gestionAPA
+        _controller: APAPlatformBundle:User:userFichiers
 
 apa_platform_staff:
     path: /staff
     defaults:
         _controller: APAPlatformBundle:User:staff
 
-apa_platform_fiche:
-    path: /user/fiche
+apa_platform_userFiche:
+    path: /user/MaFiche
     defaults:
-        _controller: APAPlatformBundle:User:fiche
+        _controller: APAPlatformBundle:User:userFiche
 
 apa_platform_settings:
     path: /user/settings

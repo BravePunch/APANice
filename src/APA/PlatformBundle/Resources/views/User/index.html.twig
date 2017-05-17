@@ -12,28 +12,32 @@
 
                     <article>
                         <div>
-                            <a href="#"><img class="pdf" src="{{asset("img/filesBlue.png")}}"/>
+                            <a href="#">
+                                <img class="pdf" src="{{asset("img/filesBlue.png")}}"/>
                                 <p class="middle text">Dossiers et fichiers</p>
                             </a>
                         </div>
                     </article>
                     <article>
                         <div>
-                            <a href="#"><img class="utilisateur" src="{{asset("img/userBlue.png")}}"/>
+                            <a href="#">
+                                <img class="utilisateur" src="{{asset("img/userBlue.png")}}"/>
                                 <p class="middle text">Ma fiche</p>
                             </a>
                         </div>
                     </article>
                     <article>
                         <div>
-                            <a href="{{path('apa_message_inbox')}}"><img class="message" src="{{asset("img/messageBlue.png")}}"/>
+                            <a href="{{path('apa_message_inbox')}}">
+                                <img class="message" src="{{asset("img/messageBlue.png")}}"/>
                                 <p class="middle text">Messages</p>
                             </a>
                         </div>
                     </article>
                     <article>
                         <div>
-                            <a href="#"><img class="equipe" src="{{asset("img/teamBlue.png")}}"/>
+                            <a href="#">
+                                <img class="equipe" src="{{asset("img/teamBlue.png")}}"/>
                                 <p class="middle text">Equipe et contacts</p>
                             </a>
                         </div>
@@ -45,7 +49,8 @@
 
                     <article>
                         <div>
-                            <a href="#"><img class="settings1" src="{{asset("img/settingsYellow.png")}}"/>
+                            <a href="#">
+                                <img class="settings1" src="{{asset("img/settingsYellow.png")}}"/>
                                 <p>Enregistrement d'une séance</p>
                             </a>
 
@@ -77,10 +82,7 @@
                         height: 100%;
                     }
 
-                    .pdf:hover,
-                    .equipe:hover,
-                    .message:hover,
-                    .utilisateur:hover {
+                    #middle a:hover{
                         background-color: #9AB4CB;
                     }
 

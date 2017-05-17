@@ -36,9 +36,9 @@ class UserController extends Controller
         return $this->render('APAPlatformBundle:User:menu.html.twig');
     }
 
-    public function gestionAPAAction()
+    public function userFichiersAction()
     {
-        return $this->render('::chantier.html.twig');
+        return $this->render('APAPlatformBundle:User:userFichiers.html.twig');
     }
 
     public function staffAction()
@@ -46,7 +46,7 @@ class UserController extends Controller
         return $this->render('::chantier.html.twig');
     }
 
-    public function ficheAction()
+    public function userFicheAction()
     {
         return $this->render('::chantier.html.twig');
     }
