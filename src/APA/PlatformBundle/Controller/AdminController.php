@@ -137,7 +137,12 @@ class AdminController extends Controller
 //                        'second_options' =>  array('label' => 'Confirmer mot de passe'),))
                 ->add('nom',           TextType::class)
                 ->add('prenom',        TextType::class)
-                ->add('groupe' ,       ChoiceType::class, array('choices' => array('' => '','Groupe 1' => null , 'Groupe 2' => false , 'Groupe 3' => true)))
+                ->add('groupe' ,       ChoiceType::class, array('choices' => array(
+                    'Pas de groupe' => null,
+                    'Groupe 1' => "1" ,
+                    'Groupe 2' => "2" ,
+                    'Groupe 3' => "3"
+                    )))
                 ->add('isAdmin',       CheckboxType::class, array('required' => false, 'label'=>'Droits administrateur'))
                 ->add('isProf',        CheckboxType::class, array('required' => false, 'label'=>'Professeur APA'))
                 ->add('save',          SubmitType::class)
@@ -172,18 +177,6 @@ class AdminController extends Controller
                     $user->setRoles(array("ROLE_PROF"));
                 } else{
                     $user->setRoles(array("ROLE_USER"));
-                }
-                
-                // Sets groupe depending on the value of the choice list
-                if ($user->getGroupe() === null){
-                    $user->setGroupe("Groupe 1");
-                } elseif ($user->getGroupe() === false){
-                    $user->setGroupe("Groupe 2");
-                } elseif ($user->getGroupe() === true){
-                    $user->setGroupe("Groupe 3");
-                }
-                else {
-                    $user->setGroupe(null);
                 }
 
                 // Salt is unused
@@ -327,11 +320,4 @@ class AdminController extends Controller
     {
         return $this->render('APAPlatformBundle:Admin:menu.html.twig');
     }
-
-    // Same as MenuAction. Displays the index's body.
-    public function tableauDeBordAction()
-    {
-        return $this->render('APAPlatformBundle:Admin:tableauDeBord.html.twig');
-    }
-
 }
