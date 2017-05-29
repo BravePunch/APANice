@@ -42,7 +42,7 @@ apa_platform_userIndex:
         _controller: APAPlatformBundle:User:userIndex
 
 apa_platform_userFichiers:
-    path: /user/Fichiers
+    path: /user/Fichiers/{category}
     defaults:
         _controller: APAPlatformBundle:User:userFichiers
 

@@ -12,7 +12,7 @@
 
                     <article>
                         <div>
-                            <a href="#">
+                            <a href="{{ path("apa_platform_userFichiers", {'category': 'sante'}) }}">
                                 <img class="pdf" src="{{asset("img/filesBlue.png")}}"/>
                                 <p class="middle text">Dossiers et fichiers</p>
                             </a>
@@ -20,7 +20,7 @@
                     </article>
                     <article>
                         <div>
-                            <a href="#">
+                            <a href="{{ path("apa_platform_userFiche") }}">
                                 <img class="utilisateur" src="{{asset("img/userBlue.png")}}"/>
                                 <p class="middle text">Ma fiche</p>
                             </a>
@@ -36,7 +36,7 @@
                     </article>
                     <article>
                         <div>
-                            <a href="#">
+                            <a href="{{ path("apa_platform_staff") }}">
                                 <img class="equipe" src="{{asset("img/teamBlue.png")}}"/>
                                 <p class="middle text">Equipe et contacts</p>
                             </a>

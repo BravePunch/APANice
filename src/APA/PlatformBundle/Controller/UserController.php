@@ -38,9 +38,42 @@ class UserController extends Controller
         return $this->render('APAPlatformBundle:User:menu.html.twig');
     }
 
-    public function userFichiersAction()
+    public function userFichiersAction($category)
     {
-        return $this->render('APAPlatformBundle:User:userFichiers.html.twig');
+
+        $em = $this->getDoctrine()->getManager();
+
+        // This query gets the latest uploaded files
+        $latestQuery = $em->createQueryBuilder()
+                ->select('a')
+                ->from('APAPlatformBundle:File', 'a')
+                ->orderBy('a.id', 'DESC')
+                ->setMaxresults(5);
+
+        $latestFiles = $latestQuery->getQuery()->getResult();
+
+        $listCategory = [];
+
+        switch ($category){
+            case 'sante' || 'sport' || 'autre':
+                $categoryQuery = $em->createQueryBuilder()
+                        ->select('q')
+                        ->from('APAPlatformBundle:File', 'q')
+                        ->where('q.id = :category')
+                        ->orderBy('q.id', 'DESC')
+                        ->setParameter('category', $category);
+
+                $listCategory = $categoryQuery->getQuery()->getResult();
+                break;
+            default:
+                break;
+        }
+
+        return $this->render('APAPlatformBundle:User:userFichiers.html.twig', array(
+            "latestFiles" => $latestFiles,
+            "listCategory" => $listCategory,
+            "category" => $category
+        ));
     }
 
     public function staffAction()
@@ -48,6 +81,9 @@ class UserController extends Controller
         return $this->render('::chantier.html.twig');
     }
 
+    /**
+     * @Security("has_role('ROLE_USER')")
+     */
     public function userFicheAction(Request $request)
     {
 
@@ -73,7 +109,7 @@ class UserController extends Controller
 
             if ($form->isValid()){
 
-                $file->setName("testfile.pdf");
+                $file->setName($file->getFile()->getClientOriginalName());
 
                 $currentUser = $this->get('security.token_storage')->getToken()->getUser();
                 $file->setUploader($currentUser->getUsername());
