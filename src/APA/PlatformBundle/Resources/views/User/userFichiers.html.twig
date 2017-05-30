@@ -38,6 +38,31 @@
 
         </div>
 
+        <div class="container-fluid" id="categoryList">
+
+            {% for item in listCategory %}
+
+                <div class="col-md-12 listItem" style="display:none;border-bottom:1px solid lightblue;">
+                    <a href="#"><p>{{item.name}}</p></a>
+                    <p><em> &emsp; &emsp; Mis en ligne par: <strong>{{item.uploader}}</strong> le {{item.date|date('d-m-Y')}}</em></p>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="col-md-12 text-center" id="listNav">
+
+            <div class="btn-grou">
+
+                <button class="btn btn-secondary" id="prev" onclick="prev();"> <- </button>
+
+                <button class="btn btn-secondary" id="next" onclick="next();"> -> </button>
+
+            </div>
+
+        </div>
+
     </div>
 
 
@@ -72,7 +97,81 @@
         #wrapper .selecteur{
             margin-top: 40px;
         }
+        #wrapper #categoryList{
+            background-color: snow;
+            border: 1px solid lightblue;
+        }
+        #wrapper #categoryList p{
+            margin: 0;
+            padding: 0;
+        }
+
 
     </style>
+
+{% endblock %}
+
+{% block scripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript">
+
+        // Slider
+
+        var listStart = 0;
+        var listEnd = 9;
+        var items = document.getElementsByClassName("listItem");
+
+        // First, we display the first 10 files
+        for (i = 0; i <= listEnd; i++){
+            items[i].style.display = "inline-block";
+        }
+
+        // the following functions are called by the previous and next buttons.
+        function next(){
+            if (listEnd < items.length)
+            {
+                console.log("NEXT");
+                console.log("Hiding current list...")
+                for (i = listStart; i <= listEnd; i++){
+                    console.log("Hinding item at index: " + i);
+                    items[i].style.display = "none";
+                }
+                listStart += 10;
+                listEnd += 10;
+                console.log("List start: " + listStart + " end: " + listEnd);
+                console.log("Displaying new list...");
+                for (i = listStart; i <= listEnd && i < items.length; i++){
+                    console.log("Displaying item at index: " + i);
+                    items[i].style.display = "inline-block";
+                }
+                console.log("END OF NEXT");
+            }
+        }
+
+        function prev(){
+            if (listStart > 0)
+            {
+                console.log("PREV");
+                console.log("Hiding current list...");
+                for (i = listStart; i <= listEnd && i < items.length; i++){
+                    console.log("Hiding item at index: " + i);
+                    items[i].style.display = "none";
+                }
+                listStart -= 10;
+                listEnd -= 10;
+                console.log("List start: " + listStart + " end: " + listEnd);
+                console.log("Displaying new list...");
+                for (i = listStart; i <= listEnd; i++){
+                    console.log("Displaying item at index: " + i);
+                    items[i].style.display = "inline-block";
+                }
+                console.log("END OF PREV");
+            }
+        }
+
+        console.log(items.length);
+    </script>
 
 {% endblock %}

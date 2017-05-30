@@ -59,7 +59,7 @@ class UserController extends Controller
                 $categoryQuery = $em->createQueryBuilder()
                         ->select('q')
                         ->from('APAPlatformBundle:File', 'q')
-                        ->where('q.id = :category')
+                        ->where('q.category = :category')
                         ->orderBy('q.id', 'DESC')
                         ->setParameter('category', $category);
 
