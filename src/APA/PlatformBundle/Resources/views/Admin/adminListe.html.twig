@@ -22,88 +22,67 @@
     <br/>
 
 
-        <a class="btn btn-info" href="{{path("apa_platform_addUser")}}">Inscription utilisateur</a>
+            <form id="form_recherche" method="post" action="{{ path('apa_platform_adminListe') }}">
 
 
-    <div class="container-fluid" style="border-bottom: 1px solid lightsteelblue;height: 5px"></div>
-
-
-    <div>
-        <div class="col-md-3">
-        </div>
-
-        <div class="loading text-right col-md-3 offset-6"><small class="text-muted">Recherche en cours...</small><img src="http://j-place.developpez.com/tutoriels/php/ameliorez-vos-applications-developpees-avec-symfony2/images/loading.gif">
-
-        </div>
-      </div>
-
-
-
-<div id="resultats_recherche">
-
-    <table class="table table-hover table-sm">
-        <thead class="thead-inverse">
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th class="text-center">Groupe</th>
-                <th>
-                <form id="form_recherche" method="post" action="{{ path('apa_platform_adminListe') }}">
-                    <div>
-                        <div class="col-md-12">
-                            <div class="input-group">
-                        <input type="text" class="form-control text-center" id="search" name="search" placeholder="Cherchez par nom , prenom ...">
-                    <div class="input-group-btn">
-                        <input type="submit" class="btn btn-sm btn-secondary" value="Recherchez">
-                    </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control text-center" id="search" name="search" placeholder="Cherchez par nom , prenom ...">
+                            <div class="input-group-btn">
+                                <input type="submit" class="btn btn-sm btn-secondary" value="Recherchez">
                             </div>
-
                         </div>
-                </div>
-                </form>
-                </th>
-            </tr>
-        </thead>
 
-        <tbody>
-            {% if listUser is defined %}
-                {% for list in listUser %}
-                    {% if list.roles != isAdmin %}
 
-                    <tr {% if list.roles == isProf %}class="table-success"{% endif %} >
-                        <td><strong>{{ list.nom }}</strong></td>
+            </form>
 
-                        <td>{{ list.prenom }}</td>
 
-                        <td class="text-center">
-                            {% if list.groupe is null %}
-
-                                  {{ list.roles|join }}
-
-                            {% else  %}
-                                {{ list.groupe }}
-                               {% endif %}
-                        </td>
-
-                        <td class="text-right">
-                            <div class="btn-group-sm">
-                            <a href="{{ path('apa_platform_editUser' , {'id': list.id}) }}"> <button class="btn btn-sm"> Modifier </button> </a>
-                            <a href="{{ path('apa_platform_deleteUser' , {'id': list.id}) }}"> <button class="btn btn-danger btn-sm"> Supprimer </button> </a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-
-            {% if listUsers is defined %}
-                {% include 'APAPlatformBundle:Admin:listuser.html.twig' %}
-            {% endif %}
-
-        </tbody>
-    </table>
-            </div>
+    <div id="resultats_recherche">
+        <table class="table table-hover table-sm table-striped">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th class="text-center">Groupe</th>
+                    <th class="text-right">
+                        <div class="btn-group">
+                            <button class="btn btn-secondary" onclick="prev()"> &emsp; <- &emsp; </button>
+                            <button class="btn btn-secondary" onclick="next()"> &emsp; -> &emsp; </button>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if listUser is defined %}
+                    {% for list in listUser %}
+                        {% if list.roles != isAdmin %}
+                            <tr class="{% if list.roles == isProf %}table-success{% endif %} tableItem" style="display:none;">
+                                <td>
+                                    <strong>{{ list.nom }}</strong>
+                                </td>
+                                <td>{{ list.prenom }}</td>
+                                <td class="text-center">
+                                {% if list.groupe is null %}
+                                    {{ list.roles|join }}
+                                {% else  %}
+                                    {{ list.groupe }}
+                                {% endif %}
+                                </td>
+                                <td class="text-right">
+                                    <div class="btn-group-sm">
+                                        <a href="{{ path('apa_platform_editUser' , {'id': list.id}) }}"> <button class="btn btn-sm"> Modifier </button> </a>
+                                        <a href="{{ path('apa_platform_deleteUser' , {'id': list.id}) }}"> <button class="btn btn-danger btn-sm"> Supprimer </button> </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if listUsers is defined %}
+                    {% include 'APAPlatformBundle:Admin:listuser.html.twig' %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
 
     <script>
         // AJAX SEARCH FILTER
@@ -142,4 +121,69 @@
             }
         });
 </script>
+{% endblock %}
+
+{% block scripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript">
+
+        // Slider
+
+        var listStart = 0;
+        var listEnd = 9;
+        var items = document.getElementsByClassName("tableItem");
+
+        // First, we display the first 10 files
+        for (i = 0; i <= listEnd; i++){
+            items[i].style.display = "table-row";
+        }
+
+        // the following functions are called by the previous and next buttons.
+        function next(){
+            if (listEnd < items.length)
+            {
+                console.log("NEXT");
+                console.log("Hiding current list...")
+                for (i = listStart; i <= listEnd; i++){
+                    console.log("Hinding item at index: " + i);
+                    items[i].style.display = "none";
+                }
+                listStart += 10;
+                listEnd += 10;
+                console.log("List start: " + listStart + " end: " + listEnd);
+                console.log("Displaying new list...");
+                for (i = listStart; i <= listEnd && i < items.length; i++){
+                    console.log("Displaying item at index: " + i);
+                    items[i].style.display = "table-row";
+                }
+                console.log("END OF NEXT");
+            }
+        }
+
+        function prev(){
+            if (listStart > 0)
+            {
+                console.log("PREV");
+                console.log("Hiding current list...");
+                for (i = listStart; i <= listEnd && i < items.length; i++){
+                    console.log("Hiding item at index: " + i);
+                    items[i].style.display = "none";
+                }
+                listStart -= 10;
+                listEnd -= 10;
+                console.log("List start: " + listStart + " end: " + listEnd);
+                console.log("Displaying new list...");
+                for (i = listStart; i <= listEnd; i++){
+                    console.log("Displaying item at index: " + i);
+                    items[i].style.display = "table-row";
+                }
+                console.log("END OF PREV");
+            }
+        }
+
+        console.log(items.length);
+    </script>
+
 {% endblock %}

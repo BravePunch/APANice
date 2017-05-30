@@ -89,13 +89,13 @@ class AdminController extends Controller
         }
         else
         {
-            $listUser =  $em->getRepository('APASecurityBundle:User')->findBy(array(), array('id' => 'desc'), 10);
+            $listUser =  $em->getRepository('APASecurityBundle:User')->findBy(array(), array('id' => 'desc'));
         }
 
         // Used to check for admin rights in the twig, in order to keep admins hidden.
         $isAdmin = array('ROLE_ADMIN');
 
-        // Used to check for prof role, in order to highlight them.
+        // Used to check for PROF role, in order to highlight them.
         $isProf = array('ROLE_PROF');
 
         // If request is AJAX
