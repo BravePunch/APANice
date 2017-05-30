@@ -7,17 +7,10 @@
         </div>
     </a>
 
-    <a href="{{path('apa_platform_userGestionAPA')}}">
+    <a href="{{path('apa_platform_userFichiers', {'category': 'sante'})}}">
         <div class="item menuDossiers">
             <img class="files"src="{{asset("img/filesGrey.png")}}"/>
-            <p class="doss">Dossiers</p>
-        </div>
-    </a>
-
-    <a href="{{path('apa_platform_staff')}}">
-        <div class="item menuEquipe">
-            <img class="team"src="{{asset("img/teamGrey.png")}}"/>
-            <p class="toget">Équipe</p>
+            <p class="doss">Fichiers</p>
         </div>
     </a>
 
@@ -28,10 +21,18 @@
         </div>
     </a>
 
-    <a href="{{path('apa_platform_fiche')}}">
+    <a href="{{path('apa_platform_userFiche')}}">
         <div class="item menuFiche">
             <img class="pagem"src="{{asset("img/userGrey.png")}}"/>
             <p>Ma fiche</p>
+        </div>
+    </a>
+
+
+    <a href="{{path('apa_platform_staff')}}">
+        <div class="item menuEquipe">
+            <img class="team"src="{{asset("img/teamGrey.png")}}"/>
+            <p class="toget">Équipe</p>
         </div>
     </a>
 

@@ -1,33 +1,22 @@
-<div class="col-md-2 menu" style="background-color:#091D42;min-height:94vh;">
-
-    <div class="">
-        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-    </div>
+<div class="col-md-2 menu"">
 
     <a href="{{path('apa_platform_adminIndex')}}">
-        <div class="item active">
-            <span class="glyphicon glyphicon-th-list"></span>
-                Accueil
+        <div class="item active menuAccueil">
+            <img class="tab1"src="{{asset("img/taborGrey.png")}}"/>
+            <p><strong>Accueil</strong></p>
         </div>
     </a>
 
     <a href="{{path('apa_platform_adminListe')}}">
         <div class="item">
-        <span class="glyphicon glyphicon-log-out"></span>
-            Liste des utilisateurs
+            <p><strong>Liste des utilisateurs</strong></p>
         </div>
     </a>
 
     <a href="{{path('apa_platform_addUser')}}">
         <div class="item">
-            <span class="glyphicon glyphicon-random"></span>
-                Ajouter un utilisateur
+            <p><strong>Inscrire un utilisateur</strong></p>
         </div>
     </a>
-
-    <div class="item">
-        <span class="glyphicon glyphicon-remove"></span>
-            ...
-    </div>
 
 </div>

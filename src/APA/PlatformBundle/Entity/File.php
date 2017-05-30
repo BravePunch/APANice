@@ -3,6 +3,8 @@
 namespace APA\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * File
@@ -22,18 +24,58 @@ class File
     private $id;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @ORM\Column(name="date", type="datetime")
      */
-    private $name;
+    private $date;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="public", type="boolean")
+     */
+    private $public;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="path", type="string", length=255, nullable=true)
+     * @ORM\Column(name="uploader", type="string", length=255)
      */
-    private $path;
+    private $uploader;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="target", type="string", length=255)
+     */
+    private $target;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\File(mimeTypes={ "application/pdf" })
+     */
+    private $file;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="category", type="string", length=255)
+     */
+    private $category;
+
+    public function __construct(){
+        $this->date = new \DateTime();
+    }
 
 
     /**
@@ -44,6 +86,102 @@ class File
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return File
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set public
+     *
+     * @param boolean $public
+     *
+     * @return File
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
+
+        return $this;
+    }
+
+    /**
+     * Get public
+     *
+     * @return bool
+     */
+    public function getPublic()
+    {
+        return $this->public;
+    }
+
+    /**
+     * Set uploader
+     *
+     * @param string $uploader
+     *
+     * @return File
+     */
+    public function setUploader($uploader)
+    {
+        $this->uploader = $uploader;
+
+        return $this;
+    }
+
+    /**
+     * Get uploader
+     *
+     * @return string
+     */
+    public function getUploader()
+    {
+        return $this->uploader;
+    }
+
+    /**
+     * Set target
+     *
+     * @param string $target
+     *
+     * @return File
+     */
+    public function setTarget($target)
+    {
+        $this->target = $target;
+
+        return $this;
+    }
+
+    /**
+     * Get target
+     *
+     * @return string
+     */
+    public function getTarget()
+    {
+        return $this->target;
     }
 
     /**
@@ -71,37 +209,51 @@ class File
     }
 
     /**
-     * Set path
+     * Set file
      *
-     * @param string $path
+     * @param string $file
      *
      * @return File
      */
-    public function setPath($path)
+    public function setFile($file)
     {
-        $this->path = $path;
+        $this->file = $file;
 
         return $this;
     }
 
     /**
-     * Get path
+     * Get file
      *
      * @return string
      */
-    public function getPath()
+    public function getFile()
     {
-        return $this->path;
+        return $this->file;
     }
 
-    public function getAbsolutePath()
+    /**
+     * Set category
+     *
+     * @param string $category
+     *
+     * @return File
+     */
+    public function setCategory($category)
     {
-        return $this->path === null ? null : $this->getUploadRootDir() . "/" . $this->path;
+        $this->category = $category;
+
+        return $this;
     }
 
-    public function getWebPath()
+    /**
+     * Get category
+     *
+     * @return string
+     */
+    public function getCategory()
     {
-        return $this->path === null ? null : $this->getUploadDir() . "/" . $this->path;
+        return $this->category;
     }
 }
 
