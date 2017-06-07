@@ -19,44 +19,36 @@ class MessageController extends Controller
 {
     public function inboxAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+         $em = $this->getDoctrine()->getManager();
 
         // Gets the logged in user as an object.
         $currentUser = $this->get('security.token_storage')->getToken()->getUser();
 
-        $query = $em->createQueryBuilder()
-                ->select('a')
-                ->from('APAMessageBundle:Message', 'a')
-                ->where('a.user = :user')
-                ->orderBy('a.date', 'DESC')
-                ->setMaxResults(5)
-                ->setParameter('user', $currentUser->getId());
+        // Gets the list of relevant users
+        $userQuery = $em->createQueryBuilder()
+                ->select("a")
+                ->from("APASecurityBundle:User", "a")
+                ->where("a.groupe = :groupe")
+                ->orWhere("a.roles = :roles")
+                ->orderBy("a.id", "DESC")
+                ->setParameter("groupe", $currentUser->getGroupe())
+                ->setParameter("roles", array("ROLE_PROF"));
 
-        // Gets messages as objects by their user_id, DESC order
-        $listMessage = $query->getQuery()->getResult();
+        $listUsers = $userQuery->getQuery()->getResult();
 
-        return $this->render('APAMessageBundle:Message:inbox.html.twig', array(
-            "listMessage" => $listMessage
-        ));
-    }
+        // Gets the latest messages
 
-    public function listUsersAction(Request $request)
-    {
+        $latestMessages = $em->getRepository("APAMessageBundle:Message")->findBy(
+                array("user" => $currentUser->getId()),
+                array("id" => 'desc'),
+                50
+                );
 
-        $em = $this->getDoctrine()->getManager();
-
-        // Gets the logged in user as an object.
-        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
-
-        $listUsers = $em->getRepository("APASecurityBundle:User")->findBy(array(
-            "groupe" => $currentUser->getGroupe()
-        ));
-
-        return $this->render("APAMessageBundle:Message:listUsers.html.twig", array(
+        return $this->render("APAMessageBundle:Message:inbox.html.twig", array(
             "currentUser" => $currentUser,
-            "listUsers"   => $listUsers
+            "listUsers"   => $listUsers,
+            "latestMessages" => $latestMessages
         ));
-
     }
 
     public function sendMessageAction(Request $request, $id)

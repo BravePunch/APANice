@@ -25,14 +25,29 @@
 
     {#  HEADER  #}
     <div class="container-fluid">
-        <div class="row"  style="background-color:#222222;height:6vh">
+
+        <div class="row" id="mobileHeader">
+
+            <div id="mobileGreetings">
+                <p style="color:#C0C0C0;"><strong>Bonjour, {{ app.user.username }}</strong></p>
+            </div>
+
+            <div id="burgerIcon" onclick="animateBurgerIcon(this);">
+                <div class="bar" id="topBar"></div>
+                <div class="bar" id="midBar"></div>
+                <div class="bar" id="botBar"></div>
+            </div>
+
+        </div>
+
+        <div class="row" id="desktopHeader">
 
             <p style="color:#C0C0C0; padding-top:5px">
                 <strong>Bonjour, {{ app.user.username }}</strong>
             </p>
 
             <div style="position:absolute;top:0;right:0">
-                <a href="{{path('logout')}}" class="btn btn-sm btn-danger" style="max-height:6vh"><strong>Déconnection</strong></a>
+                <a href="{{path('logout')}}" class="btn btn-danger" style="height:6vh"><strong>Déconnection</strong></a>
             </div>
 
         </div>
@@ -50,9 +65,7 @@
 
 		{{ render(controller("APAPlatformBundle:Admin:Menu"))}}
 
-            {% endif %}
-
-            {% if is_granted('ROLE_USER') %}
+            {% elseif is_granted('ROLE_USER') %}
 
 		{{ render(controller("APAPlatformBundle:User:Menu"))}}
 
@@ -76,25 +89,86 @@
 </body>
 
 {% block style %}
-    <style>
+    <style type="text/css">
         body {
             background-color: #F4F3F2;
         }
-        .menu {
+        #mobileHeader{
+            background-color: #222222;
+            height: 7vh;
+        }
+
+        /* Burger menu for mobile */
+
+        #burgerIcon {
+            height: 7vh;
+            width: 7vh;
+            position: absolute;
+            top: 0;
+            right:10px;
+            cursor: pointer;
+        }
+        #burgerIcon .bar{
+            width: 7vh;
+            height: 1vh;
+            background-color: #C0C0C0;
+            margin-bottom:2vh;
+        }
+
+        .animateBurgerIcon #topBar {
+            -webkit-transform: rotate(-45deg) translate( 0px, 40px);
+            -transform: rotate(-45deg) translate(-9px, 6px);
+        }
+
+        /* End of burger menu */
+
+        #desktopHeader{
+            background-color: #222222;
+            height: 6vh;
+        }
+        #menu {
             background-color: #222222;
             padding-left: 2px;
         }
-        .menu div {
+        #menu div {
             margin: 0;
             height:45px;
         }
-        .menu p {
+        #menu p {
             color:#C0C0C0;
         }
+
+        @media only screen and (min-width: 769px){
+            #mobileHeader{
+                display:none;
+            }
+        }
+
+        /* MOBILE */
+
+        @media only screen and (max-width:769px){
+
+            #menu {
+                display: none;
+            }
+            #desktopHeader{
+                display: none;
+            }
+
+        }
+
     </style>
 {% endblock %}
 
 {% block scripts %}
+
+    <script type="text/javascript">
+
+        function animateBurgerIcon(icon){
+            icon.classList.toggle("animateBurgerIcon");
+        }
+
+    </script>
 
 {% endblock %}
 

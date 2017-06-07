@@ -37,7 +37,7 @@ class User implements UserInterface
      * @var string
      */
     private $plainPassword;
-    // $plainPassword is only used to be encrypted and set as the true password.
+    // $plainPassword is only used to be encrypted then set as the true password.
 
     /**
      * @var boolean
