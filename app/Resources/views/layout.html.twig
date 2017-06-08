@@ -116,7 +116,7 @@
         }
 
         .animateBurgerIcon #topBar {
-            -webkit-transform: rotate(-45deg) translate( 0px, 40px);
+            -webkit-transform: rotate(-45deg) translate( -20px, 35px);
             -transform: rotate(-45deg) translate(-9px, 6px);
         }
 
@@ -166,6 +166,11 @@
 
         function animateBurgerIcon(icon){
             icon.classList.toggle("animateBurgerIcon");
+        }
+
+        if (screen.width < 769){
+            document.getElementById("content").classList.remove("col-md-10");
+            document.getElementById("content").classList.add("col-xs-10");
         }
 
     </script>
