@@ -143,9 +143,10 @@ class AdminController extends Controller
                     'Groupe 2' => "2" ,
                     'Groupe 3' => "3"
                     )))
-                ->add('isAdmin',       CheckboxType::class, array('required' => false, 'label'=>'Droits administrateur'))
-                ->add('isProf',        CheckboxType::class, array('required' => false, 'label'=>'Professeur APA'))
-                ->add('save',          SubmitType::class)
+                ->add('isAdmin',        CheckboxType::class, array('required' => false, 'label'=>'Droits administrateur'))
+                ->add('isProf',         CheckboxType::class, array('required' => false, 'label'=>'Professeur APA'))
+                ->add('isDoc',          CheckboxType::class, array('required' => false, 'label'=>'Médecin/Nutritionniste'))
+                ->add('save',           SubmitType::class)
                 ->getForm()
                 ;
 
@@ -175,7 +176,9 @@ class AdminController extends Controller
                     $user->setRoles(array("ROLE_ADMIN"));
                 } else if($user->getIsProf() === true){
                     $user->setRoles(array("ROLE_PROF"));
-                } else{
+                } else if($user->getIsDoc() === true){
+                    $user->setRoles(array('ROLE_DOC'));
+                } else {
                     $user->setRoles(array("ROLE_USER"));
                 }
 

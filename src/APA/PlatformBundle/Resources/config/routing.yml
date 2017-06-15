@@ -61,3 +61,10 @@ apa_platform_settings:
     defaults:
         _controller: APAPlatformBundle:User:settings
 
+# PARTIE DOC
+
+apa_platform_docIndex:
+    path: /doc
+    defaults:
+        _controller: APAPlatformBundle:Doc:docIndex
+
