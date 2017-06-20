@@ -3,20 +3,20 @@
 {% block title %} {{ parent() }} - Envoi d'un message {% endblock %}
 
 {% block body %}
-    <a class="link-inverse" href="{{path('apa_message_inbox')}}"><< Voir les messages récents</a>
+    <a class="link-inverse" href="{{path('apa_message_inbox')}}"><< Retour à réception</a>
 
-    <h4 style="text-align:center; padding-top:20px;">Conversation avec {{targetUser.nom}} {{targetUser.prenom}}</h4>
+    <h4 style="text-align:center; padding-top:10px;">Conversation avec {{targetUser.nom}} {{targetUser.prenom}}</h4>
 
-   <div class="container">
+   <div class="container-fluid" id="conversation">
     {% for message in convo %}
         {% if message.sender != app.user %}
-            <div class="col-md-8" style="background-color:lightskyblue;border-radius:10px">
-                <p><strong>{{message.author}}:</strong></p>
+            <div class="col-md-8 message" style="background-color:lightskyblue;border-radius:10px">
+                <p><strong>{{message.author}}</strong></p>
                 <p>{{message.content}}</p>
             </div>
         {% else %}
-            <div class="col-md-8 offset-4" style="background-color:lightsteelblue;border-radius:10px">
-                <p><strong>{{message.author}}:</strong></p>
+            <div class="col-md-8 offset-md-4 message" style="background-color:lightsteelblue;border-radius:10px">
+                <p><strong>{{message.author}}</strong></p>
                 <p>{{message.content}}</p>
             </div>
         {% endif %}
@@ -28,5 +28,29 @@
     {{ form_widget(form.Submit) }}
     {{ form_rest(form) }}
     {{ form_end(form) }}
+
+{% endblock %}
+
+{% block style %}
+
+    {{parent()}}
+
+    <style type="text/css">
+
+        #content form button{
+            width: 100%;
+        }
+
+        #conversation {
+            width: 100%;
+            overflow: scroll;
+        }
+
+        #conversation .message {
+            background-color:lightsteelblue;
+            border-radius:10px;
+        }
+
+    </style>
 
 {% endblock %}

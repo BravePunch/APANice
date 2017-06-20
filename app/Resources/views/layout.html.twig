@@ -29,10 +29,10 @@
         <div class="row" id="mobileHeader">
 
             <div id="mobileGreetings">
-                <p style="color:#C0C0C0;"><strong>Bonjour, {{ app.user.username }}</strong></p>
+                <p style="color:white;"><strong>Bonjour, {{ app.user.username }}</strong></p>
             </div>
 
-            <div id="burgerIcon" onclick="showMobileMenu();">
+            <div id="burgerIcon" onclick="showHide('menu');">
                 <div class="bar" id="topBar"></div>
                 <div class="bar" id="midBar"></div>
                 <div class="bar" id="botBar"></div>
@@ -100,7 +100,7 @@
             background-color: #F4F3F2;
         }
         #mobileHeader{
-            background-color: black;
+            background-color: #0275d8;
             height: 7vh;
         }
 
@@ -117,7 +117,7 @@
         #burgerIcon .bar{
             width: 7vh;
             height: 1vh;
-            background-color: #C0C0C0;
+            background-color: white;
             margin-bottom:2vh;
         }
 
@@ -150,11 +150,16 @@
         @media only screen and (max-width: 769px){
 
             #content{
+                width:100%;
                 min-height: 93vh;
                 overflow:scroll;
             }
             #menu {
                 display: none;
+                background-color: #0275d8;
+            }
+            #menu p{
+                color: white;
             }
             #desktopHeader{
                 display: none;
@@ -174,24 +179,24 @@
             document.getElementById("content").classList.add("col-xs-10");
         };
 
-        function showMobileMenu(){
+        function showHide(element){
 
-            var mobileMenu = document.getElementById("menu");
+            var item = document.getElementById(element);
 
-            switch (mobileMenu.style.display){
+            switch (item.style.display){
                 case "none":
-                    console.log("displaying mobileMenu...");
-                    mobileMenu.style.display = "inline";
+                    console.log("displaying " + element);
+                    item.style.display = "inline";
                     break;
 
                 case "inline":
-                    console.log("hiding mobileMenu...");
-                    mobileMenu.style.display = "none";
+                    console.log("hiding " + element);
+                    item.style.display = "none";
                     break;
 
                 default:
-                    console.log("error");
-                    mobileMenu.style.display = "none";
+                    console.log("Element display != none nor inline");
+                    item.style.display = "inline";
                     break;
             };
         };
