@@ -25,14 +25,31 @@
 
     {#  HEADER  #}
     <div class="container-fluid">
-        <div class="row"  style="background-color:#222222;height:6vh">
+
+        <div class="row" id="mobileHeader">
+
+            <div id="mobileGreetings">
+                <p style="color:white;"><strong>Bonjour, {{ app.user.username }}</strong></p>
+            </div>
+
+            <div id="burgerIcon" onclick="showHide('menu');">
+                <div class="bar" id="topBar"></div>
+                <div class="bar" id="midBar"></div>
+                <div class="bar" id="botBar"></div>
+            </div>
+
+        </div>
+
+            <div id="mobileMenu" style="display:none;"></div>
+
+        <div class="row" id="desktopHeader">
 
             <p style="color:#C0C0C0; padding-top:5px">
                 <strong>Bonjour, {{ app.user.username }}</strong>
             </p>
 
             <div style="position:absolute;top:0;right:0">
-                <a href="{{path('logout')}}" class="btn btn-sm btn-danger" style="max-height:6vh"><strong>Déconnection</strong></a>
+                <a href="{{path('logout')}}" class="btn btn-danger" style="height:6vh"><strong>Déconnection</strong></a>
             </div>
 
         </div>
@@ -50,11 +67,13 @@
 
 		{{ render(controller("APAPlatformBundle:Admin:Menu"))}}
 
-            {% endif %}
-
-            {% if is_granted('ROLE_USER') %}
+            {% elseif is_granted('ROLE_USER') %}
 
 		{{ render(controller("APAPlatformBundle:User:Menu"))}}
+
+            {% elseif is_granted('ROLE_DOC') %}
+
+                {{ render(controller("APAPlatformBundle:Doc:Menu")) }}
 
             {% endif %}
 
@@ -76,25 +95,113 @@
 </body>
 
 {% block style %}
-    <style>
+    <style type="text/css">
         body {
             background-color: #F4F3F2;
         }
-        .menu {
+        #mobileHeader{
+            background-color: #0275d8;
+            height: 7vh;
+        }
+
+        /* Burger menu for mobile */
+
+        #burgerIcon {
+            height: 7vh;
+            width: 7vh;
+            position: absolute;
+            top: 0;
+            right:10px;
+            cursor: pointer;
+        }
+        #burgerIcon .bar{
+            width: 7vh;
+            height: 1vh;
+            background-color: white;
+            margin-bottom:2vh;
+        }
+
+        /* End of burger menu */
+
+        #desktopHeader{
+            background-color: #222222;
+            height: 6vh;
+        }
+        #menu {
             background-color: #222222;
             padding-left: 2px;
         }
-        .menu div {
+        #menu div {
             margin: 0;
             height:45px;
         }
-        .menu p {
+        #menu p {
             color:#C0C0C0;
         }
+
+        @media only screen and (min-width: 769px){
+            #mobileHeader{
+                display:none;
+            }
+        }
+
+        /* MOBILE */
+
+        @media only screen and (max-width: 769px){
+
+            #content{
+                width:100%;
+                min-height: 93vh;
+                overflow:scroll;
+            }
+            #menu {
+                display: none;
+                background-color: #0275d8;
+            }
+            #menu p{
+                color: white;
+            }
+            #desktopHeader{
+                display: none;
+            }
+
+        }
+
     </style>
 {% endblock %}
 
 {% block scripts %}
+
+    <script type="text/javascript">
+
+        if (screen.width < 769){
+            document.getElementById("content").classList.remove("col-md-10");
+            document.getElementById("content").classList.add("col-xs-10");
+        };
+
+        function showHide(element){
+
+            var item = document.getElementById(element);
+
+            switch (item.style.display){
+                case "none":
+                    console.log("displaying " + element);
+                    item.style.display = "inline";
+                    break;
+
+                case "inline":
+                    console.log("hiding " + element);
+                    item.style.display = "none";
+                    break;
+
+                default:
+                    console.log("Element display != none nor inline");
+                    item.style.display = "inline";
+                    break;
+            };
+        };
+
+    </script>
 
 {% endblock %}
 

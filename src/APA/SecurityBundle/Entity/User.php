@@ -37,7 +37,7 @@ class User implements UserInterface
      * @var string
      */
     private $plainPassword;
-    // $plainPassword is only used to be encrypted and set as the true password.
+    // $plainPassword is only used to be encrypted then set as the true password.
 
     /**
      * @var boolean
@@ -50,6 +50,11 @@ class User implements UserInterface
      */
     private $isProf;
     // $isProf is only used for the checkbox in the addUser form.
+
+    /**
+     * @var boolean
+     */
+    private $isDoc;
 
     /**
      * @var string
@@ -181,6 +186,16 @@ class User implements UserInterface
     public function getIsProf()
     {
         return $this->isProf;
+    }
+
+    public function setIsDoc($isDoc)
+    {
+        $this->isDoc = $isDoc;
+    }
+
+    public function getIsDoc()
+    {
+        return $this->isDoc;
     }
 
     /**

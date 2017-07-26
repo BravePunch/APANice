@@ -76,11 +76,6 @@ class UserController extends Controller
         ));
     }
 
-    public function staffAction()
-    {
-        return $this->render('::chantier.html.twig');
-    }
-
     /**
      * @Security("has_role('ROLE_USER')")
      */
@@ -138,9 +133,9 @@ class UserController extends Controller
 
     }
 
-    public function settingsAction()
+    public function staffAction()
     {
-        return $this->render('::chantier.html.twig');
+        return $this->render('APAPlatformBundle:User:staff.html.twig');
     }
 }
 

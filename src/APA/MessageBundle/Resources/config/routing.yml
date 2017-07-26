@@ -3,11 +3,6 @@ apa_message_inbox:
     defaults:
         _controller: APAMessageBundle:Message:inbox
 
-apa_message_listUsers:
-    path:     /Message/list
-    defaults:
-        _controller: APAMessageBundle:Message:listUsers
-
 apa_message_sendMessage:
     path:     /Message/send/{id}
     defaults:

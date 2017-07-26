@@ -35,6 +35,8 @@ class SecurityController extends Controller {
             return $this->redirectToRoute('apa_platform_adminIndex');
         } else if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')){
             return $this->redirectToRoute('apa_platform_userIndex');
+        } else if ($this->get('security.authorization_checker')->isgranted('ROLE_DOC')){
+            return $this->redirectToRoute('apa_platform_docIndex');
         }
 
     }
